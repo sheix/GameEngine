@@ -1,5 +1,3 @@
-using System;
-using NUnit;
 using NUnit.Framework;
 using Infrastructure;
 
