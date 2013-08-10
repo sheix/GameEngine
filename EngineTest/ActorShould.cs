@@ -14,27 +14,29 @@ namespace EngineTest
 		Mock<IScene> scene;
 		Actor actor;
 		Mock<IStrategy> strategy;
+	    private Mock<IAct> act;
+
 		[SetUp()]
 		public void SetUp()
 		{
+            act = new Mock<IAct>();
 			strategy = new Mock<IStrategy>();
 			actor = new Actor(strategy.Object);
 			scene = new Mock<IScene>();
-			strategy.Setup(mn => mn.SelectAction(It.IsAny<List<IAct>>(),It.IsAny<IScene>())).Returns(new Act("Act 1",actor,null ));
-			scene.Setup(mn => mn.GetPossibleActions(It.IsAny<IActor>())).Returns(new List<IAct>{new Act("Act 1",actor,null ),new Act("Act 2", actor,null)});
+			strategy.Setup(mn => mn.SelectAction(It.IsAny<List<IAct>>(),It.IsAny<IScene>())).Returns(act.Object);
+			scene.Setup(mn => mn.GetPossibleActions(It.IsAny<IActor>())).Returns(new List<IAct>{act.Object});
 		}
 
 		[Test()]
-		public void GetPossibleActionsFromScene()
+		public void ActOnScene()
 		{
 			//arrange
 
 			//act
 			actor.Act(scene.Object);
-			var actions = actor.AllActions;
-
+			
 			//assert
-			Assert.AreNotEqual(0, actions.Count);
+			act.Verify(m => m.Do(scene.Object));
 		}
     }
 }
