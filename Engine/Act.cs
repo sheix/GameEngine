@@ -1,31 +1,30 @@
-using System;
-
 namespace Engine
 {
 	public class Act : IAct
 	{
-		protected IActor _self;
-		protected IActor _target;
-		protected IItem _first;
-		protected IItem _second;
-		protected string _name;
+		protected IActor Self;
+		protected IActor Target;
+		protected IItem First;
+		protected IItem Second;
+		protected string Name;
 
 		public Act (string name, IActor self, IActor target, IItem first = null, IItem second = null)
 		{
-			_name = name;
-			_self = self;
-			_target = target;
-			_first = first;
-			_second = second;
+			Name = name;
+			Self = self;
+			Target = target;
+			First = first;
+			Second = second;
 		}
 
 		public virtual void Do(IScene scene)
 		{
-
+            //Must override
 		}
 
 		public virtual bool CanDo(IScene scene)
 		{
+            //Must override
 			return false;
 		}
 

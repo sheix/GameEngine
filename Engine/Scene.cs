@@ -5,8 +5,8 @@ namespace Engine
 {
 	public class Scene : IScene
 	{
-		private List<IActor> _actors;
-		private long time = 0;
+		private readonly List<IActor> _actors;
+		private long _time = 0;
 		private Func<IScene, bool> _end;
 		protected event EventHandler OnTick;
 
@@ -28,7 +28,6 @@ namespace Engine
 			_end = end; 
 		}
 
-		#region IScene implementation
 		public List<IActor> GetActors ()
 		{
 			return _actors;
@@ -36,7 +35,7 @@ namespace Engine
 
 		public void Tick()
 		{
-			time ++;
+			_time ++;
 			foreach (var actor in _actors) {
 				actor.DecreaseInitiative();
 			}
@@ -68,8 +67,7 @@ namespace Engine
 				Tick();
 			return "SceneEnded";
 		}
-		#endregion
-
+		
 	}
 }
 

@@ -7,9 +7,9 @@ namespace Engine
 {
     public class Actor : IActor
     {
-		private int initiative;
-		private List<IAct> PossibleActions;
-		private IStrategy _strategy;
+		private int _initiative;
+		private List<IAct> _possibleActions;
+		private readonly IStrategy _strategy;
 		protected List<IAct> allActions;
 		public string Name {get; set;}
 
@@ -21,21 +21,20 @@ namespace Engine
 
 		public void Act(IScene scene)
 		{
-			PossibleActions = scene.GetPossibleActions(this);
-			var action = _strategy.SelectAction(PossibleActions, scene);
+			_possibleActions = scene.GetPossibleActions(this);
+			var action = _strategy.SelectAction(_possibleActions, scene);
 			action.Do(scene);
 		}
 
 		public int GetInitiative()
 		{
-			return initiative;
+			return _initiative;
 		}
 
 		public void DecreaseInitiative()
 		{
-			if (initiative == 0) return;
-			initiative --;
-
+			if (_initiative == 0) return;
+			_initiative --;
 		}
 
 

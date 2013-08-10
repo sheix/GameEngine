@@ -16,7 +16,7 @@ namespace SimpleGame
 
 		public override void Do (IScene scene)
 		{
-			((PlayerActor)_self).selection = _name;
+			((PlayerActor)Self).selection = Name;
 		}
 
 	}
