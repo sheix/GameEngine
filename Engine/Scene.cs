@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Engine
 {
@@ -51,12 +52,7 @@ namespace Engine
 
 		public virtual List<IAct> GetPossibleActions(IActor actor)
 		{
-			List<IAct> acts = new List<IAct>();
-			foreach (var act in actor.AllActions) {
-				if (act.CanDo(this))
-					acts.Add(act);
-			}
-			return acts;
+		    return actor.AllActions.Where(act => act.CanDo(this)).ToList();
 		}
 
 		public string Play()

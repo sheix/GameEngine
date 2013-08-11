@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICell.cs" />
+    <Compile Include="Interfaces\IGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Actor.cs" />
     <Compile Include="Interfaces\IActor.cs" />
@@ -57,7 +59,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

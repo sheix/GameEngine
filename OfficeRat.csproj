@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,14 +42,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\ILevelFactory.cs" />
+    <Compile Include="Factories\LevelFactory.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="Infrastructure\Infrastructure.csproj">
-      <Project>{42E135D6-C81E-4F0E-A9A3-63DAFC0EA652}</Project>
-      <Name>Infrastructure</Name>
+    <ProjectReference Include="Engine\Engine.csproj">
+      <Project>{13D4B9DD-759E-491F-BDD6-23FF20B1003E}</Project>
+      <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
