@@ -4,6 +4,6 @@ namespace Engine.Interfaces
 {
     public interface IGrid
     {
-        List<List<ICell>> Grid { get; set;}
+        List<List<ICell>> Grid { get; }
     }
 }
