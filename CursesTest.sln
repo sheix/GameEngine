@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineTest", "EngineTest\En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame", "SimpleGame\SimpleGame.csproj", "{6185BCC6-641C-485C-846E-E993EABB0EE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeRatTest", "..\OfficeRatTest\OfficeRatTest.csproj", "{A34AF8CB-1CD6-484E-ACF9-098D341F9B2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeRatTest", "OfficeRatTest\OfficeRatTest.csproj", "{A34AF8CB-1CD6-484E-ACF9-098D341F9B2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
