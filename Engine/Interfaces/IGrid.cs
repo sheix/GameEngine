@@ -5,5 +5,6 @@ namespace Engine.Interfaces
     public interface IGrid
     {
         List<List<ICell>> Grid { get; }
+        bool Contains(IActor actor);
     }
 }

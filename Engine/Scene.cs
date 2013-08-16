@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace Engine
 {
-	public class Scene : IScene
-	{
+    public class Scene : IScene, IRenderable
+    {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
 		private Func<IScene, bool> _end;
@@ -18,7 +18,7 @@ namespace Engine
 			_actors = new List<IActor>();
 		}
 
-		public void AddActor(IActor actor)
+		public virtual void AddActor(IActor actor)
 		{
 			_actors.Add(actor);
 			_actors.Sort((x,y) => x.GetInitiative() - y.GetInitiative());
@@ -48,9 +48,15 @@ namespace Engine
 
 			if (OnTick != null)
 				OnTick();
+		    Render();
 		}
 
-		public virtual List<IAct> GetPossibleActions(IActor actor)
+        public virtual void Render()
+	    {
+	        
+	    }
+
+	    public virtual List<IAct> GetPossibleActions(IActor actor)
 		{
 		    return actor.AllActions.Where(act => act.CanDo(this)).ToList();
 		}

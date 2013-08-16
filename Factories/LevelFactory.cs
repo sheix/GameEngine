@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CursesTest.Factories;
 using Engine;
 using Engine.Interfaces;
@@ -22,6 +23,11 @@ namespace OfficeRatTest
         List<List<ICell>> IGrid.Grid
         {
             get { return _grid; }
+        }
+
+        public bool Contains(IActor actor)
+        {
+            return _grid.Any(m => m.Any(n => n.Actor == actor));
         }
 
         private List<List<ICell>> _grid;
