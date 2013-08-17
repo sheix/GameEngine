@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Engine.Interfaces
 {
-    interface ITargetedAct : IAct
+    public interface ITargetedAct : IAct
     {
         IActor Target { get; set; }
     }

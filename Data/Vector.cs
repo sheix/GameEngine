@@ -1,6 +1,6 @@
 ﻿namespace CursesTest.Data
 {
-    class Vector
+    public class Vector
     {
         public readonly int _x;
         public readonly int _y;

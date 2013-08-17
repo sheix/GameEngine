@@ -1,10 +1,11 @@
 ﻿using System;
 using CursesTest.Data;
 using Engine;
+using Engine.Interfaces;
 
 namespace CursesTest.Acts
 {
-    class MoveAct : IDirectionalAct
+    class MoveAct : IDirectionalAct, IKeyedAct
     {
         private readonly Vector _direction;
 
@@ -38,6 +39,11 @@ namespace CursesTest.Acts
         public Vector Direction
         {
             get { return _direction; }
+        }
+
+        public ConsoleKeyInfo Key
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

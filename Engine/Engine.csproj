@@ -41,8 +41,10 @@
   <ItemGroup>
     <Compile Include="Interfaces\ICell.cs" />
     <Compile Include="Interfaces\IGrid.cs" />
+    <Compile Include="Interfaces\IKeyedAct.cs" />
+    <Compile Include="Interfaces\IPlacableActor.cs" />
+    <Compile Include="Interfaces\IRenderable.cs" />
     <Compile Include="Interfaces\ITargetedAct.cs" />
-    <Compile Include="IRenderable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Actor.cs" />
     <Compile Include="Interfaces\IActor.cs" />

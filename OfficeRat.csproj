@@ -42,6 +42,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actors\OfficeRatActor.cs" />
     <Compile Include="Acts\IDirectionalAct.cs" />
     <Compile Include="Acts\MoveAct.cs" />
     <Compile Include="Data\Vector.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="OfficeRatScene\OfficeRatScene.cs" />
+    <Compile Include="Strategies\ManualStrategy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -58,4 +60,5 @@
       <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

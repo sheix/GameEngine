@@ -3,7 +3,7 @@ using Engine;
 
 namespace CursesTest.Acts
 {
-    interface IDirectionalAct : IAct
+    public interface IDirectionalAct : IAct
     {
         Vector Direction { get; }
     }

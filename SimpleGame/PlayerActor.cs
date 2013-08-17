@@ -7,10 +7,12 @@ namespace SimpleGame
 	{
 		public PlayerActor(IStrategy strategy) : base(strategy)
 		{
-			allActions = new System.Collections.Generic.List<IAct>();
-			allActions.Add(new Rock("Rock",this));
-			allActions.Add(new Scissors("Scissors",this));
-			allActions.Add(new Paper("Paper", this));
+			allActions = new System.Collections.Generic.List<IAct>
+			                 {
+			                     new Rock("Rock", this),
+			                     new Scissors("Scissors", this),
+			                     new Paper("Paper", this)
+			                 };
 		}
 
 		public String selection; 
