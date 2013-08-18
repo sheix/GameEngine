@@ -6,7 +6,7 @@ using OfficeRatTest;
 
 namespace CursesTest.OfficeRatScene
 {
-    public class OfficeRatScene : Scene
+    public class OfficeRatScene : Scene, IOfficeRatScene
     {
         IGrid _grid;
         public OfficeRatScene()
@@ -27,7 +27,7 @@ namespace CursesTest.OfficeRatScene
                 PlaceActorToGrid((IPlacableActor)actor);
         }
 
-        private void PlaceActorToGrid(IPlacableActor actor)
+        public void PlaceActorToGrid(IPlacableActor actor)
         {
             Grid1.Grid[actor.InitialX][actor.InitialY].Actor = actor;
         }
@@ -38,5 +38,11 @@ namespace CursesTest.OfficeRatScene
         }
 
         
+    }
+
+    public interface IOfficeRatScene : IScene
+    {
+        IGrid Grid1 { get; }
+        void PlaceActorToGrid(IPlacableActor actor);
     }
 }

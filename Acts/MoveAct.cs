@@ -1,22 +1,27 @@
 ﻿using System;
 using CursesTest.Data;
+using CursesTest.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
 
 namespace CursesTest.Acts
 {
-    class MoveAct : IDirectionalAct, IKeyedAct
+    public class MoveAct : IDirectionalAct, IKeyedAct
     {
         private readonly Vector _direction;
+        private readonly ConsoleKeyInfo _key;
 
-        public MoveAct(Vector direction)
+        public MoveAct(Vector direction, ConsoleKeyInfo key)
         {
             _direction = direction;
+            _key = key;
         }
 
         public bool CanDo(IScene scene)
         {
-            throw new NotImplementedException();
+            if (scene is IOfficeRatScene)
+                ((IOfficeRatScene) scene).Grid1.GetActorCoordinates(Self);
+            return true;
         }
 
         public void Do(IScene scene)
@@ -26,8 +31,7 @@ namespace CursesTest.Acts
 
         public IActor Self
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get; set;
         }
 
         public string Name
@@ -43,7 +47,7 @@ namespace CursesTest.Acts
 
         public ConsoleKeyInfo Key
         {
-            get { throw new NotImplementedException(); }
+            get { return _key; }
         }
     }
 }

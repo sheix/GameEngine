@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CursesTest.Data;
 using CursesTest.Factories;
 using Engine;
 using Engine.Interfaces;
@@ -23,6 +24,7 @@ namespace OfficeRatTest
         List<List<ICell>> IGrid.Grid
         {
             get { return _grid; }
+            set { throw new NotImplementedException(); }
         }
 
         public bool Contains(IActor actor)
@@ -30,7 +32,16 @@ namespace OfficeRatTest
             return _grid.Any(m => m.Any(n => n.Actor == actor));
         }
 
-        private List<List<ICell>> _grid;
+        public void GetActorCoordinates(IActor actor)
+        {
+            int x, y;
+            x = _grid.FindIndex(m => m.Any(c => c.Actor == actor));
+            var list = _grid.Find(m => m.Any(c => c.Actor == actor));
+            y = list.FindIndex(m => m.Equals(actor));
+            var vector = new Vector(x,y);
+        }
+
+        private readonly List<List<ICell>> _grid;
 
         public Grid(int maxx, int maxy)
         {
@@ -48,15 +59,10 @@ namespace OfficeRatTest
 
     public class Cell : ICell
     {
-        private IActor actor;
         private List<IItem> items;
         private int elevation;
 
-        public IActor Actor
-        {
-            get { return actor; }
-            set { actor = value; }
-        }
+        public IActor Actor { get; set; }
 
         public List<IItem> Items
         {
