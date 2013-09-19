@@ -1,5 +1,4 @@
-﻿using System;
-using CursesTest.Data;
+using System;
 using CursesTest.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
@@ -19,9 +18,12 @@ namespace CursesTest.Acts
 
         public bool CanDo(IScene scene)
         {
-            if (scene is IOfficeRatScene)
-                ((IOfficeRatScene) scene).Grid1.GetActorCoordinates(Self);
-            return true;
+            var coords = (scene as IOfficeRatScene).Grid1.GetActorCoordinates(Self);
+			Console.WriteLine ("Self: [" + coords._x +","+ coords._y+"]");
+			Console.WriteLine ("Dir : [" + _direction._x +","+ _direction._y+"]");
+			var cell = (scene as IOfficeRatScene).Grid1.At(coords._x + _direction._x,coords._y + _direction._y);
+			if (cell.Actor != null) return false;
+			return true;
         }
 
         public void Do(IScene scene)

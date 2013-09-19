@@ -1,6 +1,5 @@
 ﻿using System;
 using CursesTest.Acts;
-using CursesTest.Data;
 using CursesTest.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
@@ -46,12 +45,19 @@ namespace OfficeRatTest
 
             var act = new MoveAct(new Vector(1, 1), new ConsoleKeyInfo());
             act.Self = thisActor.Object;
-            sceneMock.Setup(m => m.Grid1).Returns(grid);
+            
+			((Grid)grid).Render();
 
             var result = act.CanDo(sceneMock.Object);
 
 
             Assert.IsFalse(result);
         }
+
+		//[Test]
+		//public void ReturnTrueIfMockIsInterfaceImplementation()
+		//{
+		//	Assert.IsTrue(sceneMock is IOfficeRatScene);
+		//}
     }
 }

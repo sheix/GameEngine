@@ -1,5 +1,4 @@
-﻿using CursesTest.Data;
-using Engine;
+﻿using Engine;
 
 namespace CursesTest.Acts
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CursesTest.Acts;
-using CursesTest.Data;
 using Engine;
 using Engine.Interfaces;
 

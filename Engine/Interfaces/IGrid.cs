@@ -6,6 +6,7 @@ namespace Engine.Interfaces
     {
         List<List<ICell>> Grid { get; set; }
         bool Contains(IActor actor);
-        void GetActorCoordinates(IActor actor);
+        Vector GetActorCoordinates(IActor actor);
+		ICell At(int x, int y);
     }
 }

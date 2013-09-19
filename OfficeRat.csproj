@@ -14,8 +14,6 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -31,8 +29,6 @@
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
     <AssemblyName>CursesTest</AssemblyName>
-    <DefineConstants>
-    </DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -46,8 +42,11 @@
     <StartupObject>OfficeRat.MainClass</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <DefineConstants>
-    </DefineConstants>
+    <OutputPath>bin\Release</OutputPath>
+    <AssemblyName>OfficeRat</AssemblyName>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -56,7 +55,6 @@
     <Compile Include="Actors\OfficeRatActor.cs" />
     <Compile Include="Acts\IDirectionalAct.cs" />
     <Compile Include="Acts\MoveAct.cs" />
-    <Compile Include="Data\Vector.cs" />
     <Compile Include="Factories\ILevelFactory.cs" />
     <Compile Include="Factories\LevelFactory.cs" />
     <Compile Include="Main.cs" />

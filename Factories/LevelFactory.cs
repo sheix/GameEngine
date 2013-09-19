@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CursesTest.Data;
 using CursesTest.Factories;
 using Engine;
 using Engine.Interfaces;
@@ -19,7 +18,7 @@ namespace OfficeRatTest
         }
     }
 
-    public class Grid : IGrid
+    public class Grid : IGrid, IRenderable
     {
         List<List<ICell>> IGrid.Grid
         {
@@ -32,13 +31,13 @@ namespace OfficeRatTest
             return _grid.Any(m => m.Any(n => n.Actor == actor));
         }
 
-        public void GetActorCoordinates(IActor actor)
+        public Vector GetActorCoordinates(IActor actor)
         {
             int x, y;
             x = _grid.FindIndex(m => m.Any(c => c.Actor == actor));
-            var list = _grid.Find(m => m.Any(c => c.Actor == actor));
-            y = list.FindIndex(m => m.Equals(actor));
-            var vector = new Vector(x,y);
+			y = _grid[x].FindIndex(m => m.Actor == actor);
+            
+			return new Vector(x,y);
         }
 
         private readonly List<List<ICell>> _grid;
@@ -55,12 +54,43 @@ namespace OfficeRatTest
                 }
             }
         }
+
+		public ICell At (int x, int y)
+		{
+			return _grid[x][y];
+		}
+
+		public void Render()
+		{
+			foreach (var item in _grid) {
+				Console.WriteLine ();
+				foreach (var item1 in item) {
+					if (item1.Actor != null)
+					{
+						Console.Write('@');
+						continue;
+					}
+					if (item1.Items.Count > 0) {
+						Console.Write ('%');
+						continue;
+					}
+					Console.Write ('.');
+				}
+			}
+			Console.WriteLine ();
+		}
+
     }
 
     public class Cell : ICell
     {
         private List<IItem> items;
-        private int elevation;
+        private int elevation = 0;
+
+		public Cell ()
+		{
+			items = new List<IItem>();
+		}
 
         public IActor Actor { get; set; }
 

@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OfficeRatTest</RootNamespace>
     <AssemblyName>OfficeRatTest</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -36,9 +35,11 @@
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\GE\nunit.core-2.6\nunit.core.dll</HintPath>
+      <Package>mono-nunit</Package>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\GE\nunit.framework-2.6\nunit.framework.dll</HintPath>
+      <Package>mono-nunit</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
