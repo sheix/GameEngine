@@ -25,6 +25,11 @@ namespace Engine
 			_actors.Sort((x,y) => x.GetInitiative() - y.GetInitiative());
 		}
 
+		public virtual void RemoveActor (IActor actor)
+		{
+			_actors.Remove(actor);
+		}
+
 		public void AddEndPredicate(Func<IScene, bool> end)
 		{
 			_end = end; 

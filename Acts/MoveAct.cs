@@ -19,8 +19,6 @@ namespace CursesTest.Acts
         public bool CanDo(IScene scene)
         {
             var coords = (scene as IOfficeRatScene).Grid1.GetActorCoordinates(Self);
-			Console.WriteLine ("Self: [" + coords._x +","+ coords._y+"]");
-			Console.WriteLine ("Dir : [" + _direction._x +","+ _direction._y+"]");
 			var cell = (scene as IOfficeRatScene).Grid1.At(coords._x + _direction._x,coords._y + _direction._y);
 			if (cell.Actor != null) return false;
 			return true;
@@ -28,7 +26,11 @@ namespace CursesTest.Acts
 
         public void Do(IScene scene)
         {
-            throw new NotImplementedException();
+			var coords = (scene as IOfficeRatScene).Grid1.GetActorCoordinates(Self);
+			var newcoords = coords + _direction;
+			(scene as IOfficeRatScene).PlaceActorToGrid((IPlacableActor)Self, newcoords);
+			scene.RemoveActor(Self);
+			//scene.AddActor(Self);
         }
 
         public IActor Self

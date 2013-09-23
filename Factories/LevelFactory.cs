@@ -60,6 +60,11 @@ namespace OfficeRatTest
 			return _grid[x][y];
 		}
 
+		public ICell At (Vector v)
+		{
+			return _grid[v._x][v._y];
+		}
+
 		public void Render()
 		{
 			foreach (var item in _grid) {

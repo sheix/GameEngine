@@ -13,15 +13,15 @@ namespace OfficeRatTest
     {
         private Mock<IOfficeRatScene> sceneMock;
         private IGrid grid;
-        private Mock<IActor> anotherActor;
-        private Mock<IActor> thisActor;
+        private Mock<IPlacableActor> anotherActor;
+        private Mock<IPlacableActor> thisActor;
             
         [SetUp]
         public void SetUp()
         {
             sceneMock = new Mock<IOfficeRatScene>();
             grid = new Grid(20,20);
-            thisActor = new Mock<IActor>();
+            thisActor = new Mock<IPlacableActor>();
             grid.Grid[3][11].Actor = thisActor.Object;
             sceneMock.Setup(m => m.Grid1).Returns(grid);
         }
@@ -40,7 +40,7 @@ namespace OfficeRatTest
         [Test]
         public void ReturnCantDoWhenNoOtherActorInItsWay()
         {
-            anotherActor = new Mock<IActor>();
+            anotherActor = new Mock<IPlacableActor>();
             grid.Grid[4][12].Actor = anotherActor.Object;
 
             var act = new MoveAct(new Vector(1, 1), new ConsoleKeyInfo());
@@ -54,10 +54,16 @@ namespace OfficeRatTest
             Assert.IsFalse(result);
         }
 
-		//[Test]
-		//public void ReturnTrueIfMockIsInterfaceImplementation()
-		//{
-		//	Assert.IsTrue(sceneMock is IOfficeRatScene);
-		//}
+		[Test]
+		public void ActuallyMoveActorWhenDone ()
+		{
+			var act = new MoveAct(new Vector(1, 1), new ConsoleKeyInfo());
+            act.Self = thisActor.Object;
+
+			act.Do(sceneMock.Object);
+
+			sceneMock.Verify(mn => mn.RemoveActor(It.Is<IPlacableActor>(m => m.Equals(thisActor.Object))));
+			sceneMock.Verify(mn => mn.PlaceActorToGrid(It.Is<IPlacableActor>(m => m.Equals(thisActor.Object)),It.IsAny<Vector>()));
+		}
     }
 }

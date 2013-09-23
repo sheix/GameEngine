@@ -8,5 +8,6 @@ namespace Engine.Interfaces
         bool Contains(IActor actor);
         Vector GetActorCoordinates(IActor actor);
 		ICell At(int x, int y);
+		ICell At(Vector v);
     }
 }

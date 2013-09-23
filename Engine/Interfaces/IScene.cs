@@ -10,6 +10,7 @@ namespace Engine
 		void Tick();
 		List<IAct> GetPossibleActions(IActor actor);
 		void AddActor(IActor actor);
+		void RemoveActor(IActor actor);
 		string Play();
 		void AddEndPredicate(Func<IScene, bool> end);
 
