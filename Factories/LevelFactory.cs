@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CursesTest.Factories;
+using OfficeRat.Factories;
 using Engine;
 using Engine.Interfaces;
 
-namespace OfficeRatTest
+namespace OfficeRat.Factories
 {
     public class LevelFactory : ILevelFactory
     {

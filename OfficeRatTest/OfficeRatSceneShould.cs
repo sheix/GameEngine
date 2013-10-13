@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CursesTest.OfficeRatScene;
+using OfficeRat.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
 using Moq;

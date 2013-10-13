@@ -1,10 +1,9 @@
 ﻿using System;
-using CursesTest.Factories;
+using OfficeRat.Factories;
 using Engine;
 using Engine.Interfaces;
-using OfficeRatTest;
 
-namespace CursesTest.OfficeRatScene
+namespace OfficeRat.OfficeRatScene
 {
     public class OfficeRatScene : Scene, IOfficeRatScene
     {

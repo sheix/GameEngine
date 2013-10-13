@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CursesTest.Acts;
+using OfficeRat.Acts;
 using Engine;
 using Engine.Interfaces;
 
-namespace CursesTest.Actors
+namespace OfficeRat.Actors
 {
     class OfficeRatActor : Actor,  IPlacableActor
     {

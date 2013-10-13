@@ -1,6 +1,6 @@
 ﻿using Engine;
 
-namespace CursesTest.Acts
+namespace OfficeRat.Acts
 {
     public interface IDirectionalAct : IAct
     {

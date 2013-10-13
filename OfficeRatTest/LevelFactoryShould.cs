@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Engine.Interfaces;
 using NUnit.Framework;
+using OfficeRat.Factories;
 
 namespace OfficeRatTest
 {

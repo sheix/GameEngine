@@ -1,10 +1,11 @@
 ﻿using System;
-using CursesTest.Acts;
-using CursesTest.OfficeRatScene;
+using OfficeRat.Acts;
+using OfficeRat.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
 using Moq;
 using NUnit.Framework;
+using OfficeRat.Factories;
 
 namespace OfficeRatTest
 {

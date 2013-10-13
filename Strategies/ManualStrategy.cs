@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Engine;
 
-namespace CursesTest.Strategies
+namespace OfficeRat.Strategies
 {
     class ManualStrategy : IStrategy
     {

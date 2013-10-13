@@ -1,6 +1,6 @@
 ﻿using Engine.Interfaces;
 
-namespace CursesTest.Factories
+namespace OfficeRat.Factories
 {
     public interface ILevelFactory
     {

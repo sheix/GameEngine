@@ -1,5 +1,7 @@
 //using Mono;
 using Engine;
+using OfficeRat.OfficeRatScene;
+
 
 namespace OfficeRat
 {
@@ -8,6 +10,7 @@ namespace OfficeRat
 
         public static void Main(string[] args)
         {
+			var scene = new OfficeRatScene.OfficeRatScene();
 
 
         }

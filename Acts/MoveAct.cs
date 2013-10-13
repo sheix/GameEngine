@@ -1,9 +1,9 @@
 using System;
-using CursesTest.OfficeRatScene;
 using Engine;
 using Engine.Interfaces;
+using OfficeRat.OfficeRatScene;
 
-namespace CursesTest.Acts
+namespace OfficeRat.Acts
 {
     public class MoveAct : IDirectionalAct, IKeyedAct
     {
