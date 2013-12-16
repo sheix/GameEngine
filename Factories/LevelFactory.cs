@@ -18,7 +18,7 @@ namespace OfficeRatTest
         }
     }
 
-    public class Grid : IGrid, IRenderable
+    public class Grid : IGrid
     {
         List<List<ICell>> IGrid.Grid
         {
