@@ -22,7 +22,7 @@ namespace OfficeRatTest
             _actor = new Mock<IPlacableActor>();
             _strategy = new Mock<IStrategy>();
 
-            var scene = new OfficeRatScene();
+            var scene = new Stage();
             scene.AddActor(_actor.Object);
 
             Assert.IsTrue(scene.Grid1.Contains(_actor.Object));

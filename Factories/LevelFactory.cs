@@ -18,7 +18,7 @@ namespace OfficeRat.Factories
         }
     }
 
-    public class Grid : IGrid, IRenderable
+    public class Grid : IGrid
     {
         List<List<ICell>> IGrid.Grid
         {
