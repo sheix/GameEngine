@@ -1,7 +1,7 @@
 using System;
 using Engine;
 using Engine.Interfaces;
-using OfficeRat.OfficeRatScene;
+using OfficeRat;
 
 namespace OfficeRat.Acts
 {

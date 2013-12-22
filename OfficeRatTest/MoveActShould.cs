@@ -1,6 +1,6 @@
 ﻿using System;
 using OfficeRat.Acts;
-using OfficeRat.OfficeRatScene;
+using OfficeRat;
 using Engine;
 using Engine.Interfaces;
 using Moq;
