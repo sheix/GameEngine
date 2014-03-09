@@ -36,8 +36,5 @@ namespace Engine
 			if (_initiative == 0) return;
 			_initiative --;
 		}
-
-
-
     }
 }

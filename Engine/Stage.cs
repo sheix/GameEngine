@@ -1,5 +1,4 @@
-﻿using OfficeRat.Factories;
-using Engine;
+﻿using Engine;
 using Engine.Interfaces;
 
 namespace OfficeRat
@@ -9,8 +8,7 @@ namespace OfficeRat
         IGrid _grid;
         public Stage()
         {
-            ILevelFactory factory = new LevelFactory();
-            _grid = factory.GenerateGrid();
+            //Generate Grid here??
         }
 
         public IGrid Grid1

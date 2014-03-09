@@ -51,10 +51,12 @@
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IAct.cs" />
     <Compile Include="Scene.cs" />
-    <Compile Include="Act.cs" />
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="Stage.cs" />
+    <Compile Include="Interfaces\IDirectionalAct.cs" />
+    <Compile Include="BaseAct.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

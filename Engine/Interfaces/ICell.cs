@@ -8,6 +8,5 @@ namespace Engine.Interfaces
         List<IItem> Items {get; }
         int Elevation { get; }
         void AddItem(IItem item);
-        // add special here
     }
 }

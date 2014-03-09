@@ -10,7 +10,7 @@ namespace Engine
 	    private IItem _second;
 	    private string _name;
 
-		public Act (string name, IActor self, IActor target, IItem first = null, IItem second = null)
+		public BaseAct (string name, IActor self, IActor target, IItem first = null, IItem second = null)
 		{
 			_name = name;
 			_self = self;
@@ -49,9 +49,9 @@ namespace Engine
 	        set { _name = value; }
 	    }
 
-		public virtual void Do(IScene scene);
+		public abstract void Do(IScene scene);
 
-		public virtual bool CanDo(IScene scene);
+		public abstract bool CanDo(IScene scene);
 		
 
 	}
