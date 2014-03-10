@@ -32,9 +32,13 @@
   <ItemGroup>
     <Reference Include="nunit.core">
       <HintPath>..\nunit.core-2.6\nunit.core.dll</HintPath>
+      <Package>mono-nunit</Package>
+      <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\nunit.framework-2.6\nunit.framework.dll</HintPath>
+      <Package>mono-nunit</Package>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,7 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Moq">
-      <HintPath>..\Moq.4.0.10827\NET40\Moq.dll</HintPath>
+      <HintPath>..\lib\Moq.4.0.10827\NET40\Moq.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
