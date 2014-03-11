@@ -1,4 +1,4 @@
-﻿namespace Engine
+﻿namespace Contracts
 {
     public class Vector
     {

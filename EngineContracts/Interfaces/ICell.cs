@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Engine.Interfaces
+namespace Contracts
 {
     public interface ICell
     {

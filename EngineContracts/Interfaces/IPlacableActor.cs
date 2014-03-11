@@ -1,4 +1,4 @@
-﻿namespace Engine.Interfaces
+﻿namespace Contracts
 {
     public interface IPlacableActor : IActor
     {

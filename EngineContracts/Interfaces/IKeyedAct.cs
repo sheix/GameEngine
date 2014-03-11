@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Engine.Interfaces
+namespace Contracts
 {
     public interface IKeyedAct
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Engine
+namespace Contracts
 {
 	public interface IScene
 	{

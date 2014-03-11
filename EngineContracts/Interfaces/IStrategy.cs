@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Engine
+namespace Contracts
 {
 	/// <summary>
 	/// Strategy : Possible implementations : 

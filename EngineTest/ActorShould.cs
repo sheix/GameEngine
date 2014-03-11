@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using Moq;
 using Engine;
+using Contracts;
 
 namespace EngineTest
 {

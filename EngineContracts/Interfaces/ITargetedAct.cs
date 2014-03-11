@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Engine.Interfaces
+namespace Contracts
 {
     public interface ITargetedAct : IAct
     {

@@ -1,6 +1,4 @@
-﻿using Engine;
-
-namespace OfficeRat.Acts
+﻿namespace Contracts
 {
     public interface IDirectionalAct : IAct
     {

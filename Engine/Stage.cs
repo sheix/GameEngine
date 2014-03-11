@@ -1,5 +1,5 @@
 ﻿using Engine;
-using Engine.Interfaces;
+using Contracts;
 
 namespace OfficeRat
 {
@@ -50,15 +50,5 @@ namespace OfficeRat
             Grid1.Render();
             base.Render();
         }
-
-
-    }
-
-    public interface IStage
-    {
-        IGrid Grid1 { get; }
-        void PlaceActorToGrid(IPlacableActor actor);
-        void PlaceActorToGrid(IPlacableActor actor, Vector v);
-
-    }
-}
+  }
+ }

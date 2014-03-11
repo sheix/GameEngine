@@ -1,6 +1,6 @@
 using System;
 
-namespace Engine
+namespace Contracts
 {
 	public interface IItem
 	{
