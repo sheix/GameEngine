@@ -36,10 +36,19 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\lib\Castle.Windsor-40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\lib\OpenTK\Release\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>..\lib\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MengerCube.cs" />
+    <Compile Include="OpenTkExample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

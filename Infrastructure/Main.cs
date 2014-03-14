@@ -1,6 +1,8 @@
 using System;
 using Castle.Windsor;
 using Castle;
+using System.Collections.Generic;
+
 
 namespace Infrastructure
 {
@@ -10,6 +12,8 @@ namespace Infrastructure
 		{
 			//start the game!
 			Console.WriteLine ("Launch host app!");
+			//			Anaglyph a = new Anaglyph();
+			//          a.Run(10.0);
 			container.Dispose();
 		}
 
