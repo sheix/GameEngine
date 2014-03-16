@@ -4,7 +4,7 @@ namespace Contracts
 {
 	public interface IStage
     {
-        IGrid Grid1 { get; }
+        IGrid Map { get; }
         void PlaceActorToGrid(IPlacableActor actor);
         void PlaceActorToGrid(IPlacableActor actor, Vector v);
 
