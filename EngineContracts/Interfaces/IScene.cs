@@ -12,7 +12,6 @@ namespace Contracts
 		void AddActor(IActor actor);
 		void RemoveActor(IActor actor);
 		string Play();
-		void AddEndPredicate(Func<IScene, bool> end);
 		string ID {get;}
 	}
 }

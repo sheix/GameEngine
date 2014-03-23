@@ -43,6 +43,8 @@
     <Compile Include="Actor.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="BaseAct.cs" />
+    <Compile Include="Grid.cs" />
+    <Compile Include="ScenarioRunner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

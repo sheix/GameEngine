@@ -52,11 +52,6 @@ namespace Engine
 			_actors.Remove(actor);
 		}
 
-		public void AddEndPredicate(Func<IScene, bool> end)
-		{
-			_end = end; 
-		}
-
 		public List<IActor> GetActors ()
 		{
 			return _actors;

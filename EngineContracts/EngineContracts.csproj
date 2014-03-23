@@ -48,6 +48,8 @@
     <Compile Include="Interfaces\IDirectionalAct.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Interfaces\IStage.cs" />
+    <Compile Include="Interfaces\IScenarioRunner.cs" />
+    <Compile Include="Interfaces\IScenarioLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
