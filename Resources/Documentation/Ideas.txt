@@ -1,0 +1,17 @@
+Stage - 
+open place rectangular
+Trees Bushes
+Stones
+Water
+Small buildings
+Walls
+Roads
+
+Closed place
+Cave
+Maze
+Building
+
+Special features
+
+Generate levels on the beginning? - On the Fly
