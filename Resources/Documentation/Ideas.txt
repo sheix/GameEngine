@@ -1,17 +1,39 @@
-Stage - 
-open place rectangular
-Trees Bushes
-Stones
-Water
-Small buildings
-Walls
-Roads
+This document shows features to implement by milestones for the engine and game. It should fit format of user stories.
+Later those ideas will be split in issues on github for implementation.
 
-Closed place
-Cave
-Maze
-Building
+Numbers means engine features
+Letters means gameplay features
 
-Special features
+10) Level(Scenario) generator should do basics level generation
+11) Level generator should generate levels from text files with following format:
+	[Scene Id]
+	[Geometric]
+	MaxWidth=X
+	MaxLength=Y
+	Shape=(rectangle|square)
+	...
+	[Theme]
+	Kind=(Wilderness|Maze|Cavern|Building)
+	["ThemeName features", f.e Wilderness]
+	Trees=(X|X%)
+	Grove=(Y/N)
+	Bushes=(Y|Y%)
+	Stones=(Z|Z%)
+	Scatter=(Y\N)
+	[Special Features]
+	Building
+	Vault
+	[Actors]
+	... (TBD)
+	...
+	[Items]
+	... (TBD)
+	...
+	[Exits]
+	[Exit]
+	Rule=
+	NextScene="NextSceneId"
+20) Scenario runner should switch between scenes, as completion of scene achieved
+30) 1st version of UI should be implemented 
 
-Generate levels on the beginning? - On the Fly
+a) Level generator 
