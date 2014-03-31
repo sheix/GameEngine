@@ -49,6 +49,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="MengerCube.cs" />
     <Compile Include="OpenTkExample.cs" />
+    <Compile Include="SceneRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

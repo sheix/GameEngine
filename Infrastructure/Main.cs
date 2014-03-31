@@ -12,8 +12,10 @@ namespace Infrastructure
 		{
 			//start the game!
 			Console.WriteLine ("Launch host app!");
-			//			Anaglyph a = new Anaglyph();
-			//          a.Run(10.0);
+
+			SceneRenderer renderer = new SceneRenderer();
+			renderer.Run(10.0);
+
 			container.Dispose();
 		}
 
