@@ -3,6 +3,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using System.Drawing;
 
 
 namespace Infrastructure
@@ -19,15 +20,19 @@ namespace Infrastructure
 		{
 			base.OnLoad(e);
 
-			GL.ClearColor(System.Drawing.Color.Black);
+			GL.ClearColor(Color.Black);
 			GL.Enable(EnableCap.DepthTest);
 
 			GL.Enable( EnableCap.Lighting );
 			GL.Enable( EnableCap.Light0 );
+
+
+
 		}
 
 		protected override void OnUnload( EventArgs e )
 		{
+
 			base.OnUnload( e );
 			//	Object.Dispose();
 		}
@@ -43,8 +48,21 @@ namespace Infrastructure
 		{
 			base.OnUpdateFrame(e);
 
-			//render scene
+			GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
 
+			GL.Begin(BeginMode.Quads);
+
+			GL.Clear(ClearBufferMask.ColorBufferBit);
+
+			GL.LoadIdentity ();
+			//render scene
+			GL.Color3(Color.White);
+			GL.Vertex2(0.5, 0.5);
+			GL.Vertex2(0.6, 0.5);
+			GL.Vertex2(0.6, 0.6);
+			GL.Vertex2(0.5, 0.6);
+
+			GL.End ();
 			if (Keyboard[Key.Escape])
 				Exit();
 		}
