@@ -1,0 +1,15 @@
+The game is about a person that struggles to make a fortune by bounty hunting in kind of fantasy world. But the goal changes, as hero advances in his quest for wealth, to fix some very evil plot that is going on by unidentified force. The hero will look for ancient knowledge and secret artifacts to fight the unknown rivals.
+
+The player eventually will get invitations to missions, randomly chosen, or predefined, and decide whether to proceed to them or not. The mission is one or more classic rogue-like levels, generated each game. 
+
+Each mission carries outcome - reward or items or only wounds, but it also determines which missions will become available later on. For example, when hero succeeds in killing some scary giant snake, he may be invited to more reptile hunting missions and may end up fighting dragons, but if he finds out that the snake is actually a charmed paladin, he may get quest of bringing evil wizard to justice.
+
+The idea of scenario should be that not all the stuff is what it looks, that power of word can be greater than a sword, and that the human kind is it's own worst enemy, when it's in the run for money and glory.
+
+More gameplay features should be:
+hero have some kind of house to recover between missions
+no in-mission regeneration - not all wounds will close by themselves
+randomly generated levels for missions
+there's a calendar of the world, and time passes by
+there are predefined events, like annual monster hunt, or wyvern weekend when this particular kind of monster especially agressive
+allies may join as house features - for example doctor that speeds up regeneration for money.
