@@ -36,13 +36,13 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\lib\Castle.Windsor-40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="OpenTK">
       <HintPath>..\lib\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.GLControl">
       <HintPath>..\lib\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -50,6 +50,8 @@
     <Compile Include="MengerCube.cs" />
     <Compile Include="OpenTkExample.cs" />
     <Compile Include="SceneRenderer.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -61,5 +63,10 @@
       <Project>{13D4B9DD-759E-491F-BDD6-23FF20B1003E}</Project>
       <Name>Engine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <Import Project="../packages/MonoGame.Binaries.3.2.0/build/net40/MonoGame.Binaries.targets" Condition="Exists('../packages/MonoGame.Binaries.3.2.0/build/net40/MonoGame.Binaries.targets')" />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="SDL.dll" />
   </ItemGroup>
 </Project>
