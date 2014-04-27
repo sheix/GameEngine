@@ -1,9 +1,8 @@
 #region Using Statements
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Castle;
 using Castle.Windsor;
+using SFML.Window;
+
 #endregion
 
 namespace Infrastructure
@@ -21,7 +20,15 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!");
 
-            
+            var window = new Window(VideoMode.DesktopMode, "Test");
+
+            while (window.IsOpen())
+            {
+                
+                //window.
+
+                window.Display();
+            }
 
 			container.Dispose ();
         }
