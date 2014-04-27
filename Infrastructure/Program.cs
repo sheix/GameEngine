@@ -21,8 +21,7 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!");
 
-            using (var game = new Game1())
-                game.Run();
+            
 
 			container.Dispose ();
         }
