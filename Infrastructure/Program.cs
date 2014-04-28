@@ -21,11 +21,12 @@ namespace Infrastructure
 			Console.WriteLine ("Launch host app!");
 
             var window = new Window(VideoMode.DesktopMode, "Test");
+            window.Closed += OnClosed;
+            window.KeyPressed += OnKeyPressed;
 
             while (window.IsOpen())
             {
-                
-                //window.
+                window.DispatchEvents();
 
                 window.Display();
             }
@@ -33,7 +34,22 @@ namespace Infrastructure
 			container.Dispose ();
         }
 
-		public static IWindsorContainer container;
+        private static void OnKeyPressed(object sender, KeyEventArgs e)
+        {
+            var window = (Window)sender;
+            if (e.Code == Keyboard.Key.Escape)
+                window.Close();
+
+        }
+
+        private static void OnClosed(object sender, EventArgs e)
+        {
+            var window = (Window)sender;
+            window.Close();
+
+        }
+
+        public static IWindsorContainer container;
 
 		static Program()
 		{
