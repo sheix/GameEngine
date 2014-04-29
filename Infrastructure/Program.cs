@@ -1,6 +1,7 @@
 #region Using Statements
 using System;
 using Castle.Windsor;
+using SFML.Graphics;
 using SFML.Window;
 
 #endregion
@@ -20,13 +21,17 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!");
 
-            var window = new Window(VideoMode.DesktopMode, "Test");
+            var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
 
+            Font font = new Font(@"..\..\..\Resources\Fonts\kongtext.ttf");
+            
             while (window.IsOpen())
             {
                 window.DispatchEvents();
+                Text text = new Text("Test", font);
+                text.Draw(window,RenderStates.Default);
 
                 window.Display();
             }
