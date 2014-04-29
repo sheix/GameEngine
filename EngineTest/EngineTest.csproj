@@ -31,12 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.core">
-      <HintPath>..\nunit.core-2.6\nunit.core.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\lib\nunit.core-2.6\nunit.core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\nunit.framework-2.6\nunit.framework.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\lib\nunit.framework-2.6\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
