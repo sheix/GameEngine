@@ -1,4 +1,4 @@
-The game is about a person that struggles to make a fortune by bounty hunting in kind of fantasy world. But the goal changes, as hero advances in his quest for wealth, to fix some very evil plot that is going on by unidentified force. The hero will look for ancient knowledge and secret artifacts to fight the unknown rivals.
+The game is about a person that tries to save his village by monster hunting in kind of fantasy world. But the goal changes, as hero advances in his quest, to fix some very evil plot that is going on by unidentified force. The hero will look for ancient knowledge and secret artifacts to fight the unknown rivals.
 
 The player eventually will get invitations to missions, randomly chosen, or predefined, and decide whether to proceed to them or not. The mission is one or more classic rogue-like levels, generated each game. 
 
@@ -12,4 +12,10 @@ no in-mission regeneration - not all wounds will close by themselves
 randomly generated levels for missions
 there's a calendar of the world, and time passes by
 there are predefined events, like annual monster hunt, or wyvern weekend when this particular kind of monster especially agressive
-allies may join as house features - for example doctor that speeds up regeneration for money.
+allies may join as house features - for example doctor that speeds up regeneration for some kind of herb.
+
+World
+Known world is populated mostly by humans that survived global cataclysm that led to long war between kingdoms. Feodal system is disrupted and there is no global rule. Small families or settlements struggle to survive. Travel is dangerous, and, due to small population usually not worth it. Money is incentive no more. Tools for survival are. But even in this situation there are people who will fight for power and try to make others work for them.
+
+Cataclysm
+In magic academy, which now burned to the floor, including all the city it was surrounded by, some experiment went wrong. There were no survivors
