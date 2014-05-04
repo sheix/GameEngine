@@ -51,7 +51,7 @@ namespace Engine
 
 		public abstract void Do(IScene scene);
 
-		public abstract bool CanDo(IScene scene);
+		public abstract bool CanDo(IActor actor, IScene scene);
 		
 
 	}
