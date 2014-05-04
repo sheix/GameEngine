@@ -62,4 +62,7 @@
       <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Infrastructure.exe.config" />
+  </ItemGroup>
 </Project>
