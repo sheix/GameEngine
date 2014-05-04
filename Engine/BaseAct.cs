@@ -49,9 +49,9 @@ namespace Engine
 	        set { _name = value; }
 	    }
 
-		public abstract void Do(IScene scene);
+		public abstract int Do(IScene scene);
 
-		public abstract bool CanDo(IScene scene);
+		public abstract bool CanDo(IActor actor, IScene scene);
 		
 
 	}

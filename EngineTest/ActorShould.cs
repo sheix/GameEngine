@@ -9,7 +9,7 @@ using Contracts;
 
 namespace EngineTest
 {
-	[TestFixture()]
+	[TestFixture]
  	public class ActorShould
     {
 		Mock<IScene> scene;
@@ -17,7 +17,7 @@ namespace EngineTest
 		Mock<IStrategy> strategy;
 	    private Mock<IAct> act;
 
-		[SetUp()]
+		[SetUp]
 		public void SetUp()
 		{
             act = new Mock<IAct>();
@@ -26,9 +26,10 @@ namespace EngineTest
 			scene = new Mock<IScene>();
 			strategy.Setup(mn => mn.SelectAction(It.IsAny<List<IAct>>(),It.IsAny<IScene>())).Returns(act.Object);
 			scene.Setup(mn => mn.GetPossibleActions(It.IsAny<IActor>())).Returns(new List<IAct>{act.Object});
+		    act.Setup(m => m.Do(scene.Object)).Returns(10);
 		}
 
-		[Test()]
+		[Test]
 		public void ActOnScene()
 		{
 			//arrange
@@ -39,6 +40,17 @@ namespace EngineTest
 			//assert
 			act.Verify(m => m.Do(scene.Object));
 		}
+
+        [Test]
+        public void DecreaseInitiativeByActAmount()
+        {
+            int initial = actor.GetInitiative();
+            actor.Act(scene.Object);
+
+            int ending = actor.GetInitiative();
+
+            Assert.AreEqual(initial, ending-10);
+        }
 
     }
 }

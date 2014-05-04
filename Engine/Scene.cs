@@ -81,7 +81,7 @@ namespace Engine
 
 	    public virtual List<IAct> GetPossibleActions(IActor actor)
 		{
-		    return actor.AllActions.Where(act => act.CanDo(this)).ToList();
+		    return actor.AllActions.Where(act => act.CanDo(actor,this)).ToList();
 		}
 
 		public string Play()
