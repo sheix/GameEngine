@@ -24,7 +24,7 @@ namespace Engine
 		{
             _possibleActions = scene.GetPossibleActions(this);
 			var action = _strategy.SelectAction(_possibleActions, scene);
-			action.Do(scene);
+			_initiative += action.Do(scene);
 		}
 
 		public int GetInitiative()
