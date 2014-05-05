@@ -19,13 +19,13 @@ namespace Infrastructure
         [STAThread]
         static void Main()
         {
-			Console.WriteLine ("Launch host app!");
+			Console.WriteLine ("Launch host app!!");
 
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
-
-            Font font = new Font(@"..\..\..\Resources\Fonts\kongtext.ttf");
+			char s = System.IO.Path.DirectorySeparatorChar;
+			Font font = new Font(@".."+s+".."+s+".."+s+"Resources"+s+"Fonts"+s+"kongtext.ttf");
             
             while (window.IsOpen())
             {

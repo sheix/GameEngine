@@ -63,6 +63,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Infrastructure.exe.config" />
+    <Content Include="Infrastructure.exe.config" />
   </ItemGroup>
 </Project>
