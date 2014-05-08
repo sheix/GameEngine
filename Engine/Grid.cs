@@ -26,18 +26,25 @@ namespace Engine
 			return new Vector (x, y);
 		}
 
-		private readonly List<List<ICell>> _grid;
+		private List<List<ICell>> _grid;
 
-		public Grid (int maxx, int maxy)
+		public Grid ()
 		{
-			_grid = new List<List<ICell>> ();
-			for (int i = 0; i < maxx; i++) {
-				_grid.Add (new List<ICell> ());
-				for (int j = 0; j < maxy; j++) {
-					_grid [i].Add (new Cell ());
-				}
-			}
+
 		}
+
+        public void SetMaxSize(int x,int y)
+        {
+            _grid = new List<List<ICell>>();
+            for (int i = 0; i < x; i++)
+            {
+                _grid.Add(new List<ICell>());
+                for (int j = 0; j < y; j++)
+                {
+                    _grid[i].Add(new Cell());
+                }
+            }
+        }
 
 		public ICell At (int x, int y)
 		{
@@ -67,6 +74,16 @@ namespace Engine
 			}
 			Console.WriteLine ();
 		}
+
+	    public Vector GetSize()
+	    {
+	        return new Vector(_grid.Count,_grid[0].Count);
+	    }
+
+	    public void Set(int x, int y, ICell cell)
+	    {
+	        _grid[x][y] = cell;
+	    }
 	}
 
 	public class Cell : ICell
