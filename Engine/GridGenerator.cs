@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Contracts;
 
 namespace Engine
@@ -10,7 +7,12 @@ namespace Engine
     {
         public Grid Generate(GridRule[] rules)
         {
-            return new Grid();
+            var grid = new Grid();
+            foreach (var rule in rules)
+            {
+                rule.Process(grid);
+            }
+            return grid;
         }
 
     }
@@ -71,23 +73,23 @@ namespace Engine
 
         public IActor Actor
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return null; }
+            set { /*can't set actor here*/ }
         }
 
         public List<IItem> Items
         {
-            get { throw new NotImplementedException(); }
+            get { return new List<IItem>(); }
         }
 
         public int Elevation
         {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
         }
 
         public void AddItem(IItem item)
         {
-            throw new NotImplementedException();
+            // can't add item
         }
 
         #endregion
