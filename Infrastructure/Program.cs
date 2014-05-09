@@ -26,12 +26,14 @@ namespace Infrastructure
             window.KeyPressed += OnKeyPressed;
 			char s = System.IO.Path.DirectorySeparatorChar;
 			Font font = new Font(@".."+s+".."+s+".."+s+"Resources"+s+"Fonts"+s+"kongtext.ttf");
-            
+			Text text = new Text("Test", font);
+			text.Position = new Vector2f (200f, 200f);
             while (window.IsOpen())
             {
                 window.DispatchEvents();
-                Text text = new Text("Test", font);
+				window.Clear ();
                 text.Draw(window,RenderStates.Default);
+				text.Rotation += 0.1f;
 
                 window.Display();
             }
