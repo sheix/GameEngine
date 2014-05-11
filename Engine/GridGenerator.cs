@@ -10,6 +10,7 @@ namespace Engine
             var grid = new Grid();
             foreach (var rule in rules)
             {
+				System.Console.WriteLine (rule.ToString() + " Processing");
                 rule.Process(grid);
             }
             return grid;
@@ -55,12 +56,12 @@ namespace Engine
             for (x = 0; x < gridSize._x; x++)
                 grid.Set(x, 0, new Wall());
             for (x = 0; x < gridSize._x; x++)
-                grid.Set(x, gridSize._y, new Wall());
+				grid.Set(x, gridSize._y-1, new Wall());
 
             for (y = 0; y < gridSize._y; y++)
                 grid.Set(0, y, new Wall());
             for (y = 0; y < gridSize._y; y++)
-                grid.Set(gridSize._x, y, new Wall());
+				grid.Set(gridSize._x-1, y, new Wall());
 
         }
 

@@ -5,7 +5,7 @@ using Contracts;
 
 namespace Engine
 {
-	public class Scene : IScene, IRenderable, IStage
+	public class Scene : IScene, IStage
     {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
@@ -15,7 +15,9 @@ namespace Engine
 
 		protected event EventHandler OnTick;
 
-		public IGrid Map{get { return _map; }}
+		public IGrid Map{get { return _map; }
+			set {_map = value;}
+		}
 
 		public string ID{get {return _id;}}
 		public delegate void EventHandler();
@@ -71,13 +73,9 @@ namespace Engine
 
 			if (OnTick != null)
 				OnTick();
-		    Render();
+		    
 		}
 
-        public virtual void Render()
-	    {
-	        
-	    }
 
 	    public virtual List<IAct> GetPossibleActions(IActor actor)
 		{

@@ -2,7 +2,7 @@
 
 namespace Contracts
 {
-    public interface IGrid : IRenderable
+    public interface IGrid
     {
         List<List<ICell>> Grid { get; set; }
         bool Contains(IActor actor);

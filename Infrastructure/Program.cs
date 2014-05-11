@@ -3,7 +3,7 @@ using System;
 using Castle.Windsor;
 using SFML.Graphics;
 using SFML.Window;
-
+using Contracts;
 #endregion
 
 namespace Infrastructure
@@ -13,6 +13,8 @@ namespace Infrastructure
     /// </summary>
     public static class Program
     {
+
+		static IActor player;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -20,7 +22,9 @@ namespace Infrastructure
         static void Main()
         {
 			Console.WriteLine ("Launch host app!!");
-
+			var scene = (new Engine.SceneGenerator()).GenerateScene("Default");
+			player = new Engine.Actor("Player", new Engine.ManualStrategy());
+			scene.AddActor(player);
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
@@ -34,12 +38,38 @@ namespace Infrastructure
 				window.Clear ();
                 text.Draw(window,RenderStates.Default);
 				text.Rotation += 0.1f;
+				RenderScene(scene);
 
                 window.Display();
             }
 
 			container.Dispose ();
         }
+
+		private static void RenderScene(IScene scene)
+		{
+			var map = (scene as IStage).Map;
+
+			var playerCoords = map.GetActorCoordinates(player);
+
+
+
+			foreach (var item in map.Grid) {
+
+				foreach (var item1 in item) {
+					if (item1.Actor != null) {
+						Console.Write ('@');
+						continue;
+					}
+					if (item1.Items.Count > 0) {
+						Console.Write ('%');
+						continue;
+					}
+					Console.Write ('.');
+				}
+			}
+
+		}
 
         private static void OnKeyPressed(object sender, KeyEventArgs e)
         {

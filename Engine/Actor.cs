@@ -14,8 +14,9 @@ namespace Engine
 		protected List<IAct> allActions;
 		public string Name {get; set;}
 
-		public Actor(IStrategy strategy)
+		public Actor(String Name, IStrategy strategy)
 		{
+			Name = Name;
 			_strategy = strategy;
 		}
 		public List<IAct> AllActions {get { return allActions;} set {allActions = value;}}

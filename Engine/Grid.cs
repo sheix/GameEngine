@@ -56,24 +56,6 @@ namespace Engine
 			return _grid [v._x] [v._y];
 		}
 
-		public void Render ()
-		{
-			foreach (var item in _grid) {
-				Console.WriteLine ();
-				foreach (var item1 in item) {
-					if (item1.Actor != null) {
-						Console.Write ('@');
-						continue;
-					}
-					if (item1.Items.Count > 0) {
-						Console.Write ('%');
-						continue;
-					}
-					Console.Write ('.');
-				}
-			}
-			Console.WriteLine ();
-		}
 
 	    public Vector GetSize()
 	    {

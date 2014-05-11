@@ -22,7 +22,7 @@ namespace EngineTest
 		{
             act = new Mock<IAct>();
 			strategy = new Mock<IStrategy>();
-			actor = new Actor(strategy.Object);
+			actor = new Actor("Actor", strategy.Object);
 			scene = new Mock<IScene>();
 			strategy.Setup(mn => mn.SelectAction(It.IsAny<List<IAct>>(),It.IsAny<IScene>())).Returns(act.Object);
 			scene.Setup(mn => mn.GetPossibleActions(It.IsAny<IActor>())).Returns(new List<IAct>{act.Object});

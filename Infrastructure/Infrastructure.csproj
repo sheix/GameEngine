@@ -64,7 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Infrastructure.exe.config" />
-    <Content Include="sfmlnet-graphics-2.dll.config" />
-    <Content Include="sfmlnet-window-2.dll.config" />
+    <Content Include="sfmlnet-graphics-2.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sfmlnet-window-2.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
