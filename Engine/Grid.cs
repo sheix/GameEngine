@@ -20,8 +20,16 @@ namespace Engine
 		public Vector GetActorCoordinates (IActor actor)
 		{
 			int x, y;
-			x = _grid.FindIndex (m => m.Any (c => c.Actor == actor));
-			y = _grid [x].FindIndex (m => m.Actor == actor);
+		    try
+		    {
+                x = _grid.FindIndex(m => m.Any(c => c.Actor == actor));
+                y = _grid[x].FindIndex(m => m.Actor == actor);
+		    }
+		    catch (Exception)
+		    {
+		        return Vector.None;
+		    }
+			
 				             
 			return new Vector (x, y);
 		}
