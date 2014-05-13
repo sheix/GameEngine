@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using Castle.Windsor;
+using Engine;
 using SFML.Graphics;
 using SFML.Window;
 using Contracts;
@@ -26,23 +27,23 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!!");
 			var scene = (new Engine.SceneGenerator()).GenerateScene("Default");
-			player = new Engine.PlacableActor("Player", new Engine.ManualStrategy());
-			//scene.AddActor(player);
+
+            _strategy = new Engine.ManualStrategy();
+
+            player = new Engine.PlacableActor("Player", _strategy);
+			
+            
             (scene as IStage).PlaceActorToGrid((IPlacableActor) player);
+            
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
-			char s = System.IO.Path.DirectorySeparatorChar;
-			Font font = new Font(@".."+s+".."+s+".."+s+"Resources"+s+"Fonts"+s+"kongtext.ttf");
-			Text text = new Text("Test", font);
-			text.Position = new Vector2f (200f, 200f);
+			
             while (window.IsOpen())
             {
                 window.DispatchEvents();
 				window.Clear ();
-                text.Draw(window,RenderStates.Default);
-				text.Rotation += 0.1f;
-				RenderScene(window, scene,window.Size.X,window.Size.Y);
+                RenderScene(window, scene,window.Size.X,window.Size.Y);
 
                 window.Display();
             }
@@ -138,6 +139,7 @@ namespace Infrastructure
             var window = (Window)sender;
             if (e.Code == Keyboard.Key.Escape)
                 window.Close();
+            _strategy.LastPressedKey((e.Code).ToString());
 
         }
 
@@ -149,8 +151,9 @@ namespace Infrastructure
         }
 
         public static IWindsorContainer container;
+        private static ManualStrategy _strategy;
 
-		static Program()
+        static Program()
 		{
 			container = new WindsorContainer();
 			//container.Register();

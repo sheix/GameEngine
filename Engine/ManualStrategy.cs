@@ -6,6 +6,8 @@ namespace Engine
 {
 	public class ManualStrategy : IStrategy
 	{
+	    private string LastAction;
+
 		public ManualStrategy ()
 		{
 		}
@@ -18,6 +20,11 @@ namespace Engine
 		}
 
 		#endregion
+
+	    public void LastPressedKey(string code)
+	    {
+	        LastAction = code;
+	    }
 	}
 }
 
