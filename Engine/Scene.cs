@@ -9,7 +9,7 @@ namespace Engine
     {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
-		private string _id;
+		private readonly string _id;
 		private IGrid _map;
 		private Dictionary<Func<IScene , bool>, string> nextScenes;
 
@@ -25,7 +25,7 @@ namespace Engine
 		public Scene(string id) 
 		{
 			_actors = new List<IActor>();
-			id = _id;
+			_id = id;
 		}
 
 		public virtual void AddActor(IActor actor)
@@ -94,7 +94,11 @@ namespace Engine
 			}
 			return "SceneEnded";
 		}
-		
-	}
+
+	    public void SetEmptyNextScene()
+	    {
+	        nextScenes = new Dictionary<Func<IScene, bool>, string> {{m => false, "Default"}};
+	    }
+    }
 }
 

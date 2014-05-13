@@ -1,6 +1,7 @@
 #region Using Statements
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using Castle.Windsor;
 using Engine;
 using SFML.Graphics;
@@ -26,15 +27,17 @@ namespace Infrastructure
         static void Main()
         {
 			Console.WriteLine ("Launch host app!!");
-			var scene = (new Engine.SceneGenerator()).GenerateScene("Default");
+			var scene = (new SceneGenerator()).GenerateScene("Default");
 
-            _strategy = new Engine.ManualStrategy();
+            _strategy = new ManualStrategy();
 
-            player = new Engine.PlacableActor("Player", _strategy);
+            player = new PlacableActor("Player", _strategy);
 			
             
             (scene as IStage).PlaceActorToGrid((IPlacableActor) player);
-            
+
+            Task.Factory.StartNew(() => scene.Play());
+
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
@@ -48,7 +51,7 @@ namespace Infrastructure
                 window.Display();
             }
 
-			container.Dispose ();
+			_container.Dispose ();
         }
 
 
@@ -83,7 +86,7 @@ namespace Infrastructure
 
 		            var cell = map.At(x,y);
                     Vector v = GetScreenPosition(x, y,xNumber, yNumber, X, Y, xOffset, yOffset);
-		            Console.WriteLine("{0}:{1}",v._x,v._y);
+		            //Console.WriteLine("{0}:{1}",v._x,v._y);
                     if (cell.Actor != null)
                     if (cell.Actor.Name == "Player")
                     {
@@ -123,7 +126,7 @@ namespace Infrastructure
             double MarginX = X*0.4;
 
             double startX = MarginX/2;
-            double startY = 0;
+            double startY = MarginY/2;
 
             double xn = (X - MarginX)/xNumber;
             double yn = (Y - MarginY)/yNumber;
@@ -137,8 +140,10 @@ namespace Infrastructure
         private static void OnKeyPressed(object sender, KeyEventArgs e)
         {
             var window = (Window)sender;
+            Console.WriteLine((e.Code).ToString());
             if (e.Code == Keyboard.Key.Escape)
                 window.Close();
+
             _strategy.LastPressedKey((e.Code).ToString());
 
         }
@@ -150,13 +155,13 @@ namespace Infrastructure
 
         }
 
-        public static IWindsorContainer container;
+        public static IWindsorContainer _container;
         private static ManualStrategy _strategy;
 
         static Program()
 		{
-			container = new WindsorContainer();
-			//container.Register();
+			_container = new WindsorContainer();
+			//_container.Register();
 		}
     }
 }

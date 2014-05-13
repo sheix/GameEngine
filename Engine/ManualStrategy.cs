@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Contracts;
 using System.Collections.Generic;
 
@@ -16,7 +17,10 @@ namespace Engine
 
 		public IAct SelectAction (List<IAct> possibleActions, IScene scene)
 		{
-			throw new NotImplementedException ();
+		    IAct result = null;
+            result = possibleActions.Where(act => act.Name == LastAction).FirstOrDefault();
+		    
+		    return result;
 		}
 
 		#endregion
