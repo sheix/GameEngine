@@ -26,9 +26,9 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!!");
 			var scene = (new Engine.SceneGenerator()).GenerateScene("Default");
-			player = new Engine.Actor("Player", new Engine.ManualStrategy());
+			player = new Engine.PlacableActor("Player", new Engine.ManualStrategy());
 			//scene.AddActor(player);
-            (scene as IStage).PlaceActorToGrid(player as IPlacableActor);
+            (scene as IStage).PlaceActorToGrid((IPlacableActor) player);
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
@@ -72,13 +72,18 @@ namespace Infrastructure
             int xNumber = rightX - leftX + 1;
             int yNumber = downY - upY + 1;
 
+            int xOffset = leftX;
+            int yOffset = upY;
+
 		    for (int x = leftX; x < rightX; x++)
 		    {
 		        for (int y = upY; y < downY; y++)
 		        {
+
 		            var cell = map.At(x,y);
-                    Vector v = GetScreenPosition(x, y,xNumber, yNumber, X, Y);
+                    Vector v = GetScreenPosition(x, y,xNumber, yNumber, X, Y, xOffset, yOffset);
 		            Console.WriteLine("{0}:{1}",v._x,v._y);
+                    if (cell.Actor != null)
                     if (cell.Actor.Name == "Player")
                     {
                         Text text = new Text("@", font);
@@ -107,12 +112,23 @@ namespace Infrastructure
 
 		}
 
-        private static Vector GetScreenPosition(int x, int y,int xNumber, int yNumber, uint X, uint Y)
+        private static Vector GetScreenPosition(int x, int y,int xNumber, int yNumber, uint X, uint Y,int xOffset, int yOffset)
         {
+            // x       - position in the map
+            // xNumber - count of items in the window
+            // X       - screen resolution
+            // xOffset - offset in window
             double MarginY = Y*0.2;
             double MarginX = X*0.4;
-            double actual_x = X - MarginX + MarginX/2 + x*((X - MarginX)/xNumber);
-            double actual_y = Y - MarginY + MarginX/2 + y*((Y - MarginY)/yNumber);
+
+            double startX = MarginX/2;
+            double startY = 0;
+
+            double xn = (X - MarginX)/xNumber;
+            double yn = (Y - MarginY)/yNumber;
+
+            double actual_x = startX + xn*(x - xOffset);
+            double actual_y = startY + yn*(y - xOffset);
             return new Vector((int)actual_x,(int)actual_y);
         }
 
