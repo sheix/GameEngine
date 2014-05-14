@@ -14,11 +14,11 @@ using Font = SFML.Graphics.Font;
 namespace Infrastructure
 {
     /// <summary>
-    /// The main class.
+    /// The main class - create game object, use game start/load/save etc.
     /// </summary>
     public static class Program
     {
-
+        
 		static IActor player;
         /// <summary>
         /// The main entry point for the application.
@@ -86,7 +86,6 @@ namespace Infrastructure
 
 		            var cell = map.At(x,y);
                     Vector v = GetScreenPosition(x, y,xNumber, yNumber, X, Y, xOffset, yOffset);
-		            //Console.WriteLine("{0}:{1}",v._x,v._y);
                     if (cell.Actor != null)
                     if (cell.Actor.Name == "Player")
                     {
