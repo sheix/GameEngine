@@ -27,6 +27,9 @@ namespace Infrastructure
         static void Main()
         {
 			Console.WriteLine ("Launch host app!!");
+
+            var game = new Game.Game();
+            game.Start();
 			var scene = (new SceneGenerator()).GenerateScene("Default");
 
             _strategy = new ManualStrategy();
