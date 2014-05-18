@@ -28,8 +28,8 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!!");
 
-            var game = new Game.Game();
-            game.Start();
+			//var game = new Game.Game();
+			//game.Start();
 			var scene = (new SceneGenerator()).GenerateScene("Default");
 
             _strategy = new ManualStrategy();
@@ -96,6 +96,12 @@ namespace Infrastructure
                         text.Position = new Vector2f(v._x,v._y);
                         text.Draw(window, RenderStates.Default);
                     }
+					if (cell.Actor == null)
+					{
+						Text text = new Text(".", font);
+						text.Position = new Vector2f(v._x,v._y);
+						text.Draw(window, RenderStates.Default);
+					}
 
 
 		        }

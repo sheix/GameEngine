@@ -1,5 +1,5 @@
 ﻿using System;
-using EngineContracts.Interfaces;
+using Contracts;
 
 namespace Game
 {
@@ -7,7 +7,7 @@ namespace Game
     /// Game should in general handle the time, 
     /// Create scenes, pass scene to UI renderer
     /// </summary>
-    public class Game : IGame
+	public class Game : Contracts.IGame
     {
         public void Start()
         {

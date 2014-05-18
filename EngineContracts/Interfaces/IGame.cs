@@ -1,4 +1,4 @@
-﻿namespace EngineContracts.Interfaces
+﻿namespace Contracts
 {
     public interface IGame
     {
