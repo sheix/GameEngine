@@ -36,12 +36,7 @@ namespace Engine
 
 		private List<List<ICell>> _grid;
 
-		public Grid ()
-		{
-
-		}
-
-        public void SetMaxSize(int x,int y)
+	    public void SetMaxSize(int x,int y)
         {
             _grid = new List<List<ICell>>();
             for (int i = 0; i < x; i++)

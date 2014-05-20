@@ -49,6 +49,10 @@
       <Name>EngineContracts</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{13D4B9DD-759E-491F-BDD6-23FF20B1003E}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

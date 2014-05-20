@@ -44,7 +44,13 @@ namespace Engine
 			Map.Grid[v._x][v._y].Actor = actor;
 		}
 
-		public virtual void RemoveActor (IActor actor)
+	    public Vector GetCenterOfInterest()
+	    {
+	        //default - player
+	        return _map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
+	    }
+
+	    public virtual void RemoveActor (IActor actor)
 		{
 			if (actor is IPlacableActor)
 			{

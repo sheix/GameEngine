@@ -7,7 +7,7 @@ namespace Contracts
         IGrid Map { get; }
         void PlaceActorToGrid(IPlacableActor actor);
         void PlaceActorToGrid(IPlacableActor actor, Vector v);
-
+	    Vector GetCenterOfInterest();
     }
 }
 

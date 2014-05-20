@@ -19,7 +19,6 @@ namespace Infrastructure
     public static class Program
     {
         
-		static IActor player;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -28,18 +27,9 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!!");
 
-			//var game = new Game.Game();
-			//game.Start();
-			var scene = (new SceneGenerator()).GenerateScene("Default");
-
-            _strategy = new ManualStrategy();
-
-            player = new PlacableActor("Player", _strategy);
+			var game = new Game.Game();
+			game.Start();
 			
-            
-            (scene as IStage).PlaceActorToGrid((IPlacableActor) player);
-
-            Task.Factory.StartNew(() => scene.Play());
 
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
@@ -49,7 +39,8 @@ namespace Infrastructure
             {
                 window.DispatchEvents();
 				window.Clear ();
-                RenderScene(window, scene,window.Size.X,window.Size.Y);
+
+                RenderScene(window, game.Scene,window.Size.X,window.Size.Y);
 
                 window.Display();
             }
@@ -64,7 +55,7 @@ namespace Infrastructure
             Font font = new Font(@".."+s+".."+s+".."+s+"Resources"+s+"Fonts"+s+"kongtext.ttf");
 			var map = (scene as IStage).Map;
 
-			var playerCoords = map.GetActorCoordinates(player);
+            var playerCoords = (scene as IStage).GetCenterOfInterest();
 
             if (playerCoords == Vector.None)
                 return;
@@ -92,35 +83,19 @@ namespace Infrastructure
                     if (cell.Actor != null)
                     if (cell.Actor.Name == "Player")
                     {
-                        Text text = new Text("@", font);
-                        text.Position = new Vector2f(v._x,v._y);
+                        var text = new Text("@", font) {Position = new Vector2f(v._x, v._y)};
                         text.Draw(window, RenderStates.Default);
                     }
 					if (cell.Actor == null)
 					{
-						Text text = new Text(".", font);
-						text.Position = new Vector2f(v._x,v._y);
-						text.Draw(window, RenderStates.Default);
+						var text = new Text(".", font) {Position = new Vector2f(v._x, v._y)};
+					    text.Draw(window, RenderStates.Default);
 					}
 
 
 		        }
 		    }
 
-			foreach (var item in map.Grid) {
-
-				foreach (var item1 in item) {
-					if (item1.Actor != null) {
-						
-						continue;
-					}
-					if (item1.Items.Count > 0) {
-						
-						continue;
-					}
-					
-				}
-			}
 
 		}
 
