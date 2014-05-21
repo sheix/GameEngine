@@ -18,7 +18,7 @@ namespace Infrastructure
     /// </summary>
     public static class Program
     {
-        
+        private static IGame _game;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -27,10 +27,10 @@ namespace Infrastructure
         {
 			Console.WriteLine ("Launch host app!!");
 
-			var game = new Game.Game();
-			game.Start();
+			_game = new Game.Game();
+			_game.Start();
 			
-
+            
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
@@ -40,7 +40,7 @@ namespace Infrastructure
                 window.DispatchEvents();
 				window.Clear ();
 
-                RenderScene(window, game.Scene,window.Size.X,window.Size.Y);
+                RenderScene(window, _game.Scene,window.Size.X,window.Size.Y);
 
                 window.Display();
             }
@@ -127,7 +127,8 @@ namespace Infrastructure
             if (e.Code == Keyboard.Key.Escape)
                 window.Close();
 
-            _strategy.LastPressedKey((e.Code).ToString());
+            _game.KeyPressed((e.Code).ToString());
+            
 
         }
 
