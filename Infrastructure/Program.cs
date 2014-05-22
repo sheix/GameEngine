@@ -127,7 +127,7 @@ namespace Infrastructure
             if (e.Code == Keyboard.Key.Escape)
                 window.Close();
 
-            _game.KeyPressed((e.Code).ToString());
+            _game._KeyPressed((e.Code).ToString());
             
 
         }

@@ -1,9 +1,12 @@
-﻿namespace Contracts
+﻿using System;
+
+namespace Contracts
 {
     public interface IGame
     {
         void Start();
         IScene Scene { get; }
-        void KeyPressed(string key);
+        void _KeyPressed(string key);
+        event EventHandler KeyPressed;
     }
 }

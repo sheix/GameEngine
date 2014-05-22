@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IDirectionalAct.cs" />
+    <Compile Include="KeyPressedEventArgs.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Interfaces\IStage.cs" />
     <Compile Include="Interfaces\IScenarioRunner.cs" />

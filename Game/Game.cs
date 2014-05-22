@@ -14,11 +14,18 @@ namespace Game
     {
         private IScene _scene;
         private ManualStrategy _strategy;
+        public event EventHandler KeyPressed;
+
+        private void InvokeKeyPressed(KeyPressedEventArgs e)
+        {
+            EventHandler handler = KeyPressed;
+            if (handler != null) handler(this, e);
+        }
 
         public void Start()
         {
             _scene = (new SceneGenerator()).GenerateScene("Default");
-            _strategy = new ManualStrategy();
+            _strategy = new ManualStrategy(this);
             var player = new Player(_strategy);
             _scene.AddActor(player);
             (_scene as IStage).PlaceActorToGrid(player);
@@ -30,11 +37,12 @@ namespace Game
             get { return _scene; }
         }
 
-        public void KeyPressed(string key)
+        public void _KeyPressed(string key)
         {
-            _strategy.LastPressedKey(key);
+            InvokeKeyPressed(new KeyPressedEventArgs { Key = key});
         }
     }
+
     public class Player : PlacableActor
     {
         public Player(IStrategy strategy) : base("Player", strategy)
