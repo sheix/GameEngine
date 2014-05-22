@@ -8,6 +8,7 @@ namespace Contracts
         void PlaceActorToGrid(IPlacableActor actor);
         void PlaceActorToGrid(IPlacableActor actor, Vector v);
 	    Vector GetCenterOfInterest();
+        void Move(IPlacableActor self, string direction);
     }
 }
 

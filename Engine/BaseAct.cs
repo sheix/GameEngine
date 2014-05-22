@@ -43,7 +43,7 @@ namespace Engine
 	        set { _second = value; }
 	    }
 
-	    public string Name
+        public string Name
 	    {
 	        get { return _name; }
 	        set { _name = value; }

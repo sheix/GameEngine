@@ -2,8 +2,8 @@
 {
     public class Vector
     {
-        public readonly int _x;
-        public readonly int _y;
+        public int _x;
+        public int _y;
         public static Vector None;
 
         public Vector(int x, int y)

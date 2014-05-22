@@ -18,6 +18,8 @@ namespace Engine
         public int InitialY
         { get; set; }
 
+        public event onMove Move;
+
         #endregion
     }
 }

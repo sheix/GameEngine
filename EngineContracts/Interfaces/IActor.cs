@@ -10,6 +10,7 @@ namespace Contracts
 		void DecreaseInitiative();
 		string Name {get; set;}
 		List<IAct> AllActions { get ; set;}
+	    
 	}
 }
 

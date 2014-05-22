@@ -140,7 +140,6 @@ namespace Infrastructure
         }
 
         public static IWindsorContainer _container;
-        private static ManualStrategy _strategy;
 
         static Program()
 		{

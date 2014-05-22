@@ -50,6 +50,30 @@ namespace Engine
 	        return _map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
 	    }
 
+	    public void Move(IPlacableActor self, string direction)
+	    {
+	        
+
+	        var location =  _map.GetActorCoordinates(self);
+	        switch (direction)
+	        {
+                case "UP":
+	                location._y--;
+                    break;
+                case "DOWN":
+	                location._y++;
+                    break;
+                case "LEFT":
+	                location._x--;
+                    break;
+                case "RIGHT":
+                    location._x++;
+                    break;
+                    
+	        }
+
+	    }
+
 	    public virtual void RemoveActor (IActor actor)
 		{
 			if (actor is IPlacableActor)

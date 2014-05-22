@@ -8,7 +8,7 @@ namespace Contracts
         /// <param name="scene">Scene on which act plays</param>
         /// <returns>Time passed</returns>
 		int Do(IScene scene);
-	    string Name { get; set; }
+        string Name { get; set; }
 	    bool CanDo(IActor actor, IScene scene);
 	}
 }
