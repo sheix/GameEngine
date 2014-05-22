@@ -52,26 +52,25 @@ namespace Engine
 
 	    public void Move(IPlacableActor self, string direction)
 	    {
-	        
-
 	        var location =  _map.GetActorCoordinates(self);
+	        _map.At(location).Actor = null;
 	        switch (direction)
 	        {
-                case "UP":
+                case "Up":
 	                location._y--;
                     break;
-                case "DOWN":
+                case "Down":
 	                location._y++;
                     break;
-                case "LEFT":
+                case "Left":
 	                location._x--;
                     break;
-                case "RIGHT":
+                case "Right":
                     location._x++;
                     break;
                     
 	        }
-
+            _map.At(location).Actor = self;
 	    }
 
 	    public virtual void RemoveActor (IActor actor)
@@ -96,12 +95,13 @@ namespace Engine
 				actor.DecreaseInitiative();
 			}
 
-			foreach (var actor in _actors) {
-				if (actor.GetInitiative() != 0) break;
-				actor.Act(this);
-			}
+            foreach (var a in _actors.Where(a => a.GetInitiative() == 0))
+            {
+                a.Act(this);
+            }
 
-			if (OnTick != null)
+
+		    if (OnTick != null)
 				OnTick();
 		    
 		}

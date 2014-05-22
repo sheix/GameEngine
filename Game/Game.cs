@@ -47,10 +47,10 @@ namespace Game
     {
         public Player(IStrategy strategy) : base("Player", strategy)
         {
-            AllActions = new List<IAct>(new List<IAct> {new MoveAct("UP", this, null, null, null),
-                                                             new MoveAct("DOWN", this, null, null, null),
-                                                             new MoveAct("LEFT", this, null, null, null),
-                                                             new MoveAct("RIGHT", this, null, null, null),
+            AllActions = new List<IAct>(new List<IAct> {new MoveAct("Up", this, null, null, null),
+                                                             new MoveAct("Down", this, null, null, null),
+                                                             new MoveAct("Left", this, null, null, null),
+                                                             new MoveAct("Right", this, null, null, null),
             });
         }
 

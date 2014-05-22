@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Contracts;
 using System.Collections.Generic;
@@ -26,7 +27,9 @@ namespace Engine
 		    IAct result = null;
             
             while (result == null)
-            { result = possibleActions.Where(act => act.Name == LastAction).FirstOrDefault(); }
+            {
+                result = possibleActions.Where(act => act.Name == LastAction).FirstOrDefault();
+            }
 
 		    LastAction = null;
 		    return result;
