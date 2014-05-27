@@ -115,7 +115,7 @@ namespace Infrastructure
             double yn = (Y - MarginY)/yNumber;
 
             double actual_x = startX + xn*(x - xOffset);
-            double actual_y = startY + yn*(y - xOffset);
+            double actual_y = startY + yn*(y - yOffset);
             return new Vector((int)actual_x,(int)actual_y);
         }
 

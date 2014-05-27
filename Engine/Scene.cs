@@ -54,6 +54,7 @@ namespace Engine
 	    {
 	        var location =  _map.GetActorCoordinates(self);
 	        _map.At(location).Actor = null;
+            Console.WriteLine("direction is: {0}",direction);
 	        switch (direction)
 	        {
                 case "Up":
@@ -70,6 +71,7 @@ namespace Engine
                     break;
                     
 	        }
+            Console.WriteLine("New Location is: {0}",location);
             _map.At(location).Actor = self;
 	    }
 
