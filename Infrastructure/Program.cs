@@ -85,11 +85,19 @@ namespace Infrastructure
                     {
                         var text = new Text("@", font) {Position = new Vector2f(v._x, v._y)};
                         text.Draw(window, RenderStates.Default);
+                        continue;
+                    }
+                    if (cell is Wall)
+                    {
+                        var text = new Text("#", font) { Position = new Vector2f(v._x, v._y) };
+                        text.Draw(window, RenderStates.Default);
+                        continue;
                     }
 					if (cell.Actor == null)
 					{
 						var text = new Text(".", font) {Position = new Vector2f(v._x, v._y)};
 					    text.Draw(window, RenderStates.Default);
+                        continue;
 					}
 
 
