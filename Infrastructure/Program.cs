@@ -34,13 +34,13 @@ namespace Infrastructure
             var window = new RenderWindow(VideoMode.DesktopMode, "Test");
             window.Closed += OnClosed;
             window.KeyPressed += OnKeyPressed;
-			
+            Renderer renderer = new Renderer();
             while (window.IsOpen())
             {
                 window.DispatchEvents();
 				window.Clear ();
 
-                RenderScene(window, _game.Scene,window.Size.X,window.Size.Y);
+                renderer.RenderScene(window, _game.Scene,window.Size.X,window.Size.Y);
 
                 window.Display();
             }
@@ -49,83 +49,7 @@ namespace Infrastructure
         }
 
 
-        private static void RenderScene(RenderWindow window, IScene scene, uint X, uint Y)
-		{
-            char s = System.IO.Path.DirectorySeparatorChar;
-            Font font = new Font(@".."+s+".."+s+".."+s+"Resources"+s+"Fonts"+s+"kongtext.ttf");
-			var map = (scene as IStage).Map;
-
-            var playerCoords = (scene as IStage).GetCenterOfInterest();
-
-            if (playerCoords == Vector.None)
-                return;
-
-		    int leftX, rightX, upY, downY;
-
-		    leftX = playerCoords._x - 5;
-		    rightX = playerCoords._x + 5;
-		    upY = playerCoords._y - 5;
-		    downY = playerCoords._y + 5;
-
-            int xNumber = rightX - leftX + 1;
-            int yNumber = downY - upY + 1;
-
-            int xOffset = leftX;
-            int yOffset = upY;
-
-		    for (int x = leftX; x < rightX; x++)
-		    {
-		        for (int y = upY; y < downY; y++)
-		        {
-
-		            var cell = map.At(x,y);
-                    Vector v = GetScreenPosition(x, y,xNumber, yNumber, X, Y, xOffset, yOffset);
-                    if (cell.Actor != null)
-                    if (cell.Actor.Name == "Player")
-                    {
-                        var text = new Text("@", font) {Position = new Vector2f(v._x, v._y)};
-                        text.Draw(window, RenderStates.Default);
-                        continue;
-                    }
-                    if (cell is Wall)
-                    {
-                        var text = new Text("#", font) { Position = new Vector2f(v._x, v._y) };
-                        text.Draw(window, RenderStates.Default);
-                        continue;
-                    }
-					if (cell.Actor == null)
-					{
-						var text = new Text(".", font) {Position = new Vector2f(v._x, v._y)};
-					    text.Draw(window, RenderStates.Default);
-                        continue;
-					}
-
-
-		        }
-		    }
-
-
-		}
-
-        private static Vector GetScreenPosition(int x, int y,int xNumber, int yNumber, uint X, uint Y,int xOffset, int yOffset)
-        {
-            // x       - position in the map
-            // xNumber - count of items in the window
-            // X       - screen resolution
-            // xOffset - offset in window
-            double MarginY = Y*0.2;
-            double MarginX = X*0.4;
-
-            double startX = MarginX/2;
-            double startY = MarginY/2;
-
-            double xn = (X - MarginX)/xNumber;
-            double yn = (Y - MarginY)/yNumber;
-
-            double actual_x = startX + xn*(x - xOffset);
-            double actual_y = startY + yn*(y - yOffset);
-            return new Vector((int)actual_x,(int)actual_y);
-        }
+        
 
 
         private static void OnKeyPressed(object sender, KeyEventArgs e)
