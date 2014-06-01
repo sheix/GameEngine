@@ -2,6 +2,7 @@
 {
     public class Vector
     {
+        
         public int _x;
         public int _y;
         public static Vector None;

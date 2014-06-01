@@ -50,11 +50,17 @@ namespace Engine
 	        return _map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
 	    }
 
+	    public Vector GetMaxResolution()
+	    {
+	        var vector = new Vector(_map.Grid.Count, _map.Grid[0].Count);
+	        return vector;
+	    }
+
 	    public void Move(IPlacableActor self, string direction)
 	    {
 	        var location =  _map.GetActorCoordinates(self);
 	        _map.At(location).Actor = null;
-            Console.WriteLine("direction is: {0}",direction);
+            
 	        switch (direction)
 	        {
                 case "Up":
@@ -71,8 +77,30 @@ namespace Engine
                     break;
                     
 	        }
-            Console.WriteLine("New Location is: {0}",location);
             _map.At(location).Actor = self;
+	    }
+
+	    public bool IsFreeInDirection(IPlacableActor actor, string direction)
+	    {
+            var location = _map.GetActorCoordinates(actor);
+            switch (direction)
+            {
+                case "Up":
+                    location._y--;
+                    break;
+                case "Down":
+                    location._y++;
+                    break;
+                case "Left":
+                    location._x--;
+                    break;
+                case "Right":
+                    location._x++;
+                    break;
+            }
+            if (_map.At(location).Actor != null) return false;
+            if (_map.At(location) is Wall) return false;
+	        return true;
 	    }
 
 	    public virtual void RemoveActor (IActor actor)

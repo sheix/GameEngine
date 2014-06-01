@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Contracts;
 using Engine;
@@ -41,41 +40,5 @@ namespace Game
         {
             InvokeKeyPressed(new KeyPressedEventArgs { Key = key});
         }
-    }
-
-    public class Player : PlacableActor
-    {
-        public Player(IStrategy strategy) : base("Player", strategy)
-        {
-            AllActions = new List<IAct>(new List<IAct> {new MoveAct("Up", this, null, null, null),
-                                                             new MoveAct("Down", this, null, null, null),
-                                                             new MoveAct("Left", this, null, null, null),
-                                                             new MoveAct("Right", this, null, null, null),
-            });
-        }
-
-        
-    }
-    public class MoveAct : BaseAct
-    {
-        public MoveAct(string name, IActor self, IActor target, IItem first, IItem second) : base(name, self, target, first, second)
-        {
-            
-        }
-
-        #region Overrides of BaseAct
-
-        public override int Do(IScene scene)
-        {
-            (scene as IStage).Move(Self as IPlacableActor, Name);
-            return 1;
-        }
-
-        public override bool CanDo(IActor actor, IScene scene)
-        {
-            return true;
-        }
-
-        #endregion
     }
 }

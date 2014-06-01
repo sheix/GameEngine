@@ -17,7 +17,7 @@ namespace Infrastructure
         {
             char s = System.IO.Path.DirectorySeparatorChar;
             font = new Font(@".." + s + ".." + s + ".." + s + "Resources" + s + "Fonts" + s + "kongtext.ttf");
-            
+
         }
 
         public void RenderScene(RenderWindow window, IScene scene, uint X, uint Y)
@@ -25,7 +25,7 @@ namespace Infrastructure
             var map = (scene as IStage).Map;
 
             var playerCoords = (scene as IStage).GetCenterOfInterest();
-
+            var maxResolution = (scene as IStage).GetMaxResolution();
             if (playerCoords == Vector.None)
                 return;
 
@@ -48,14 +48,10 @@ namespace Infrastructure
                 {
 
                     ICell cell;
-                    try
-                    {
+                    if (InRange(x, y, maxResolution._x ,maxResolution._y))
                         cell = map.At(x, y);
-                    }
-                    catch
-                    {
-                        continue;
-                    }
+                    else continue;
+
                     Vector v = GetScreenPosition(x, y, xNumber, yNumber, X, Y, xOffset, yOffset);
                     if (cell.Actor != null)
                         if (cell.Actor.Name == "Player")
@@ -80,8 +76,15 @@ namespace Infrastructure
 
                 }
             }
+        }
 
-
+        private bool InRange(int x, int y, int X, int Y)
+        {
+            if (x > X) return false;
+            if (y > Y) return false;
+            if (x < 0) return false;
+            if (y < 0) return false;
+            return true;
         }
 
         private static Vector GetScreenPosition(int x, int y, int xNumber, int yNumber, uint X, uint Y, int xOffset, int yOffset)
