@@ -80,8 +80,8 @@ namespace Infrastructure
 
         private bool InRange(int x, int y, int X, int Y)
         {
-            if (x > X) return false;
-            if (y > Y) return false;
+            if (x > X-1) return false;
+            if (y > Y-1) return false;
             if (x < 0) return false;
             if (y < 0) return false;
             return true;

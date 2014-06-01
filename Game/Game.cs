@@ -25,7 +25,8 @@ namespace Game
         {
             _scene = (new SceneGenerator()).GenerateScene("Default");
             _strategy = new ManualStrategy(this);
-            var player = new Player(_strategy);
+            var actorFactory = new ActorFactory(_strategy);
+            var player = actorFactory.GetPlayer();
             _scene.AddActor(player);
             (_scene as IStage).PlaceActorToGrid(player);
             Task.Factory.StartNew(() => _scene.Play());
