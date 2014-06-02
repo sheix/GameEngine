@@ -16,6 +16,7 @@ namespace Engine
 		{
 			Name = name;
 			_strategy = strategy;
+            AllActions = new List<IAct>();
 		}
 		public List<IAct> AllActions {get { return allActions;} set {allActions = value;}}
 

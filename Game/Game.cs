@@ -27,8 +27,11 @@ namespace Game
             _strategy = new ManualStrategy(this);
             var actorFactory = new ActorFactory(_strategy);
             var player = actorFactory.GetPlayer();
+            var random = actorFactory.GetActor();
             _scene.AddActor(player);
+            _scene.AddActor(random);
             (_scene as IStage).PlaceActorToGrid(player);
+            (_scene as IStage).PlaceActorToGrid(random);
             Task.Factory.StartNew(() => _scene.Play());
         }
 

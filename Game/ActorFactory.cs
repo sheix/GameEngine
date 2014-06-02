@@ -8,6 +8,7 @@ namespace Game
     public class ActorFactory
     {
         private readonly ManualStrategy _strategy;
+        private static int _id = 0;
 
         public ActorFactory(ManualStrategy strategy)
         {
@@ -26,13 +27,29 @@ namespace Game
 
         public IPlacableActor GetPlayer()
         {
-            var player = new Player(_strategy) {AllActions = new List<IAct>()};
+            var player = new Player(_strategy);
 
             AddMoveActions(player);
 
             return player;
         }
 
+        public IPlacableActor GetActor()
+        {
+            var actor = new PlacableActor("Unit" + _id, new RandomStrategy(),5,5);
+            AddMoveActions(actor);
+            return actor;
+        }
 
+
+    }
+
+    public class RandomStrategy : IStrategy
+    {
+        public IAct SelectAction(List<IAct> possibleActions, IScene scene)
+        {
+            var r = new Random();
+            return possibleActions[r.Next(possibleActions.Count)];
+        }
     }
 }

@@ -10,6 +10,12 @@ namespace Engine
             InitialY = 10;
         }
 
+        public PlacableActor(string Name, IStrategy strategy, int X, int Y)
+            : base(Name, strategy)
+        {
+            InitialX = X;
+            InitialY = Y;
+        }
         #region Implementation of IPlacableActor
 
         public int InitialX
