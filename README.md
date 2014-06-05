@@ -14,3 +14,10 @@ a mission and become the best(if alive)!
 Credits:
 
 Font: [http://www.zone38.net/]
+
+Workarounds:
+
+* Game won't start:
+
+  1.  On Windows : copy sfml dlls to executable's file directory
+  2.  On Linux : apt-get instal sfml-2.1
