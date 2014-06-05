@@ -5,7 +5,7 @@ namespace Contracts
 {
 	public interface IActor
 	{
-		void Act(IScene scene);
+		string Act(IScene scene);
 		int GetInitiative();
 		void DecreaseInitiative();
 		string Name {get; set;}

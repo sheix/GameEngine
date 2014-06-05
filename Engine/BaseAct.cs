@@ -49,7 +49,7 @@ namespace Engine
 	        set { _name = value; }
 	    }
 
-		public abstract int Do(IScene scene);
+		public abstract ActResult Do(IScene scene);
 
 		public abstract bool CanDo(IActor actor, IScene scene);
 		

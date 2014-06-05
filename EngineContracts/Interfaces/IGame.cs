@@ -8,5 +8,6 @@ namespace Contracts
         IScene Scene { get; }
         void _KeyPressed(string key);
         event EventHandler KeyPressed;
+        event EventHandler SendMessage;
     }
 }

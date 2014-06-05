@@ -8,7 +8,7 @@ namespace Contracts
         void PlaceActorToGrid(IPlacableActor actor);
         void PlaceActorToGrid(IPlacableActor actor, Vector v);
 	    Vector GetCenterOfInterest();
-	    Vector GetMaxResolution();
+	    Vector GetMapDimensions();
         void Move(IPlacableActor self, string direction);
 	    bool IsFreeInDirection(IPlacableActor actor, string direction);
     }

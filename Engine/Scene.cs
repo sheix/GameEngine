@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Contracts;
+using EngineContracts;
 
 namespace Engine
 {
@@ -20,7 +21,10 @@ namespace Engine
 		}
 
 		public string ID{get {return _id;}}
-		public delegate void EventHandler();
+
+	    public event System.EventHandler MessageSent;
+
+	    public delegate void EventHandler();
 
 		public Scene(string id) 
 		{
@@ -50,7 +54,7 @@ namespace Engine
 	        return _map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
 	    }
 
-	    public Vector GetMaxResolution()
+	    public Vector GetMapDimensions()
 	    {
 	        var vector = new Vector(_map.Grid.Count, _map.Grid[0].Count);
 	        return vector;
@@ -127,7 +131,9 @@ namespace Engine
 
             foreach (var a in _actors.Where(a => a.GetInitiative() == 0))
             {
-                a.Act(this);
+                string message = a.Act(this);
+                if (MessageSent!= null)
+                    MessageSent(this, new MessageEventArgs(message));
             }
 
 

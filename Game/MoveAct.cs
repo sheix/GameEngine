@@ -12,10 +12,11 @@ namespace Game
 
         #region Overrides of BaseAct
 
-        public override int Do(IScene scene)
+        public override ActResult Do(IScene scene)
         {
             (scene as IStage).Move(Self as IPlacableActor, Name);
-            return 1;
+            // How much it really takes should be calculated here
+            return new ActResult {TimePassed = 1, Message = string.Format("{0} is moved",Self.Name)};
         }
 
         public override bool CanDo(IActor actor, IScene scene)

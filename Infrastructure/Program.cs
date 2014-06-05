@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using Castle.Windsor;
 using Engine;
+using EngineContracts;
 using SFML.Graphics;
 using SFML.Window;
 using Contracts;
@@ -29,27 +30,32 @@ namespace Infrastructure
 
 			_game = new Game.Game();
 			_game.Start();
-			
+            _game.SendMessage += RenderMessage;
             
-            var window = new RenderWindow(VideoMode.DesktopMode, "Test");
-            window.Closed += OnClosed;
-            window.KeyPressed += OnKeyPressed;
-            Renderer renderer = new Renderer();
-            while (window.IsOpen())
+            _window = new RenderWindow(VideoMode.DesktopMode, "Test");
+            _window.Closed += OnClosed;
+            _window.KeyPressed += OnKeyPressed;
+            _renderer = new Renderer();
+            while (_window.IsOpen())
             {
-                window.DispatchEvents();
-				window.Clear ();
+                _window.DispatchEvents();
+				_window.Clear ();
 
-                renderer.RenderScene(window, _game.Scene,window.Size.X,window.Size.Y);
+                _renderer.RenderScene(_window, _game.Scene,_window.Size.X,_window.Size.Y);
+                _renderer.RenderMessage(_window, _message);
+                //_message = "";
 
-                window.Display();
+
+                _window.Display();
             }
 
 			_container.Dispose ();
         }
 
-
-        
+        private static void RenderMessage(object sender, EventArgs e)
+        {
+            _message += "\n"+((MessageEventArgs)e).Message;
+        }
 
 
         private static void OnKeyPressed(object sender, KeyEventArgs e)
@@ -60,8 +66,7 @@ namespace Infrastructure
                 window.Close();
 
             _game._KeyPressed((e.Code).ToString());
-            
-
+            _message = "";
         }
 
         private static void OnClosed(object sender, EventArgs e)
@@ -72,6 +77,9 @@ namespace Infrastructure
         }
 
         public static IWindsorContainer _container;
+        private static Renderer _renderer;
+        private static RenderWindow _window;
+        private static string _message = "";
 
         static Program()
 		{

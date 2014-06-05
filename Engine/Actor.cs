@@ -20,11 +20,13 @@ namespace Engine
 		}
 		public List<IAct> AllActions {get { return allActions;} set {allActions = value;}}
 
-		public void Act(IScene scene)
+		public string Act(IScene scene)
 		{
             _possibleActions = scene.GetPossibleActions(this);
 			var action = _strategy.SelectAction(_possibleActions, scene);
-			_initiative += action.Do(scene);
+            var result = action.Do(scene);
+		    _initiative += result.TimePassed;
+		    return result.Message;
 		}
 
 		public int GetInitiative()

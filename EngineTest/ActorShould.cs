@@ -23,7 +23,7 @@ namespace EngineTest
 			scene = new Mock<IScene>();
 			strategy.Setup(mn => mn.SelectAction(It.IsAny<List<IAct>>(),It.IsAny<IScene>())).Returns(act.Object);
 			scene.Setup(mn => mn.GetPossibleActions(It.IsAny<IActor>())).Returns(new List<IAct>{act.Object});
-		    act.Setup(m => m.Do(scene.Object)).Returns(10);
+		    act.Setup(m => m.Do(scene.Object)).Returns(new ActResult(){TimePassed = 10});
 		}
 
 		[Test]

@@ -14,11 +14,16 @@ namespace Game
         private IScene _scene;
         private ManualStrategy _strategy;
         public event EventHandler KeyPressed;
+        public event EventHandler SendMessage;
+
+        public void InvokeSendMessage(object sender, EventArgs eventArgs)
+        {
+            if (SendMessage != null) SendMessage(this, eventArgs);
+        }
 
         private void InvokeKeyPressed(KeyPressedEventArgs e)
         {
-            EventHandler handler = KeyPressed;
-            if (handler != null) handler(this, e);
+            if (KeyPressed != null) KeyPressed(this, e);
         }
 
         public void Start()
@@ -30,11 +35,13 @@ namespace Game
             var random = actorFactory.GetActor();
             _scene.AddActor(player);
             _scene.AddActor(random);
+            _scene.MessageSent += InvokeSendMessage;
             (_scene as IStage).PlaceActorToGrid(player);
             (_scene as IStage).PlaceActorToGrid(random);
             Task.Factory.StartNew(() => _scene.Play());
         }
 
+        
         public IScene Scene
         {
             get { return _scene; }

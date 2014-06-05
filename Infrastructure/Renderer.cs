@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Engine;
+﻿using Engine;
 using SFML.Graphics;
 using SFML.Window;
 using Contracts;
@@ -12,7 +8,7 @@ namespace Infrastructure
 {
     class Renderer
     {
-        private Font font;
+        private readonly Font font;
         public Renderer()
         {
             char s = System.IO.Path.DirectorySeparatorChar;
@@ -20,12 +16,18 @@ namespace Infrastructure
 
         }
 
+        public void RenderMessage(RenderWindow window, string message)
+        {
+            var text = new Text(message, font) { Position = new Vector2f(0, 0) };
+            text.Draw(window, RenderStates.Default);
+        }
+
         public void RenderScene(RenderWindow window, IScene scene, uint X, uint Y)
         {
             var map = (scene as IStage).Map;
 
             var playerCoords = (scene as IStage).GetCenterOfInterest();
-            var maxResolution = (scene as IStage).GetMaxResolution();
+            var maxResolution = (scene as IStage).GetMapDimensions();
             if (playerCoords == Vector.None)
                 return;
 

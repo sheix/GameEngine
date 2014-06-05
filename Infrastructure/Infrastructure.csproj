@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="KeyPressedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Renderer.cs" />
   </ItemGroup>

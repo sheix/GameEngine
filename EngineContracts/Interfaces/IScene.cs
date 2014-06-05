@@ -13,6 +13,7 @@ namespace Contracts
 		void RemoveActor(IActor actor);
 		string Play();
 		string ID {get;}
+	    event EventHandler MessageSent;
 	}
 }
 
