@@ -19,5 +19,5 @@ Workarounds:
 
 * Game won't start:
 
-  1.  On Windows : copy sfml dlls to executable's file directory
+  1.  On Windows : copy sfml dlls from extlibs to executable's file directory
   2.  On Linux : apt-get instal sfml-2.1
