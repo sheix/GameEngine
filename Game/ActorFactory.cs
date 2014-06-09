@@ -25,31 +25,56 @@ namespace Game
                                                        });
         }
 
+        private void AddAttackActions(IActor actor)
+        {
+            actor.AllActions.AddRange(new List<IAct>{new AttackAct("Up", actor, null, null, null),
+                                                        new AttackAct("Down", actor, null, null, null),
+                                                        new AttackAct("Left", actor, null, null, null),
+                                                        new AttackAct("Right", actor, null, null, null),
+                                                       });
+        }
+
+        private void AddWaitAction(IActor actor)
+        {
+            actor.AllActions.Add(new WaitAct(actor));
+        }
+
         public IPlacableActor GetPlayer()
         {
             var player = new Player(_strategy);
 
             AddMoveActions(player);
+            AddAttackActions(player);
 
             return player;
         }
+
+        
 
         public IPlacableActor GetActor()
         {
             var actor = new PlacableActor("Unit" + _id, new RandomStrategy(),5,5);
             AddMoveActions(actor);
+            AddAttackActions(actor);
             return actor;
         }
-
-
     }
 
-    public class RandomStrategy : IStrategy
+    public class WaitAct : BaseAct
     {
-        public IAct SelectAction(List<IAct> possibleActions, IScene scene)
+        public WaitAct(IActor actor) : base("Wait",actor,null)
         {
-            var r = new Random();
-            return possibleActions[r.Next(possibleActions.Count)];
+            
+        }
+
+        public override ActResult Do(IScene scene)
+        {
+            return new ActResult {Message = "Wait", TimePassed = 1};
+        }
+
+        public override bool CanDo(IActor actor, IScene scene)
+        {
+            return true;
         }
     }
 }

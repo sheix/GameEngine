@@ -11,6 +11,8 @@ namespace Contracts
 	    Vector GetMapDimensions();
         void Move(IPlacableActor self, string direction);
 	    bool IsFreeInDirection(IPlacableActor actor, string direction);
+	    void Attack(IPlacableActor placableActor, string name);
+        IActor ActorInDirection(IPlacableActor actor, string direction);
     }
 }
 

@@ -107,6 +107,32 @@ namespace Engine
 	        return true;
 	    }
 
+        public void Attack(IPlacableActor self, string direction)
+	    {
+            // What should happen here?
+	    }
+
+	    public IActor ActorInDirection(IPlacableActor actor, string direction)
+	    {
+            var location = _map.GetActorCoordinates(actor);
+            switch (direction)
+            {
+                case "Up":
+                    location._y--;
+                    break;
+                case "Down":
+                    location._y++;
+                    break;
+                case "Left":
+                    location._x--;
+                    break;
+                case "Right":
+                    location._x++;
+                    break;
+            }
+	        return _map.At(location).Actor;
+	    }
+
 	    public virtual void RemoveActor (IActor actor)
 		{
 			if (actor is IPlacableActor)
