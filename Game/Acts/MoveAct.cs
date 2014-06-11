@@ -1,7 +1,7 @@
 ﻿using Contracts;
 using Engine;
 
-namespace Game
+namespace Game.Acts
 {
     public class MoveAct : BaseAct
     {

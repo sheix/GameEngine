@@ -39,6 +39,11 @@ namespace Engine
 
 	    public void LastPressedKey(string code)
 	    {
+            if (code.Equals("Numpad5") || code.Equals("Num5")) 
+            {
+                LastAction = "Wait";
+                return;
+            }
 	        LastAction = code;
 	    }
 	}

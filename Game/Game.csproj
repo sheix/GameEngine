@@ -41,9 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorFactory.cs" />
-    <Compile Include="AttackAct.cs" />
+    <Compile Include="Acts\AttackAct.cs" />
+    <Compile Include="Acts\MoveAct.cs" />
+    <Compile Include="Acts\WaitAct.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="MoveAct.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomStrategy.cs" />

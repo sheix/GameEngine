@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Contracts;
 using Engine;
+using Game.Acts;
 
 namespace Game
 {
@@ -45,6 +46,7 @@ namespace Game
 
             AddMoveActions(player);
             AddAttackActions(player);
+            AddWaitAction(player);
 
             return player;
         }
@@ -56,25 +58,8 @@ namespace Game
             var actor = new PlacableActor("Unit" + _id, new RandomStrategy(),5,5);
             AddMoveActions(actor);
             AddAttackActions(actor);
+            AddWaitAction(actor);
             return actor;
-        }
-    }
-
-    public class WaitAct : BaseAct
-    {
-        public WaitAct(IActor actor) : base("Wait",actor,null)
-        {
-            
-        }
-
-        public override ActResult Do(IScene scene)
-        {
-            return new ActResult {Message = "Wait", TimePassed = 1};
-        }
-
-        public override bool CanDo(IActor actor, IScene scene)
-        {
-            return true;
         }
     }
 }
