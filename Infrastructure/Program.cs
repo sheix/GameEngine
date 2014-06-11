@@ -54,7 +54,7 @@ namespace Infrastructure
 
         private static void RenderMessage(object sender, EventArgs e)
         {
-            _message += "\n"+((MessageEventArgs)e).Message;
+            _message += ((MessageEventArgs)e).Message += "\n";
         }
 
 
