@@ -2,13 +2,17 @@
 
 namespace Game
 {
+    /// <summary>
+    /// There are 3 moons
+    /// 
+    /// </summary>
     public class Calendar
     {
-        public static int Today;
+        public int Today;
 
-        public static void NextDay()
+        public void NextDay()
         {
-            throw new NotImplementedException();
+            Today++;
         }
     }
 }

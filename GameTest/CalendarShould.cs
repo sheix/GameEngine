@@ -9,11 +9,10 @@ namespace GameTest
         [Test]
         public void OnNextDayReturnDay()
         {
-            var calendar = new Calendar();
-            Calendar.Today = 25;
-            Calendar.NextDay();
+            var calendar = new Calendar {Today = 25};
+            calendar.NextDay();
 
-            Assert.Equals(Calendar.Today, 26);
+            Assert.AreEqual(calendar.Today, 26);
         }
     }
 }
