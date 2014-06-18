@@ -43,8 +43,6 @@ namespace Infrastructure
 
                 _renderer.RenderScene(_window, _game.Scene,_window.Size.X,_window.Size.Y);
                 _renderer.RenderMessage(_window, _message);
-                //_message = "";
-
 
                 _window.Display();
             }
