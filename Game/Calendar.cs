@@ -14,18 +14,19 @@ namespace Game
         public const int StartYear = 1328;
         public const int DaysInYear = 360;
 
-        private static List<Moon> _moons = new List<Moon>{
+         
+
+        public Calendar(int day = 1)
+        {
+            DayFromStart = day;
+            Year = StartYear + (day-1) / DaysInYear;
+            Moons = new List<Moon>{
                                                   new Moon("Lun",27),
                                                   new Moon("Mun",19),
                                                   new Moon("Sput", 37)
                                                   
 
     };
-
-        public Calendar(int day = 1)
-        {
-            DayFromStart = day;
-            Year = StartYear + (day-1) / DaysInYear;
         }
 
         public int DayFromStart { get; private set; }
@@ -33,22 +34,43 @@ namespace Game
 
         public int DayInYear { get { return DayFromStart - (Year - StartYear) * DaysInYear; } }
 
+        
+        public List<Moon> Moons
+        {
+            get; 
+            private set;
+        }
+
         public void NextDay()
         {
             DayFromStart++;
             if ((DayFromStart - 1) % DaysInYear == 0) Year++;
+            foreach (var moon in Moons)
+            {
+                moon.NextDay();
+            }
         }
     }
 
-    internal class Moon
+    public class Moon
     {
         private readonly string _name;
-        private int _period;
+        private readonly int _period;
+
 
         public Moon(string name, int period)
         {
             _name = name;
             _period = period;
+            Position = new Random().Next(1, _period + 1);
+        }
+
+        public int Position { get; private set; }
+
+        public void NextDay()
+        {
+            Position++;
+            if (Position > _period) Position = 1;
         }
     }
 }

@@ -35,6 +35,16 @@ namespace GameTest
             Assert.AreEqual(calendar.DayInYear,dayinyear);
         }
 
+        [Test]
+        public void MoveAllMoonsPositions()
+        {
+            var calendar = new Calendar();
+            var moonPosition = calendar.Moons[0].Position;
+            calendar.NextDay();
+            Assert.AreNotEqual(calendar.Moons[0].Position, moonPosition);
+
+        }
+
 
 
     }
