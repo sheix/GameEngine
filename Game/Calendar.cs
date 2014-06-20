@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game
 {
@@ -11,6 +12,29 @@ namespace Game
     /// </summary>
     public class Calendar
     {
+        public Date Today {get {return new Date(DayInYear, Year, GetMoonStates(Moons)) ;}}
+
+        private List<MoonState> GetMoonStates(List<Moon> moons)
+        {
+            var result = new List<MoonState>();
+            foreach (var moon in moons)
+            {
+                if (moon.Position == moon.Period)
+                {
+                    result.Add(MoonState.FullMoon);
+                    continue;
+                }
+
+                if (moon.Position == moon.Period/2 + 1)
+                {
+                    result.Add(MoonState.NoMoon);
+                    continue;
+                }
+                result.Add(MoonState.None);
+            }
+            return result;
+        }
+
         public const int StartYear = 1328;
         public const int DaysInYear = 360;
 
@@ -35,11 +59,7 @@ namespace Game
         public int DayInYear { get { return DayFromStart - (Year - StartYear) * DaysInYear; } }
 
         
-        public List<Moon> Moons
-        {
-            get; 
-            private set;
-        }
+        public List<Moon> Moons { get; private set; }
 
         public void NextDay()
         {
@@ -50,6 +70,29 @@ namespace Game
                 moon.NextDay();
             }
         }
+    }
+
+    public class Date
+    {
+        public Date(int dayInYear, int year, List<MoonState> moonStates)
+        {
+            Day = dayInYear;
+            Year = year;
+            MoonStates = moonStates;
+        }
+
+        public int Year { get; private set; }
+        public int Day { get; private set; }
+        public List<MoonState> MoonStates {get; private set;}
+        public bool SpecialDay { get { return MoonStates.Any(m => m != MoonState.None); } }
+    }
+
+    public class MoonState
+    {
+        public static MoonState None = new MoonState();
+        public static MoonState FullMoon = new MoonState();
+        public static MoonState NoMoon = new MoonState();
+
     }
 
     public class Moon
@@ -66,6 +109,8 @@ namespace Game
         }
 
         public int Position { get; private set; }
+
+        public int Period { get { return _period; } }
 
         public void NextDay()
         {

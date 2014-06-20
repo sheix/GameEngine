@@ -42,7 +42,21 @@ namespace GameTest
             var moonPosition = calendar.Moons[0].Position;
             calendar.NextDay();
             Assert.AreNotEqual(calendar.Moons[0].Position, moonPosition);
+        }
 
+        [Test]
+        public void GetSpecialDay()
+        {
+            var calendar = new Calendar();
+
+            bool specialDay = false;
+            for (int i = 1; i < 19; i++)
+            {
+                calendar.NextDay();
+                if (calendar.Today.SpecialDay) specialDay = true;
+            }
+
+            Assert.AreEqual(true, specialDay);
         }
 
 
