@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Contracts;
 
 namespace Game
 {
@@ -10,14 +11,14 @@ namespace Game
     /// There are 3 months in each season
     /// 30 days are length of each month
     /// </summary>
-    public class Calendar
+    public class Calendar : ICalendar
     {
-        public Date Today {get {return new Date(DayInYear, Year, GetMoonStates(Moons)) ;}}
+        public object Today {get {return new Date(DayInYear, Year, GetMoonStates(Moons)) ;}}
 
-        private List<MoonState> GetMoonStates(List<Moon> moons)
+        private List<MoonState> GetMoonStates(List<object > moons)
         {
             var result = new List<MoonState>();
-            foreach (var moon in moons)
+            foreach (Moon moon in moons)
             {
                 if (moon.Position == moon.Period)
                 {
@@ -44,7 +45,7 @@ namespace Game
         {
             DayFromStart = day;
             Year = StartYear + (day-1) / DaysInYear;
-            Moons = new List<Moon>{
+            Moons = new List<object>{
                                                   new Moon("Lun",27),
                                                   new Moon("Mun",19),
                                                   new Moon("Sput", 37)
@@ -59,13 +60,13 @@ namespace Game
         public int DayInYear { get { return DayFromStart - (Year - StartYear) * DaysInYear; } }
 
         
-        public List<Moon> Moons { get; private set; }
+        public List<object > Moons { get; private set; }
 
         public void NextDay()
         {
             DayFromStart++;
             if ((DayFromStart - 1) % DaysInYear == 0) Year++;
-            foreach (var moon in Moons)
+            foreach (Moon moon in Moons)
             {
                 moon.NextDay();
             }
@@ -111,6 +112,13 @@ namespace Game
         public int Position { get; private set; }
 
         public int Period { get { return _period; } }
+
+        public string Name
+        {
+            get {
+                return _name;
+            }
+        }
 
         public void NextDay()
         {

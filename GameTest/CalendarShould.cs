@@ -9,7 +9,7 @@ namespace GameTest
         [Test]
         public void OnNextDayReturnDay()
         {
-            var calendar = new Calendar(25);;
+            var calendar = new Calendar(25);
             calendar.NextDay();
 
             Assert.AreEqual(calendar.DayFromStart, 26);
@@ -39,9 +39,9 @@ namespace GameTest
         public void MoveAllMoonsPositions()
         {
             var calendar = new Calendar();
-            var moonPosition = calendar.Moons[0].Position;
+            var moonPosition = (calendar.Moons[0] as Moon).Position;
             calendar.NextDay();
-            Assert.AreNotEqual(calendar.Moons[0].Position, moonPosition);
+            Assert.AreNotEqual((calendar.Moons[0] as Moon).Position, moonPosition);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace GameTest
             for (int i = 1; i < 19; i++)
             {
                 calendar.NextDay();
-                if (calendar.Today.SpecialDay) specialDay = true;
+                if ((calendar.Today as Date).SpecialDay) specialDay = true;
             }
 
             Assert.AreEqual(true, specialDay);

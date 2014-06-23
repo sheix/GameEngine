@@ -41,7 +41,8 @@ namespace Infrastructure
                 _window.DispatchEvents();
 				_window.Clear ();
 
-                _renderer.RenderScene(_window, _game.Scene,_window.Size.X,_window.Size.Y);
+                _renderer.RenderCalendar(_window, _game.Calendar);
+                _renderer.RenderScene(_window, _game.Scene);
                 _renderer.RenderMessage(_window, _message);
 
                 _window.Display();

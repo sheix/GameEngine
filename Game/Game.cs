@@ -13,6 +13,7 @@ namespace Game
     {
         private IScene _scene;
         private ManualStrategy _strategy;
+        private ICalendar _calendar;
         public event EventHandler KeyPressed;
         public event EventHandler SendMessage;
 
@@ -28,6 +29,7 @@ namespace Game
 
         public void Start()
         {
+            _calendar = new Calendar();
             _scene = (new SceneGenerator()).GenerateScene("Default");
             _strategy = new ManualStrategy(this);
             var actorFactory = new ActorFactory(_strategy);
@@ -45,6 +47,11 @@ namespace Game
         public IScene Scene
         {
             get { return _scene; }
+        }
+
+        public ICalendar Calendar
+        {
+            get { return _calendar; }
         }
 
         public void _KeyPressed(string key)

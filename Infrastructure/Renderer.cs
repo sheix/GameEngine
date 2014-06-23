@@ -1,4 +1,7 @@
-﻿using Engine;
+﻿using System;
+using System.Collections.Generic;
+using Engine;
+using Game;
 using SFML.Graphics;
 using SFML.Window;
 using Contracts;
@@ -9,6 +12,9 @@ namespace Infrastructure
     class Renderer
     {
         private readonly Font font;
+        private Dictionary<string, Color> _moonColors = new Dictionary<string, Color> {{"Mun",Color.Cyan}, {"Lun",Color.Yellow}, {"Sput", Color.Green}};
+        private const uint CharacterSize = 24;
+
         public Renderer()
         {
             char s = System.IO.Path.DirectorySeparatorChar;
@@ -18,12 +24,42 @@ namespace Infrastructure
 
         public void RenderMessage(RenderWindow window, string message)
         {
-            var text = new Text(message, font) { Position = new Vector2f(0, 0) };
+            var text = new Text(message, font,CharacterSize) { Position = new Vector2f(0, 0) };
             text.Draw(window, RenderStates.Default);
         }
 
-        public void RenderScene(RenderWindow window, IScene scene, uint X, uint Y)
+        public void RenderCalendar(RenderWindow window, ICalendar calendar)
         {
+            Vector2f position = new Vector2f(0, window.Size.Y - font.GetGlyph(100, CharacterSize, false).Bounds.Height- 100);
+            foreach (Moon moon in calendar.Moons)
+            {
+                char c = GetGlyphForMoonState(moon);
+                var text = new Text(moon.Name + " "+ c, font,CharacterSize)
+                               {
+                                   Color = _moonColors[moon.Name],
+                                   Position = position
+                               };
+                text.Draw(window, RenderStates.Default);
+                position.X += text.GetGlobalBounds().Width;
+            }
+
+            
+        }
+
+        private char GetGlyphForMoonState(Moon moon)
+        {
+            if (moon.Position == moon.Period) return '0';
+            if (moon.Position == moon.Period/2) return 'O';
+            if (moon.Position < moon.Period/2) return '(';
+            if (moon.Position > moon.Period/2) return ')';
+            return 'E';
+        }
+
+        public void RenderScene(RenderWindow window, IScene scene)
+        {
+            uint X = window.Size.X;
+            uint Y = window.Size.Y;
+
             var map = (scene as IStage).Map;
 
             var playerCoords = (scene as IStage).GetCenterOfInterest();
@@ -58,19 +94,19 @@ namespace Infrastructure
                     if (cell.Actor != null)
                         if (cell.Actor.Name == "Player")
                         {
-                            var text = new Text("@", font) { Position = new Vector2f(v._x, v._y) };
+                            var text = new Text("@", font, CharacterSize) { Position = new Vector2f(v._x, v._y) };
                             text.Draw(window, RenderStates.Default);
                             continue;
                         }
                     if (cell is Wall)
                     {
-                        var text = new Text("#", font) { Position = new Vector2f(v._x, v._y) };
+                        var text = new Text("#", font,CharacterSize) { Position = new Vector2f(v._x, v._y) };
                         text.Draw(window, RenderStates.Default);
                         continue;
                     }
                     if (cell.Actor == null)
                     {
-                        var text = new Text(".", font) { Position = new Vector2f(v._x, v._y) };
+                        var text = new Text(".", font,CharacterSize) { Position = new Vector2f(v._x, v._y) };
                         text.Draw(window, RenderStates.Default);
                         continue;
                     }
