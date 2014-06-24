@@ -1,9 +1,11 @@
 [Default]
+Levels: 1
+
 Generation:
 Size: 20x20
 Borders: BorderWalls
 StartPoint: 10,10
-End: 
+EndPoint: 5,5 Lower 
 
 Availability: always
 Repeatability: once
