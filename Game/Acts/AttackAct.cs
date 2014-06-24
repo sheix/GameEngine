@@ -14,7 +14,7 @@ namespace Game.Acts
         {
             (scene as IStage).Attack(Self as IPlacableActor, Name);
             
-            return new ActResult { TimePassed = 1, Message = string.Format("{0} attacked {1}", Self.Name, Target.Name) };
+            return new ActResult { TimePassed = 10, Message = string.Format("{0} attacked {1}", Self.Name, Target.Name) };
         }
 
         public override bool CanDo(IActor actor, IScene scene)

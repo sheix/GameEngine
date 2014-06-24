@@ -16,7 +16,7 @@ namespace Game.Acts
         {
             (scene as IStage).Move(Self as IPlacableActor, Name);
             // How much it really takes should be calculated here
-            return new ActResult {TimePassed = 1, Message = string.Format("{0} is moved",Self.Name)};
+            return new ActResult {TimePassed = 10, Message = string.Format("{0} is moved",Self.Name)};
         }
 
         public override bool CanDo(IActor actor, IScene scene)

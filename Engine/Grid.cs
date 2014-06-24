@@ -34,7 +34,24 @@ namespace Engine
 			return new Vector (x, y);
 		}
 
-		private List<List<ICell>> _grid;
+	    public Vector GetActorCoordinates(string name)
+	    {
+            int x, y;
+            try
+            {
+                x = _grid.FindIndex(m => m.Any(c => c.Actor.Name == name));
+                y = _grid[x].FindIndex(m => m.Actor.Name == name);
+            }
+            catch (Exception)
+            {
+                return Vector.None;
+            }
+
+
+            return new Vector(x, y);
+	    }
+
+	    private List<List<ICell>> _grid;
 
 	    public void SetMaxSize(int x,int y)
         {

@@ -12,7 +12,7 @@ namespace Game.Acts
 
         public override ActResult Do(IScene scene)
         {
-            return new ActResult {Message = "Wait", TimePassed = 1};
+            return new ActResult {Message = "Wait", TimePassed = 10};
         }
 
         public override bool CanDo(IActor actor, IScene scene)

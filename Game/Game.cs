@@ -29,7 +29,10 @@ namespace Game
 
         public void Start()
         {
-            _calendar = new Calendar();
+            _calendar = new Calendar(this);
+            
+
+
             _scene = (new SceneGenerator()).GenerateScene("Default");
             _strategy = new ManualStrategy(this);
             var actorFactory = new ActorFactory(_strategy);

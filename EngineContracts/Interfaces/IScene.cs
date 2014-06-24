@@ -14,6 +14,7 @@ namespace Contracts
 		string Play();
 		string ID {get;}
 	    event EventHandler MessageSent;
+	    event EventHandler OnTick;
 	}
 }
 

@@ -14,7 +14,7 @@ namespace Engine
 		private IGrid _map;
 		private Dictionary<Func<IScene , bool>, string> nextScenes;
 
-		protected event EventHandler OnTick;
+	    public event System.EventHandler OnTick;
 
 		public IGrid Map{get { return _map; }
 			set {_map = value;}
@@ -164,7 +164,7 @@ namespace Engine
 
 
 		    if (OnTick != null)
-				OnTick();
+				OnTick(this, null);
 		    
 		}
 
@@ -191,6 +191,11 @@ namespace Engine
 	    {
 	        nextScenes = new Dictionary<Func<IScene, bool>, string> {{m => false, "Default"}};
 	    }
+
+        public void AddNextScene(string home, Func<IScene, bool> b)
+	    {
+            nextScenes.Add(b,home);
+        }
     }
 }
 

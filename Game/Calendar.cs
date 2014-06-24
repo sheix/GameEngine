@@ -13,9 +13,10 @@ namespace Game
     /// </summary>
     public class Calendar : ICalendar
     {
-        public object Today {get {return new Date(DayInYear, Year, GetMoonStates(Moons)) ;}}
+        private IScene _scene;
+        public object Today { get { return new Date(DayInYear, Year, GetMoonStates(Moons)); } }
 
-        private List<MoonState> GetMoonStates(List<object > moons)
+        private List<MoonState> GetMoonStates(List<object> moons)
         {
             var result = new List<MoonState>();
             foreach (Moon moon in moons)
@@ -26,7 +27,7 @@ namespace Game
                     continue;
                 }
 
-                if (moon.Position == moon.Period/2 + 1)
+                if (moon.Position == moon.Period / 2 + 1)
                 {
                     result.Add(MoonState.NoMoon);
                     continue;
@@ -39,28 +40,65 @@ namespace Game
         public const int StartYear = 1328;
         public const int DaysInYear = 360;
 
-         
 
-        public Calendar(int day = 1)
+
+        public Calendar(IGame game, int day = 1)
         {
+            game.KeyPressed += game_KeyPressed;
             DayFromStart = day;
-            Year = StartYear + (day-1) / DaysInYear;
+            Year = StartYear + (day - 1) / DaysInYear;
             Moons = new List<object>{
                                                   new Moon("Lun",27),
                                                   new Moon("Mun",19),
                                                   new Moon("Sput", 37)
-                                                  
-
-    };
+                                    };
         }
+
+        void game_KeyPressed(object sender, EventArgs e)
+        {
+            switch ((e as KeyPressedEventArgs).Key)
+            {
+                case "E": NextDay();
+                    break;
+            }
+                
+        }
+
+        public void AttachScene(IScene scene)
+        {
+            _scene = scene;
+            scene.OnTick += scene_OnTick;
+        }
+
+        public void DetachScene()
+        {
+            _scene.OnTick -= scene_OnTick;
+        }
+
+        void scene_OnTick(object sender, EventArgs e)
+        {
+            SecondInDay++;
+            if (SecondInDay == SecondsInDay)
+            {
+                SecondInDay = 1;
+                NextDay();
+            }
+        }
+
+        protected int SecondsInDay
+        {
+            get { return 86400; }
+        }
+
+        protected int SecondInDay { get; set; }
 
         public int DayFromStart { get; private set; }
         public int Year { get; private set; }
 
         public int DayInYear { get { return DayFromStart - (Year - StartYear) * DaysInYear; } }
 
-        
-        public List<object > Moons { get; private set; }
+
+        public List<object> Moons { get; private set; }
 
         public void NextDay()
         {
@@ -84,7 +122,7 @@ namespace Game
 
         public int Year { get; private set; }
         public int Day { get; private set; }
-        public List<MoonState> MoonStates {get; private set;}
+        public List<MoonState> MoonStates { get; private set; }
         public bool SpecialDay { get { return MoonStates.Any(m => m != MoonState.None); } }
     }
 
@@ -115,7 +153,8 @@ namespace Game
 
         public string Name
         {
-            get {
+            get
+            {
                 return _name;
             }
         }
