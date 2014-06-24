@@ -109,6 +109,11 @@ namespace Game
                 moon.NextDay();
             }
         }
+
+        public List<string> GetAvailableMissions()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Date

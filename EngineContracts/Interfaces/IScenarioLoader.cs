@@ -7,5 +7,12 @@ namespace Contracts
 	{
 		Dictionary <string, IScene> Load (string path = "");
 	}
+
+    public class Scenario
+    {
+        private String ID;
+        private IScene scene;
+        
+    }
 }
 

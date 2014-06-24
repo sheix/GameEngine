@@ -46,7 +46,6 @@
     <Compile Include="Scene.cs" />
     <Compile Include="BaseAct.cs" />
     <Compile Include="Grid.cs" />
-    <Compile Include="ScenarioRunner.cs" />
     <Compile Include="SceneGenerator.cs" />
     <Compile Include="ManualStrategy.cs" />
   </ItemGroup>

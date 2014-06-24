@@ -30,6 +30,29 @@ namespace Infrastructure
 
         public void RenderCalendar(RenderWindow window, ICalendar calendar)
         {
+            RenderMoons(window, calendar);
+            RenderMissions(window, calendar);
+        }
+
+        private void RenderMissions(RenderWindow window, ICalendar calendar)
+        {
+            char order = 'a';
+            Vector2f position = new Vector2f(0, window.Size.Y - font.GetGlyph(100, CharacterSize, false).Bounds.Height - 100);
+            
+            foreach (var mission in calendar.GetAvailableMissions())
+            {
+                Text text = new Text(order + " :"+ mission, font,CharacterSize)
+                               {
+                                   Position = position
+                               };
+                text.Draw(window, RenderStates.Default);
+                position.Y += text.GetLocalBounds().Height;
+                order++;
+            }
+        }
+
+        private void RenderMoons(RenderWindow window, ICalendar calendar)
+        {
             Vector2f position = new Vector2f(0, window.Size.Y - font.GetGlyph(100, CharacterSize, false).Bounds.Height- 100);
             foreach (Moon moon in calendar.Moons)
             {
@@ -42,8 +65,6 @@ namespace Infrastructure
                 text.Draw(window, RenderStates.Default);
                 position.X += text.GetGlobalBounds().Width;
             }
-
-            
         }
 
         private char GetGlyphForMoonState(Moon moon)

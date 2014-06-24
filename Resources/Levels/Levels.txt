@@ -1,0 +1,9 @@
+[Default]
+Generation:
+Size: 20x20
+Borders: BorderWalls
+StartPoint: 10,10
+End: 
+
+Availability: always
+Repeatability: once

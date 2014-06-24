@@ -1,19 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Contracts;
 using Engine;
 
 namespace Game
 {
-    /// <summary>
-    /// Game should in general handle the time, 
-    /// Create scenes, pass scene to UI renderer
-    /// </summary>
 	public class Game : IGame
     {
         private IScene _scene;
         private ManualStrategy _strategy;
         private ICalendar _calendar;
+        private ActorFactory _actorFactory;
         public event EventHandler KeyPressed;
         public event EventHandler SendMessage;
 
@@ -30,23 +28,29 @@ namespace Game
         public void Start()
         {
             _calendar = new Calendar(this);
+            _strategy = new ManualStrategy(this);
+            _actorFactory = new ActorFactory(_strategy);
             
+            while (true)
+            {
+                var missions = _calendar.GetAvailableMissions();
 
+
+                _calendar.NextDay();
+            }
 
             _scene = (new SceneGenerator()).GenerateScene("Default");
-            _strategy = new ManualStrategy(this);
-            var actorFactory = new ActorFactory(_strategy);
-            var player = actorFactory.GetPlayer();
-            var random = actorFactory.GetActor();
+            
+            var player = _actorFactory.GetPlayer();
+            var random = _actorFactory.GetActor();
             _scene.AddActor(player);
             _scene.AddActor(random);
             _scene.MessageSent += InvokeSendMessage;
             (_scene as IStage).PlaceActorToGrid(player);
             (_scene as IStage).PlaceActorToGrid(random);
-            Task.Factory.StartNew(() => _scene.Play());
+            var result = Task.Factory.StartNew(() => _scene.Play());
         }
 
-        
         public IScene Scene
         {
             get { return _scene; }

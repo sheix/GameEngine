@@ -21,5 +21,6 @@ namespace Contracts
         int DayInYear { get; }
         List<object > Moons { get; }
         void NextDay();
+        List<String> GetAvailableMissions();
     }
 }
