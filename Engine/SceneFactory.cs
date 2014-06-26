@@ -1,10 +1,11 @@
 using System;
-using System.Linq;
 using Contracts;
+using EngineContracts.Interfaces;
+
 
 namespace Engine
 {
-	public class SceneFactory
+	public class SceneFactory : ISceneFactory
 	{
 		public IScene GetScene(String ID)
 		{

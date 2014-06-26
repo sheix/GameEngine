@@ -10,7 +10,7 @@ namespace Engine
             var grid = new Grid();
             foreach (var rule in rules)
             {
-				System.Console.WriteLine (rule.ToString() + " Processing");
+				System.Console.WriteLine (rule + " Processing");
                 rule.Process(grid);
             }
             return grid;
@@ -18,7 +18,7 @@ namespace Engine
 
     }
 
-    public abstract class GridRule
+    public abstract class GridRule : IRule 
     {
         public abstract void Process(Grid grid);
     }

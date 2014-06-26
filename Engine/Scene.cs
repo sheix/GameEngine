@@ -184,7 +184,7 @@ namespace Engine
 				}
 				Tick();
 			}
-			return "SceneEnded";
+			
 		}
 
 	    public void SetEmptyNextScene()

@@ -12,6 +12,7 @@ namespace Game
         private ManualStrategy _strategy;
         private ICalendar _calendar;
         private ActorFactory _actorFactory;
+	    private IScenarioLoader _scenarioLoader;
         public event EventHandler KeyPressed;
         public event EventHandler SendMessage;
 
@@ -35,6 +36,8 @@ namespace Game
             {
                 var missions = _calendar.GetAvailableMissions();
 
+                //Scenario scenario  = _scenarioLoader.Load(missions);
+                
 
                 _calendar.NextDay();
             }

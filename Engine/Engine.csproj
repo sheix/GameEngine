@@ -46,7 +46,7 @@
     <Compile Include="Scene.cs" />
     <Compile Include="BaseAct.cs" />
     <Compile Include="Grid.cs" />
-    <Compile Include="SceneGenerator.cs" />
+    <Compile Include="SceneFactory.cs" />
     <Compile Include="ManualStrategy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
