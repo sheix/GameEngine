@@ -39,8 +39,8 @@ namespace Engine
             int x, y;
             try
             {
-                x = _grid.FindIndex(m => m.Any(c => c.Actor.Name == name));
-                y = _grid[x].FindIndex(m => m.Actor.Name == name);
+                x = _grid.FindIndex(m => m.Any(c => c.Actor != null && c.Actor.Name == name));
+                y = _grid[x].FindIndex(m => m.Actor != null && m.Actor.Name == name);
             }
             catch (Exception)
             {

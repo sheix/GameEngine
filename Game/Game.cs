@@ -39,7 +39,7 @@ namespace Game
                 _calendar.NextDay();
             }
 
-            _scene = (new SceneGenerator()).GenerateScene("Default");
+            _scene = (new SceneFactory()).GetScene("Default");
             
             var player = _actorFactory.GetPlayer();
             var random = _actorFactory.GetActor();

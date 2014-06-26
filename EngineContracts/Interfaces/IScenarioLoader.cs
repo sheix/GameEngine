@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Contracts
@@ -7,12 +6,5 @@ namespace Contracts
 	{
 		Dictionary <string, IScene> Load (string path = "");
 	}
-
-    public class Scenario
-    {
-        private String ID;
-        private IScene scene;
-        
-    }
 }
 

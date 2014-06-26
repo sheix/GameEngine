@@ -42,7 +42,7 @@ namespace Infrastructure
 				_window.Clear ();
 
                 _renderer.RenderCalendar(_window, _game.Calendar);
-                _renderer.RenderScene(_window, _game.Scene);
+                if (_game.Scene != null) _renderer.RenderScene(_window, _game.Scene);
                 _renderer.RenderMessage(_window, _message);
 
                 _window.Display();

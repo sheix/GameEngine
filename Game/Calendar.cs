@@ -112,7 +112,7 @@ namespace Game
 
         public List<string> GetAvailableMissions()
         {
-            throw new NotImplementedException();
+            return new List<string>() {"Default", "Home"};
         }
     }
 
