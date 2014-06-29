@@ -31,18 +31,19 @@ namespace Game
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);
             _actorFactory = new ActorFactory(_strategy);
-            
+
+            Task.Factory.StartNew(() => _calendar.Play());
+
             while (true)
             {
-                var missions = _calendar.GetAvailableMissions();
+                if (_calendar.SetMission != null)
+                {
+                    var scenario = _scenarioLoader.Load(_calendar.SetMission);
 
-                //Scenario scenario  = _scenarioLoader.Load(missions);
-                
+                }
 
-                _calendar.NextDay();
             }
 
-            _scene = (new SceneFactory()).GetScene("Default");
             
             var player = _actorFactory.GetPlayer();
             var random = _actorFactory.GetActor();

@@ -14,6 +14,8 @@ namespace Game
     public class Calendar : ICalendar
     {
         private IScene _scene;
+        public string SetMission { get; private set; }
+
         public object Today { get { return new Date(DayInYear, Year, GetMoonStates(Moons)); } }
 
         private List<MoonState> GetMoonStates(List<object> moons)
@@ -56,9 +58,16 @@ namespace Game
 
         void game_KeyPressed(object sender, EventArgs e)
         {
-            switch ((e as KeyPressedEventArgs).Key)
+            var key = (e as KeyPressedEventArgs).Key;
+            switch (key)
             {
                 case "E": NextDay();
+                    break;
+                default:
+                    int number;
+                    if (int.TryParse(key,out number))
+                        if (GetAvailableMissions().Count < number)
+                            SetMission = GetAvailableMissions()[number];
                     break;
             }
                 
@@ -102,6 +111,7 @@ namespace Game
 
         public void NextDay()
         {
+            Console.WriteLine("Next Day");
             DayFromStart++;
             if ((DayFromStart - 1) % DaysInYear == 0) Year++;
             foreach (Moon moon in Moons)
@@ -112,7 +122,20 @@ namespace Game
 
         public List<string> GetAvailableMissions()
         {
-            return new List<string>() {"Default", "Home"};
+            return new List<string> {"Default", "Home"};
+        }
+
+        public string Play()
+        {
+            while (true)
+            {
+                foreach (var nextMission in GetAvailableMissions())
+                {
+                    if (nextMission.Equals(SetMission))
+                        return nextMission;
+                }
+                //Tick();
+            }
         }
     }
 

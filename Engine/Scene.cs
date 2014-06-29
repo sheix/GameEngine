@@ -162,7 +162,6 @@ namespace Engine
                     MessageSent(this, new MessageEventArgs(message));
             }
 
-
 		    if (OnTick != null)
 				OnTick(this, null);
 		    

@@ -13,14 +13,15 @@ namespace Contracts
         event EventHandler SendMessage;
     }
 
-    public interface ICalendar
+    public interface ICalendar : IPlayable
     {
         object Today { get; }
         int DayFromStart { get; }
         int Year { get; }
         int DayInYear { get; }
         List<object > Moons { get; }
+        string SetMission { get; set; }
         void NextDay();
         List<String> GetAvailableMissions();
-    }
+     }
 }
