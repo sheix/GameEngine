@@ -29,15 +29,15 @@ namespace Infrastructure
 			Console.WriteLine ("Launch host app!!");
 
 			_game = new Game.Game();
-			_game.Start();
-            _game.SendMessage += RenderMessage;
-            
+			_game.SendMessage += RenderMessage;
+            Task.Factory.StartNew(() => _game.Start());
             _window = new RenderWindow(VideoMode.DesktopMode, "Test");
             _window.Closed += OnClosed;
             _window.KeyPressed += OnKeyPressed;
             _renderer = new Renderer();
             while (_window.IsOpen())
             {
+
                 _window.DispatchEvents();
 				_window.Clear ();
 

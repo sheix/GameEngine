@@ -20,7 +20,7 @@ namespace Contracts
         int Year { get; }
         int DayInYear { get; }
         List<object > Moons { get; }
-        string SetMission { get; set; }
+        string SetMission { get; }
         void NextDay();
         List<String> GetAvailableMissions();
      }

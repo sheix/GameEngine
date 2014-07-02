@@ -39,6 +39,17 @@ namespace Game
                 if (_calendar.SetMission != null)
                 {
                     var scenario = _scenarioLoader.Load(_calendar.SetMission);
+                    _scene = scenario["Start"];
+                    _scene.MessageSent += InvokeSendMessage;
+                    while (true)
+                    {
+                        var outcome = _scene.Play();
+
+                        _scene = scenario[outcome];
+                        _scene.MessageSent += InvokeSendMessage;
+                        if (outcome == "Calendar")
+                            break;
+                    }
 
                 }
 
@@ -49,7 +60,7 @@ namespace Game
             var random = _actorFactory.GetActor();
             _scene.AddActor(player);
             _scene.AddActor(random);
-            _scene.MessageSent += InvokeSendMessage;
+            
             (_scene as IStage).PlaceActorToGrid(player);
             (_scene as IStage).PlaceActorToGrid(random);
             var result = Task.Factory.StartNew(() => _scene.Play());
