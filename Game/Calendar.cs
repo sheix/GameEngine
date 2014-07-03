@@ -65,8 +65,8 @@ namespace Game
                     break;
                 default:
                     int number;
-                    if (int.TryParse(key,out number))
-                        if (GetAvailableMissions().Count < number)
+                    if (int.TryParse(key[3].ToString() ,out number))
+                        if (GetAvailableMissions().Count > number)
                             SetMission = GetAvailableMissions()[number];
                     break;
             }

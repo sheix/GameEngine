@@ -31,7 +31,7 @@ namespace Game
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);
             _actorFactory = new ActorFactory(_strategy);
-
+            _scenarioLoader = new ScenarioLoader();
             Task.Factory.StartNew(() => _calendar.Play());
 
             while (true)
@@ -79,6 +79,14 @@ namespace Game
         public void _KeyPressed(string key)
         {
             InvokeKeyPressed(new KeyPressedEventArgs { Key = key});
+        }
+    }
+
+    public class ScenarioLoader : IScenarioLoader
+    {
+        public Dictionary<string, IScene> Load(string path)
+        {
+            throw new NotImplementedException();
         }
     }
 }
