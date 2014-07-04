@@ -13,7 +13,8 @@ namespace Game
         private ICalendar _calendar;
         private ActorFactory _actorFactory;
 	    private IScenarioLoader _scenarioLoader;
-        public event EventHandler KeyPressed;
+	    private SceneFactory _sceneFactory;
+	    public event EventHandler KeyPressed;
         public event EventHandler SendMessage;
 
         public void InvokeSendMessage(object sender, EventArgs eventArgs)
@@ -31,31 +32,33 @@ namespace Game
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);
             _actorFactory = new ActorFactory(_strategy);
-            _scenarioLoader = new ScenarioLoader();
+            _sceneFactory = new SceneFactory();
             Task.Factory.StartNew(() => _calendar.Play());
 
             while (true)
             {
                 if (_calendar.SetMission != null)
                 {
-                    var scenario = _scenarioLoader.Load(_calendar.SetMission);
-                    _scene = scenario["Start"];
+                    _scene = _sceneFactory.GetScene(_calendar.SetMission);
                     _scene.MessageSent += InvokeSendMessage;
+                    _calendar.AttachScene(_scene);
                     while (true)
                     {
                         var outcome = _scene.Play();
-
-                        _scene = scenario[outcome];
-                        _scene.MessageSent += InvokeSendMessage;
+                        _scene.MessageSent -= InvokeSendMessage;
                         if (outcome == "Calendar")
+                        {
+                            _calendar.DetachScene(_scene);
                             break;
+                        }
+                        _scene = _sceneFactory.GetScene(outcome);
+                        _scene.MessageSent += InvokeSendMessage;
+                        
                     }
 
                 }
 
             }
-
-            
             var player = _actorFactory.GetPlayer();
             var random = _actorFactory.GetActor();
             _scene.AddActor(player);

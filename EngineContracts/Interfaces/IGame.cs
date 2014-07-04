@@ -23,5 +23,7 @@ namespace Contracts
         string SetMission { get; }
         void NextDay();
         List<String> GetAvailableMissions();
-     }
+        void AttachScene(IScene scene);
+        void DetachScene(IScene scene);
+    }
 }

@@ -9,7 +9,7 @@ namespace Engine
 	{
 	    private GridGenerator _generator;
 
-        private SceneFactory()
+	    public SceneFactory()
         {
             _generator = new GridGenerator();
         }
@@ -19,8 +19,8 @@ namespace Engine
 			var scene = new Scene(ID);
 			scene.Map = _generator.Generate(new GridRule[]{new SizeRule(20,20),new BorderWalls()});
 			scene.SetEmptyNextScene();
-			if (ID == "Default")
-				scene.AddNextScene("Home", m => (m as IStage).Map.GetActorCoordinates("Player")._x == 1);
+			//if (ID == "Default")
+			//	scene.AddNextScene("Home", m => (m as IStage).Map.GetActorCoordinates("Player")._x == 1);
 			return scene;
 		}
 

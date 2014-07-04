@@ -13,6 +13,7 @@ namespace Game
     /// </summary>
     public class Calendar : ICalendar
     {
+        private readonly IGame _game;
         private IScene _scene;
         public string SetMission { get; private set; }
 
@@ -46,7 +47,8 @@ namespace Game
 
         public Calendar(IGame game, int day = 1)
         {
-            game.KeyPressed += game_KeyPressed;
+            _game = game;
+            _game.KeyPressed += game_KeyPressed;
             DayFromStart = day;
             Year = StartYear + (day - 1) / DaysInYear;
             Moons = new List<object>{
@@ -64,10 +66,22 @@ namespace Game
                 case "E": NextDay();
                     break;
                 default:
-                    int number;
-                    if (int.TryParse(key[3].ToString() ,out number))
-                        if (GetAvailableMissions().Count > number)
-                            SetMission = GetAvailableMissions()[number];
+                    if (key.StartsWith("Num"))
+                    {
+                        int number;
+                        if (int.TryParse(key[3].ToString(), out number))
+                            if (GetAvailableMissions().Count > number)
+                            {
+                                SetMission = GetAvailableMissions()[number];
+                                break;
+                            }
+                        if (int.TryParse(key[6].ToString(), out number))
+                            if (GetAvailableMissions().Count > number)
+                            {
+                                SetMission = GetAvailableMissions()[number];
+                                break;
+                            }
+                    }
                     break;
             }
                 
@@ -76,14 +90,18 @@ namespace Game
         public void AttachScene(IScene scene)
         {
             _scene = scene;
+            _game.KeyPressed -= game_KeyPressed;
             scene.OnTick += scene_OnTick;
         }
 
-        public void DetachScene()
+        public void DetachScene(IScene scene)
         {
-            _scene.OnTick -= scene_OnTick;
+            _scene = null;
+            scene.OnTick -= scene_OnTick;
+            _game.KeyPressed += game_KeyPressed;
         }
 
+        
         void scene_OnTick(object sender, EventArgs e)
         {
             SecondInDay++;
