@@ -10,6 +10,7 @@ namespace Game
     {
         private readonly ManualStrategy _strategy;
         private static int _id = 0;
+        private Player Player;
 
         public ActorFactory(ManualStrategy strategy)
         {
@@ -42,12 +43,14 @@ namespace Game
 
         public IPlacableActor GetPlayer()
         {
-            var player = new Player(_strategy);
+          Iif (Player == null)
+          {
+             Player = new Player(_strategy);
 
             AddMoveActions(player);
             AddAttackActions(player);
             AddWaitAction(player);
-
+          }
             return player;
         }
 
