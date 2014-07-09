@@ -5,7 +5,7 @@ namespace Engine
 {
     public class GridGenerator
     {
-        public Grid Generate(GridRule[] rules)
+        public Grid Generate(MapRule[] rules)
         {
             var grid = new Grid();
             foreach (var rule in rules)
@@ -18,12 +18,12 @@ namespace Engine
 
     }
 
-    public abstract class GridRule : IRule 
+    public abstract class MapRule : IRule 
     {
         public abstract void Process(Grid grid);
     }
 
-    public class SizeRule : GridRule
+    public class SizeRule : MapRule
     {
         private readonly int _x;
         private readonly int _y;
@@ -34,7 +34,7 @@ namespace Engine
             _y = y;
         }
 
-        #region Overrides of GridRule
+        #region Overrides of MapRule
 
         public override void Process(Grid grid)
         {
@@ -44,9 +44,9 @@ namespace Engine
         #endregion
     }
 
-    public class BorderWalls : GridRule
+    public class BorderWalls : MapRule
     {
-        #region Overrides of GridRule
+        #region Overrides of MapRule
 
         public override void Process(Grid grid)
         {

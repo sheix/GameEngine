@@ -85,11 +85,4 @@ namespace Game
         }
     }
 
-    public class ScenarioLoader : IScenarioLoader
-    {
-        public Dictionary<string, IScene> Load(string path)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

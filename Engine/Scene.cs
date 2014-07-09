@@ -10,8 +10,7 @@ namespace Engine
     {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
-		private readonly string _id;
-		private IGrid _map;
+	    private IGrid _map;
 		private Dictionary<Func<IScene , bool>, string> nextScenes;
 
 	    public event System.EventHandler OnTick;
@@ -20,16 +19,14 @@ namespace Engine
 			set {_map = value;}
 		}
 
-		public string ID{get {return _id;}}
-
 	    public event System.EventHandler MessageSent;
 
 	    public delegate void EventHandler();
 
-		public Scene(string id) 
+		public Scene() 
 		{
 			_actors = new List<IActor>();
-			_id = id;
+		    SetEmptyNextScene();
 		}
 
 		public virtual void AddActor(IActor actor)
@@ -186,7 +183,7 @@ namespace Engine
 			
 		}
 
-	    public void SetEmptyNextScene()
+	    private void SetEmptyNextScene()
 	    {
 	        nextScenes = new Dictionary<Func<IScene, bool>, string> {{m => false, "Default"}};
 	    }

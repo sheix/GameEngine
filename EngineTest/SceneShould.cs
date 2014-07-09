@@ -16,7 +16,7 @@ namespace EngineTest
 		public void Setup()
 		{
 			actor = new Mock<IActor>();
-			scene = new Scene("TestId");
+			scene = new Scene();
 			scene.AddActor(actor.Object);
 		}
 

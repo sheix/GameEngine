@@ -39,7 +39,9 @@
     <Compile Include="Interfaces\IKeyedAct.cs" />
     <Compile Include="Interfaces\IPlacableActor.cs" />
     <Compile Include="Interfaces\IRenderable.cs" />
+    <Compile Include="Interfaces\IRule.cs" />
     <Compile Include="Interfaces\ISceneFactory.cs" />
+    <Compile Include="Interfaces\ISceneTemplate.cs" />
     <Compile Include="Interfaces\ITargetedAct.cs" />
     <Compile Include="Interfaces\IActor.cs" />
     <Compile Include="Interfaces\IScene.cs" />
@@ -47,7 +49,6 @@
     <Compile Include="Interfaces\IStrategy.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IDirectionalAct.cs" />
-    <Compile Include="Interfaces\Scenario.cs" />
     <Compile Include="KeyPressedEventArgs.cs" />
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Vector.cs" />

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Contracts;
 using Engine;
 using Game.Acts;
@@ -10,12 +9,12 @@ namespace Game
     {
         private readonly ManualStrategy _strategy;
         private static int _id = 0;
-        private Player Player;
+        private Player _player;
 
         public ActorFactory(ManualStrategy strategy)
         {
             _strategy = strategy;
-            
+
         }
 
         private void AddMoveActions(IActor actor)
@@ -43,22 +42,22 @@ namespace Game
 
         public IPlacableActor GetPlayer()
         {
-          Iif (Player == null)
-          {
-             Player = new Player(_strategy);
+            if (_player == null)
+            {
+                _player = new Player(_strategy);
 
-            AddMoveActions(player);
-            AddAttackActions(player);
-            AddWaitAction(player);
-          }
-            return player;
+                AddMoveActions(_player);
+                AddAttackActions(_player);
+                AddWaitAction(_player);
+            }
+            return _player;
         }
 
-        
+
 
         public IPlacableActor GetActor()
         {
-            var actor = new PlacableActor("Unit" + _id, new RandomStrategy(),5,5);
+            var actor = new PlacableActor("Unit" + _id, new RandomStrategy(), 5, 5);
             AddMoveActions(actor);
             AddAttackActions(actor);
             AddWaitAction(actor);

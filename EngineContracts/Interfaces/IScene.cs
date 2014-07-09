@@ -11,8 +11,7 @@ namespace Contracts
 		List<IAct> GetPossibleActions(IActor actor);
 		void AddActor(IActor actor);
 		void RemoveActor(IActor actor);
-		string ID {get;}
-	    event EventHandler MessageSent;
+		event EventHandler MessageSent;
 	    event EventHandler OnTick;
 	}
 
