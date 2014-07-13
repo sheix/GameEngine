@@ -12,7 +12,7 @@ namespace EngineTest
 		Mock<IActor> actor;
 		Scene scene;
 
-		[SetUp()]
+		[SetUp]
 		public void Setup()
 		{
 			actor = new Mock<IActor>();
@@ -20,7 +20,7 @@ namespace EngineTest
 			scene.AddActor(actor.Object);
 		}
 
-		[Test()]
+		[Test]
 		public void OnTickDecreaseActorInitiative()
 		{
 			//arrange
@@ -31,7 +31,7 @@ namespace EngineTest
 			actor.Verify(m => m.DecreaseInitiative());
 		}
 
-		[Test()]
+		[Test]
 		public void LetActAllActorsWithZeroInitiative()
 		{
 			//arrange
@@ -42,7 +42,7 @@ namespace EngineTest
 			actor.Verify(m => m.Act(It.IsAny<IScene>()));
 		}
 
-		[Test()]
+		[Test]
 		public void NotLetActAllActorsWithZeroInitiative()
 		{
 			//arrange

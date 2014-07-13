@@ -16,14 +16,49 @@ namespace Engine
             public bool IsGenerated;
         }
 
-	    private GridGenerator _generator;
+	    private readonly GridGenerator _generator;
         private Dictionary<string, SceneInfo> Scenes;
 	    public SceneFactory()
         {
             _generator = new GridGenerator();
+            Scenes = new Dictionary<string, SceneInfo>();
+	        ParseScenes(Scenes);
         }
 
-		public IScene GetScene(String ID)
+	    private void ParseScenes(Dictionary<string, SceneInfo> scenes)
+	    {
+            String currentSceneName = null;
+            SceneInfo currentSceneInfo = null;
+	        var lines = System.IO.File.ReadAllLines(FileSystemHelper.PathToResources + "Levels" + FileSystemHelper.FileSystemSeparator +
+	                                    "Levels.txt");
+	        foreach (var line in lines)
+	        {
+	            if (line.StartsWith("[") && line.EndsWith("]"))
+                {
+                    if (!String.IsNullOrEmpty(currentSceneName))
+                    {
+                        scenes.Add(currentSceneName, currentSceneInfo);
+                    }
+                    currentSceneName = line.Substring(1, line.Length - 2);
+                    currentSceneInfo = new SceneInfo {Scene = new Scene(), Template = new SceneTemplate()};
+                    continue;
+                }
+	            var pair = line.Split(':');
+	            switch (pair[0].ToUpper())
+	            {
+                    case "Size":
+	                    currentSceneInfo.Template.AddRule(new SizeRule(pair[1]));
+                        break;
+                    case "Borders":
+                        currentSceneInfo.Template.AddRule(new BorderWalls());
+                        break;
+	                    
+	            }
+
+	        }
+	    }
+
+	    public IScene GetScene(String ID)
 		{
 		    var scene = Scenes[ID];
             if (!scene.IsGenerated)
@@ -54,5 +89,21 @@ namespace Engine
 	        throw new NotImplementedException();
 	    }
 	}
+
+    internal class SceneTemplate : ISceneTemplate
+    {
+        public List<IRule> GetRules()
+        {
+            return Rules;
+        }
+
+        public void AddRule(IRule rule)
+        {
+            Rules.Add(rule);
+        }
+
+        protected List<IRule> Rules;
+    
+    }
 }
 

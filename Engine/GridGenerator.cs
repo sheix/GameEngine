@@ -28,6 +28,13 @@ namespace Engine
         private readonly int _x;
         private readonly int _y;
 
+        public SizeRule(string size)
+        {
+            var dimensions = size.Split('x');
+            _x = int.Parse(dimensions[0]);
+            _y = int.Parse(dimensions[1]);
+        }
+
         public SizeRule(int x, int y)
         {
             _x = x;

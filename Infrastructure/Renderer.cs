@@ -17,9 +17,7 @@ namespace Infrastructure
 
         public Renderer()
         {
-            char s = System.IO.Path.DirectorySeparatorChar;
-            font = new Font(@".." + s + ".." + s + ".." + s + "Resources" + s + "Fonts" + s + "kongtext.ttf");
-
+            font = new Font(FileSystemHelper.PathToResources + "Fonts" + FileSystemHelper.FileSystemSeparator + "kongtext.ttf");
         }
 
         public void RenderMessage(RenderWindow window, string message)
