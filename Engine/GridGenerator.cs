@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Contracts;
 
 namespace Engine
@@ -61,45 +62,70 @@ namespace Engine
             int x, y;
 
             for (x = 0; x < gridSize._x; x++)
-                grid.Set(x, 0, new Wall());
+            {
+                grid.Set(new Wall(new Vector(x,0)));
+            }
             for (x = 0; x < gridSize._x; x++)
-				grid.Set(x, gridSize._y-1, new Wall());
+				grid.Set(new Wall(new Vector(x,gridSize._y-1)));
 
             for (y = 0; y < gridSize._y; y++)
-                grid.Set(0, y, new Wall());
+                grid.Set(new Wall(new Vector(0, y)));
             for (y = 0; y < gridSize._y; y++)
-				grid.Set(gridSize._x-1, y, new Wall());
+                grid.Set(new Wall(new Vector(gridSize._x - 1, y)));
 
         }
 
         #endregion
     }
 
-    public class Wall : ICell
+    public abstract class BaseCell : ICell
     {
-        #region Implementation of ICell
+        private List<IItem> items;
+        private int elevation = 0;
 
-        public IActor Actor
+        protected BaseCell(Vector coordinates)
         {
-            get { return null; }
-            set { /*can't set actor here*/ }
+            items = new List<IItem>();
+            Coordinates = coordinates;
         }
+
+        public IActor Actor { get; set; }
 
         public List<IItem> Items
         {
-            get { return new List<IItem>(); }
+            get { return items; }
+            set { throw new NotImplementedException(); }
         }
 
         public int Elevation
         {
-            get { return 0; }
+            get { return elevation; }
         }
 
-        public void AddItem(IItem item)
+        public Vector Coordinates
+        {
+            get;
+            private set;
+        }
+
+        public virtual void AddItem(IItem item)
+        {
+            Items.Add(item);
+        }
+
+        
+    }
+
+    public class Wall : BaseCell
+    {
+        public Wall(Vector coordinates) : base(coordinates)
+        {
+        }
+
+        override public void AddItem(IItem item)
         {
             // can't add item
         }
 
-        #endregion
     }
 }

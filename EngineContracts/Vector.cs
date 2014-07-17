@@ -1,4 +1,6 @@
-﻿namespace Contracts
+﻿using System;
+
+namespace Contracts
 {
     public class Vector
     {
@@ -21,6 +23,12 @@
         public override string ToString()
         {
             return string.Format("({0},{1})", _x,_y);
+        }
+
+        public static Vector Parse(string c)
+        {
+            var vertices = c.Split(',');
+            return new Vector(int.Parse(vertices[0]),int.Parse(vertices[1]));
         }
     }
 

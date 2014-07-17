@@ -5,7 +5,7 @@ using Game.Acts;
 
 namespace Game
 {
-    public class ActorFactory
+    public class ActorFactory : IActorFactory
     {
         private readonly ManualStrategy _strategy;
         private static int _id = 0;

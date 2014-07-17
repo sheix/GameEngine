@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileSystemHelper.cs" />
     <Compile Include="GridGenerator.cs" />
     <Compile Include="PlacableActor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

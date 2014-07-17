@@ -11,7 +11,7 @@ namespace Game
         private IScene _scene;
         private ManualStrategy _strategy;
         private ICalendar _calendar;
-        private ActorFactory _actorFactory;
+        private IActorFactory _actorFactory;
 	    private IScenarioLoader _scenarioLoader;
 	    private SceneFactory _sceneFactory;
 	    public event EventHandler KeyPressed;
@@ -32,7 +32,7 @@ namespace Game
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);
             _actorFactory = new ActorFactory(_strategy);
-            _sceneFactory = new SceneFactory();
+            _sceneFactory = new SceneFactory(_actorFactory);
             Task.Factory.StartNew(() => _calendar.Play());
 
             while (true)
@@ -59,14 +59,13 @@ namespace Game
                 }
 
             }
-            var player = _actorFactory.GetPlayer();
-            var random = _actorFactory.GetActor();
-            _scene.AddActor(player);
-            _scene.AddActor(random);
+            //var random = _actorFactory.GetActor();
+            //_scene.AddActor(player);
+            //_scene.AddActor(random);
             
-            (_scene as IStage).PlaceActorToGrid(player);
-            (_scene as IStage).PlaceActorToGrid(random);
-            var result = Task.Factory.StartNew(() => _scene.Play());
+            //(_scene as IStage).PlaceActorToGrid(player);
+            //(_scene as IStage).PlaceActorToGrid(random);
+            //var result = Task.Factory.StartNew(() => _scene.Play());
         }
 
         public IScene Scene

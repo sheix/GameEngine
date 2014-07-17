@@ -61,7 +61,7 @@ namespace Engine
                 _grid.Add(new List<ICell>());
                 for (int j = 0; j < y; j++)
                 {
-                    _grid[i].Add(new Cell());
+                    _grid[i].Add(new Cell(new Vector(i,j)));
                 }
             }
         }
@@ -76,43 +76,54 @@ namespace Engine
 			return _grid [v._x] [v._y];
 		}
 
+	    public Dictionary<String, Vector> GetItemCoordinates(Func<IItem, bool> func)
+	    {
+	        var result = new Dictionary<String, Vector>();
+	        foreach (var line in _grid)
+	        {
+	            foreach (var cell in line)
+	            {
+                    foreach (var item in cell.Items.Where(func))
+                    {
+                        result.Add(item.Description, cell.Coordinates );
+                    }
+                    
+	            }
+	        }
+	        return result;
+	    }
+
 
 	    public Vector GetSize()
 	    {
 	        return new Vector(_grid.Count,_grid[0].Count);
 	    }
 
-	    public void Set(int x, int y, ICell cell)
+	    public void Set(ICell cell)
 	    {
-	        _grid[x][y] = cell;
+	        _grid[cell.Coordinates._x][cell.Coordinates._y] = cell;
 	    }
+
+        
 	}
 
-	public class Cell : ICell
+    public class Item : IItem
+    {
+        public string Description
+        {
+            get; protected set; }
+    }
+
+    public class Cell : BaseCell
 	{
-		private List<IItem> items;
-		private int elevation = 0;
+		
 
-		public Cell ()
+		public Cell (Vector coordinates) : base(coordinates)
 		{
-			items = new List<IItem> ();
+		    
 		}
 
-		public IActor Actor { get; set; }
-
-		public List<IItem> Items {
-			get { return items; }
-			set { throw new NotImplementedException (); }
-		}
-
-		public int Elevation {
-			get { return elevation; }
-		}
-
-		public void AddItem (IItem item)
-		{
-			Items.Add (item);
-		}
+		
 	}
 }
 

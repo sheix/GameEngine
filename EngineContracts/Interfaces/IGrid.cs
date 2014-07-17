@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Contracts
 {
@@ -10,5 +11,6 @@ namespace Contracts
         Vector GetActorCoordinates(string name);
         ICell At(int x, int y);
         ICell At(Vector v);
+        Dictionary<String, Vector> GetItemCoordinates(Func<IItem, bool> func);
     }
 }
