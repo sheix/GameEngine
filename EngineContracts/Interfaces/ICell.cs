@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EngineContracts.Interfaces;
 
 namespace Contracts
 {
@@ -9,5 +10,6 @@ namespace Contracts
         int Elevation { get; }
         Vector Coordinates { get; }
         void AddItem(IItem item);
+        void AddSpecial(ICellSpecial special);
     }
 }

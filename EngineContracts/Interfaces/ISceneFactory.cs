@@ -5,6 +5,6 @@ namespace EngineContracts.Interfaces
 {
     public interface ISceneFactory
     {
-        IScene GetScene(String ID);
+        IScene GetScene(String ID, String previousSceneID);
     }
 }

@@ -29,6 +29,7 @@ namespace Game
 
         public void Start()
         {
+            string currentSceneName = "None";
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);
             _actorFactory = new ActorFactory(_strategy);
@@ -39,7 +40,8 @@ namespace Game
             {
                 if (_calendar.SetMission != null)
                 {
-                    _scene = _sceneFactory.GetScene(_calendar.SetMission);
+                    _scene = _sceneFactory.GetScene(_calendar.SetMission, currentSceneName);
+                    currentSceneName = _calendar.SetMission;
                     _scene.MessageSent += InvokeSendMessage;
                     _calendar.AttachScene(_scene);
                     while (true)
@@ -49,9 +51,10 @@ namespace Game
                         if (outcome == "Calendar")
                         {
                             _calendar.DetachScene(_scene);
+                            currentSceneName = "None";
                             break;
                         }
-                        _scene = _sceneFactory.GetScene(outcome);
+                        _scene = _sceneFactory.GetScene(outcome, currentSceneName);
                         _scene.MessageSent += InvokeSendMessage;
                         
                     }
