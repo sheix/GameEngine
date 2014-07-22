@@ -140,7 +140,9 @@ namespace Game
 
         public List<string> GetAvailableMissions()
         {
-            return new List<string> {"Default", "Home"};
+            if (_scene == null)
+                return new List<string> {"Default", "Home"};
+            return new List<string>();
         }
 
         public string Play()
