@@ -2,7 +2,7 @@
 
 Size: 20x20
 Borders: BorderWalls
-StartPoint: *-10,10
+StartPoint:*-10,10
 # StartPoint: Default-5,5
 EndPoint: 5,5 Lower 
 

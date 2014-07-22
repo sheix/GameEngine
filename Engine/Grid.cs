@@ -76,16 +76,16 @@ namespace Engine
 			return _grid [v._x] [v._y];
 		}
 
-	    public Dictionary<String, Vector> GetItemCoordinates(Func<IItem, bool> func)
+	    public Dictionary<String, Vector> GetCells(Func<ICell, bool> func, Func<ICell,string> namer)
 	    {
 	        var result = new Dictionary<String, Vector>();
 	        foreach (var line in _grid)
 	        {
 	            foreach (var cell in line)
 	            {
-                    foreach (var item in cell.Items.Where(func))
+                    if (func(cell))
                     {
-                        result.Add(item.Description, cell.Coordinates );
+                        result.Add(namer(cell), cell.Coordinates);
                     }
                     
 	            }

@@ -11,6 +11,6 @@ namespace Contracts
         Vector GetActorCoordinates(string name);
         ICell At(int x, int y);
         ICell At(Vector v);
-        Dictionary<String, Vector> GetItemCoordinates(Func<IItem, bool> func);
+        Dictionary<String, Vector> GetCells(Func<ICell, bool> func, Func<ICell, string> namer);
     }
 }

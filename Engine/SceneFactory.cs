@@ -93,9 +93,17 @@ namespace Engine
 
         public void PopulateScene(IScene scene, ISceneTemplate template, string previousStage)
         {
-            //HERE IS ERROR
-            var startingPoints = (scene as IStage).Map.GetItemCoordinates(x => x is StartPoint);
-            var startingPoint = startingPoints[previousStage];
+            var startingPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is StartPoint), y => y.Specials.Where(m => m is StartPoint).FirstOrDefault().Description);
+            Vector startingPoint;
+            try
+            {
+                startingPoint = startingPoints[previousStage];
+            }
+            catch
+            {
+                Console.WriteLine("Didn't find starting point for {0}, using default", previousStage);
+                startingPoint = startingPoints["*"];
+            }
             var player = _actorFactory.GetPlayer();
             scene.AddActor(player);
             (scene as IStage).PlaceActorToGrid(player, startingPoint);
