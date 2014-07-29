@@ -1,4 +1,4 @@
-The game is about a person that tries to save his village by monster hunting in kind of fantasy world. But the goal changes, as hero advances in his quest, to fix some very evil plot that is going on by unidentified force. The hero will look for ancient knowledge and secret artifacts to fight the unknown rivals.
+The game is about a person that found himself in village in kind of fantasy world. The goal changes from survival, as hero advances in his quest, to fix some very evil plot that is going on by unidentified force. The hero will look for ancient knowledge and secret artifacts to fight the unknown rivals.
 
 The player eventually will get invitations to missions, randomly chosen, or predefined, and decide whether to proceed to them or not. The mission is one or more classic rogue-like levels, generated each game. 
 
