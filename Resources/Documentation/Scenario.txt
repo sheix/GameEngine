@@ -28,4 +28,3 @@ People are maintaining kingdom's common calendar. There are 12 months, and 4 sea
 It's widely known that certain things happen on certain dates. Wyverns' mating season makes them highly dangerous, mid-months nights are magical and winter-spring will cause peaceful behavior in forest animals. 
 There are three moons around the planet - Mun, Lun and Sput. Each moon have it's period. each time the moon is close to planet or in it's farthest spot - there are magical effects on those days. when 2 or 3(very rare) moons happen to be in special positions the effects are multiplied in power.
 
-Character
