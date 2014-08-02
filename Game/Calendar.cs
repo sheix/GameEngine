@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Contracts;
 
 namespace Game
@@ -140,6 +139,7 @@ namespace Game
 
         public List<string> GetAvailableMissions()
         {
+            
             if (_scene == null)
                 return new List<string> {"Default", "Home"};
             return new List<string>();
@@ -156,61 +156,6 @@ namespace Game
                 }
                 //Tick();
             }
-        }
-    }
-
-    public class Date
-    {
-        public Date(int dayInYear, int year, List<MoonState> moonStates)
-        {
-            Day = dayInYear;
-            Year = year;
-            MoonStates = moonStates;
-        }
-
-        public int Year { get; private set; }
-        public int Day { get; private set; }
-        public List<MoonState> MoonStates { get; private set; }
-        public bool SpecialDay { get { return MoonStates.Any(m => m != MoonState.None); } }
-    }
-
-    public class MoonState
-    {
-        public static MoonState None = new MoonState();
-        public static MoonState FullMoon = new MoonState();
-        public static MoonState NoMoon = new MoonState();
-
-    }
-
-    public class Moon
-    {
-        private readonly string _name;
-        private readonly int _period;
-
-
-        public Moon(string name, int period)
-        {
-            _name = name;
-            _period = period;
-            Position = new Random().Next(1, _period + 1);
-        }
-
-        public int Position { get; private set; }
-
-        public int Period { get { return _period; } }
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-        }
-
-        public void NextDay()
-        {
-            Position++;
-            if (Position > _period) Position = 1;
         }
     }
 }

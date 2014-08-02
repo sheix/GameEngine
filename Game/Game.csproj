@@ -45,7 +45,10 @@
     <Compile Include="Acts\MoveAct.cs" />
     <Compile Include="Acts\WaitAct.cs" />
     <Compile Include="Calendar.cs" />
+    <Compile Include="Date.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Moon.cs" />
+    <Compile Include="MoonState.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomStrategy.cs" />

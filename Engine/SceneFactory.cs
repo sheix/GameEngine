@@ -16,6 +16,7 @@ namespace Engine
             public IScene Scene;
             public ISceneTemplate Template;
             public bool IsGenerated;
+            public bool CanRun;
         }
 
         private readonly GridGenerator _generator;
