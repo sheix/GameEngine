@@ -1,0 +1,33 @@
+Which micro mechanics do I want in the game?
+
+* Moving around, exploring
+* Fighting monsters
+* Finding better items
+* Different levels 
+
+
+Which macro mechanics do I want in the game?
+
+* Calendar influences micro games
+* Time passes by
+* Healing between missions
+
+
+Attributes mechanics:
+
+Strength  - how hard hits, how much might carry
+Toughness - HP, resistances to poison
+Dexterity - more likely to escape or parry hits also speed
+Accuracy  - more chances to hit
+Learning  - Ability to improve cognitive tasks, using amulets
+Willpower - Resistance to mental attacks, better rituals
+
+*Normal* value is around 8.
+
+Strength  passed out small animal child weakling regular person strong person large animal i can fight bear barehanded
+Toughness one hit i'm dead fragile medium animal regular person can fight mike tyson extremly healthy mountain
+Dexterity statue handicapped old person very tired regular person karate student swift person panther cheetah bruce lee 
+Accuracy  blind man can't hit anything sometimes have good luck skilled fighter robin hood one shot one kill
+Learning  complete idiot can handle magic item understands when item is magic can get maximum of it artificer
+Willpower cries even without a reason can be supressed regular person strong of will master of all shamans dalai lama
+----------1------2------3-------4-------5------6------7------8------9------10------11------12------13------14------15
