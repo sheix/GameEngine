@@ -3,8 +3,9 @@
 Size: 20x20
 Borders: BorderWalls
 StartPoint:*-10,10
-# StartPoint: Default-5,5
-EndPoint: 5,5 Lower 
+EndPoint: Home-5,5 
+EndPoint: SecondLevel-7,5 
+
 
 Availability: always
 Repeatability: once

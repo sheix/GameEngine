@@ -30,6 +30,15 @@ namespace Contracts
             var vertices = c.Split(',');
             return new Vector(int.Parse(vertices[0]),int.Parse(vertices[1]));
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Vector)) return false;
+            var o = obj as Vector;
+            return _x == o._x && _y == o._y;
+        }
+
+        
     }
 
 }

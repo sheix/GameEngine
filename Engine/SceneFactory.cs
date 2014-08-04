@@ -60,6 +60,9 @@ namespace Engine
                     case "STARTPOINT":
                         currentSceneInfo.Template.AddRule(new StartPointRule(pair[1]));
                         break;
+                    case "ENDPOINT":
+                        currentSceneInfo.Template.AddRule(new EndPointRule(pair[1]));
+                        break;
                 }
 
             }
@@ -108,6 +111,46 @@ namespace Engine
             var player = _actorFactory.GetPlayer();
             scene.AddActor(player);
             (scene as IStage).PlaceActorToGrid(player, startingPoint);
+
+            var endPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is StartPoint), y => y.Specials.Where(m => m is StartPoint).FirstOrDefault().Description);
+            foreach (var endPoint in endPoints)
+            {
+                var point = endPoint;
+                scene.AddNextScene(endPoint.Key, s => ((IStage) s).Map.GetActorCoordinates(player).Equals(point.Value));
+            }
+        }
+    }
+
+    public class EndPointRule : MapRule
+    {
+        private ICellSpecial EndPointItem;
+        private Vector EndPointVector;
+
+        public EndPointRule(string s)
+        {
+            var startPoint = s.Split('-');
+            EndPointItem = new EndPoint(startPoint[0]);
+            EndPointVector = Vector.Parse(startPoint[1]);
+
+        }
+
+        public override void Process(Grid grid)
+        {
+            grid.At(EndPointVector).AddSpecial(EndPointItem);
+        }
+    }
+
+    public class EndPoint : ICellSpecial
+    {
+        public string Description
+        {
+            get;
+            private set;
+        }
+
+        public EndPoint(string s)
+        {
+            Description = s;
         }
     }
 
