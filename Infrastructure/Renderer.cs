@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Engine;
 using Game;
 using SFML.Graphics;
@@ -124,12 +125,22 @@ namespace Infrastructure
                         text.Draw(window, RenderStates.Default);
                         continue;
                     }
+                    if (cell.Specials != null)
+                    {
+                        if (cell.Specials.Any(m => m is EndPoint))
+                        {
+                            var text = new Text(">", font, CharacterSize) { Position = new Vector2f(v._x, v._y) };
+                            text.Draw(window, RenderStates.Default);
+                            continue;
+                        }
+                    }
                     if (cell.Actor == null)
                     {
                         var text = new Text(".", font,CharacterSize) { Position = new Vector2f(v._x, v._y) };
                         text.Draw(window, RenderStates.Default);
                         continue;
                     }
+                    
 
 
                 }
