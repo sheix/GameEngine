@@ -3,8 +3,8 @@
 Size: 20x20
 Borders: BorderWalls
 StartPoint:*-10,10
-EndPoint: Home-5,5 
-EndPoint: SecondLevel-7,5 
+EndPoint:Calendar-5,5 
+EndPoint:SecondLevel-7,5 
 
 
 Availability: always

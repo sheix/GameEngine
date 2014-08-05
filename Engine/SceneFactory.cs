@@ -112,7 +112,7 @@ namespace Engine
             scene.AddActor(player);
             (scene as IStage).PlaceActorToGrid(player, startingPoint);
 
-            var endPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is StartPoint), y => y.Specials.Where(m => m is StartPoint).FirstOrDefault().Description);
+            var endPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is EndPoint), y => y.Specials.Where(m => m is EndPoint).FirstOrDefault().Description);
             foreach (var endPoint in endPoints)
             {
                 var point = endPoint;
