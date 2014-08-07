@@ -147,6 +147,7 @@ namespace Game
 
         public string Play()
         {
+            Console.WriteLine("Calendar.Play");
             while (true)
             {
                 foreach (var nextMission in GetAvailableMissions())

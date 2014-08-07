@@ -29,6 +29,7 @@ namespace Game
 
         public void Start()
         {
+            Console.WriteLine( "Game.Start");
             string currentSceneName = "None";
             _calendar = new Calendar(this);
             _strategy = new ManualStrategy(this);

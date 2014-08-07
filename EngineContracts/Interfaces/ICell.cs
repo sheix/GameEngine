@@ -12,5 +12,6 @@ namespace Contracts
         List<ICellSpecial> Specials { get; }
         void AddItem(IItem item);
         void AddSpecial(ICellSpecial special);
+        bool IsPassable();
     }
 }

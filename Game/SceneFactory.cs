@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Contracts;
+using Engine;
 using EngineContracts.Interfaces;
+using Game.Rules;
 
-
-namespace Engine
+namespace Game
 {
     public class SceneFactory : ISceneFactory
     {
@@ -55,13 +56,18 @@ namespace Engine
                         currentSceneInfo.Template.AddRule(new SizeRule(pair[1]));
                         break;
                     case "BORDERS":
-                        currentSceneInfo.Template.AddRule(new BorderWalls());
+                        currentSceneInfo.Template.AddRule(new BorderWallsRule());
                         break;
                     case "STARTPOINT":
                         currentSceneInfo.Template.AddRule(new StartPointRule(pair[1]));
                         break;
                     case "ENDPOINT":
                         currentSceneInfo.Template.AddRule(new EndPointRule(pair[1]));
+                        break;
+                    case "ROOM":
+                        var rule = new RoomWallRule();
+                        rule.LoadParameters(pair[1]);
+                        currentSceneInfo.Template.AddRule(rule);
                         break;
                 }
 
@@ -89,8 +95,6 @@ namespace Engine
             IScene scene = new Scene();
 
             ((IStage)scene).Map = _generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray());
-
-            //template.GetRules().Where()
 
             return scene;
         }
@@ -121,25 +125,6 @@ namespace Engine
         }
     }
 
-    public class EndPointRule : MapRule
-    {
-        private ICellSpecial EndPointItem;
-        private Vector EndPointVector;
-
-        public EndPointRule(string s)
-        {
-            var startPoint = s.Split('-');
-            EndPointItem = new EndPoint(startPoint[0]);
-            EndPointVector = Vector.Parse(startPoint[1]);
-
-        }
-
-        public override void Process(Grid grid)
-        {
-            grid.At(EndPointVector).AddSpecial(EndPointItem);
-        }
-    }
-
     public class EndPoint : ICellSpecial
     {
         public string Description
@@ -158,23 +143,6 @@ namespace Engine
     {
         IPlacableActor GetPlayer();
         IPlacableActor GetActor();
-    }
-
-    internal class StartPointRule : MapRule
-    {
-        private ICellSpecial startingPointItem;
-        private Vector startingPointVector;
-        public StartPointRule(string s)
-        {
-            var startPoint = s.Split('-');
-            startingPointItem = new StartPoint(startPoint[0]);
-            startingPointVector = Vector.Parse(startPoint[1]);
-        }
-
-        public override void Process(Grid grid)
-        {
-            grid.At(startingPointVector).AddSpecial(startingPointItem);
-        }
     }
 
     internal class StartPoint : ICellSpecial

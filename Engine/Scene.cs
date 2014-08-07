@@ -100,7 +100,7 @@ namespace Engine
                     break;
             }
             if (_map.At(location).Actor != null) return false;
-            if (_map.At(location) is Wall) return false;
+            if (!_map.At(location).IsPassable()) return false;
 	        return true;
 	    }
 
@@ -172,6 +172,7 @@ namespace Engine
 
 		public string Play()
 		{
+		    Console.WriteLine( "Scene play" );
 			while (true)
 			{
 				foreach (var transfer in nextScenes) {

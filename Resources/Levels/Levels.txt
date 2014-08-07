@@ -5,6 +5,7 @@ Borders: BorderWalls
 StartPoint:*-10,10
 EndPoint:Calendar-5,5 
 EndPoint:SecondLevel-7,5 
+Room:Type=Regular;DoorsMin=1;DoorsMax=2
 
 
 Availability: always

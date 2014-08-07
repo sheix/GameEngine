@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Engine;
 using Game;
+using Game.Cells;
 using SFML.Graphics;
 using SFML.Window;
 using Contracts;
@@ -162,18 +162,18 @@ namespace Infrastructure
             // xNumber - count of items in the window
             // X       - screen resolution
             // xOffset - offset in window
-            double MarginY = Y * 0.2;
-            double MarginX = X * 0.4;
+            double marginY = Y * 0.2;
+            double marginX = X * 0.4;
 
-            double startX = MarginX / 2;
-            double startY = MarginY / 2;
+            double startX = marginX / 2;
+            double startY = marginY / 2;
 
-            double xn = (X - MarginX) / xNumber;
-            double yn = (Y - MarginY) / yNumber;
+            double xn = (X - marginX) / xNumber;
+            double yn = (Y - marginY) / yNumber;
 
-            double actual_x = startX + xn * (x - xOffset);
-            double actual_y = startY + yn * (y - yOffset);
-            return new Vector((int)actual_x, (int)actual_y);
+            double actualX = startX + xn * (x - xOffset);
+            double actualY = startY + yn * (y - yOffset);
+            return new Vector((int)actualX, (int)actualY);
         }
     }
 }

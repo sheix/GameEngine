@@ -26,8 +26,6 @@ namespace Infrastructure
         [STAThread]
         static void Main()
         {
-			Console.WriteLine ("Launch host app!!");
-
 			_game = new Game.Game();
 			_game.SendMessage += RenderMessage;
             Task.Factory.StartNew(() => _game.Start());
