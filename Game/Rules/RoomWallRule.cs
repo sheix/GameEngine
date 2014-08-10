@@ -13,8 +13,6 @@ namespace Game.Rules
         private int MinXSize = 3;
         private int MinYSize = 3;
         
-        private Dictionary<string, string> parameters;
-
         public override void Process(Grid grid)
         {
             var size = grid.GetSize();
