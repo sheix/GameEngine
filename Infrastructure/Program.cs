@@ -32,16 +32,16 @@ namespace Infrastructure
             _window = new RenderWindow(VideoMode.DesktopMode, "Test");
             _window.Closed += OnClosed;
             _window.KeyPressed += OnKeyPressed;
-            _renderer = new Renderer();
+			_renderer = new Renderer(_window);
             while (_window.IsOpen())
             {
 
                 _window.DispatchEvents();
 				_window.Clear ();
 
-                _renderer.RenderCalendar(_window, _game.Calendar);
-                if (_game.Scene != null) _renderer.RenderScene(_window, _game.Scene);
-                _renderer.RenderMessage(_window, _message);
+                _renderer.RenderCalendar(_game.Calendar);
+                if (_game.Scene != null) _renderer.RenderScene(_game.Scene);
+                _renderer.RenderMessage(_message);
 
                 _window.Display();
             }

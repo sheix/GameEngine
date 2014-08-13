@@ -10,24 +10,26 @@ using Font = SFML.Graphics.Font;
 
 namespace Infrastructure
 {
-    class Renderer
+	public class Renderer : IRenderable
     {
         private readonly Font font;
         private Dictionary<string, Color> _moonColors = new Dictionary<string, Color> {{"Mun",Color.Cyan}, {"Lun",Color.Yellow}, {"Sput", Color.Green}};
         private const uint CharacterSize = 24;
+		private RenderWindow window;
 
-        public Renderer()
+		public Renderer(RenderWindow _window)
         {
+			window = _window;
             font = new Font(FileSystemHelper.PathToResources + "Fonts" + FileSystemHelper.FileSystemSeparator + "kongtext.ttf");
         }
 
-        public void RenderMessage(RenderWindow window, string message)
+        public void RenderMessage(string message)
         {
             var text = new Text(message, font,CharacterSize) { Position = new Vector2f(0, 0) };
             text.Draw(window, RenderStates.Default);
         }
 
-        public void RenderCalendar(RenderWindow window, ICalendar calendar)
+        public void RenderCalendar(ICalendar calendar)
         {
             RenderMoons(window, calendar);
             RenderMissions(window, calendar);
@@ -76,7 +78,7 @@ namespace Infrastructure
             return 'E';
         }
 
-        public void RenderScene(RenderWindow window, IScene scene)
+        public void RenderScene(IScene scene)
         {
             uint X = window.Size.X;
             uint Y = window.Size.Y;
