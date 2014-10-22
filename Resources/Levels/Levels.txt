@@ -2,13 +2,13 @@
 
 Size: 20x20
 Borders: BorderWalls
-StartPoint:*-10,10
 EndPoint:Calendar-5,5 
 EndPoint:SecondLevel-7,5 
-Room:Type=Regular;DoorsMin=1;DoorsMax=2
-
-
+Dungeon:MinRoomSize=6
+StartPoint:*-10,10
 Availability: always
 Repeatability: once
 
 [END]
+
+Room:Type=Regular;DoorsMin=1;DoorsMax=2

@@ -11,9 +11,9 @@ namespace Game.Rules
 
         public EndPointRule(string s)
         {
-            var startPoint = s.Split('-');
-            EndPointItem = new EndPoint(startPoint[0]);
-            EndPointVector = Vector.Parse(startPoint[1]);
+            var endPoint = s.Split('-');
+            EndPointItem = new EndPoint(endPoint[0]);
+            EndPointVector = Vector.Parse(endPoint[1]);
 
         }
 

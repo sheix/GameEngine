@@ -50,6 +50,7 @@ namespace Game
                     continue;
                 }
                 var pair = line.Split(':');
+                MapRule rule;
                 switch (pair[0].ToUpper())
                 {
                     case "SIZE":
@@ -65,7 +66,12 @@ namespace Game
                         currentSceneInfo.Template.AddRule(new EndPointRule(pair[1]));
                         break;
                     case "ROOM":
-                        var rule = new RoomWallRule();
+                        rule = new RoomWallRule();
+                        rule.LoadParameters(pair[1]);
+                        currentSceneInfo.Template.AddRule(rule);
+                        break;
+                    case "DUNGEON":
+                        rule = new DungeonRule();
                         rule.LoadParameters(pair[1]);
                         currentSceneInfo.Template.AddRule(rule);
                         break;
@@ -85,8 +91,6 @@ namespace Game
 
             PopulateScene(scene.Scene, scene.Template, previousSceneId);
 
-            //if (ID == "Default")
-            //	scene.AddNextScene("Home", m => (m as IStage).Map.GetActorCoordinates("Player")._x == 1);
             return scene.Scene;
         }
 
@@ -145,7 +149,7 @@ namespace Game
         IPlacableActor GetActor();
     }
 
-    internal class StartPoint : ICellSpecial
+    public class StartPoint : ICellSpecial
     {
         public string Description
         {

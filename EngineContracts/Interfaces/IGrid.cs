@@ -12,5 +12,6 @@ namespace Contracts
         ICell At(int x, int y);
         ICell At(Vector v);
         Dictionary<String, Vector> GetCells(Func<ICell, bool> func, Func<ICell, string> namer);
+        Vector GetSize();
     }
 }

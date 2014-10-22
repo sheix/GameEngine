@@ -70,7 +70,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Infrastructure.exe.config" />
+    <Content Include="Infrastructure.exe.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="sfmlnet-graphics-2.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

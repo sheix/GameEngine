@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,6 +44,10 @@
     <ProjectReference Include="..\EngineContracts\EngineContracts.csproj">
       <Project>{7C0D2447-9780-4DB0-8C88-673AB333AFA7}</Project>
       <Name>EngineContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Game\Game.csproj">
+      <Project>{2808EA60-404F-4FB6-BDC1-0299A3E57FF5}</Project>
+      <Name>Game</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
