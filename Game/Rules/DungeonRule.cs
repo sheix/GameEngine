@@ -37,8 +37,9 @@ namespace Game.Rules
             int split, door;
             if (splitByX)
             {
-                split = _rnd.Next(endX - startX-1) + startX+1;
-                door = _rnd.Next(endY - startY -1 )  + startY + 1 ;
+                if (endX - startX - minRoomSize * 2 < 0) return;
+                split = _rnd.Next(endX - startX-minRoomSize*2) + startX+1 + minRoomSize ;
+                door = _rnd.Next(endY - startY -2 )  + startY + 1 ;
                 Console.WriteLine("Split = {0}, Door = {1}",split,door);
                 for (int i = startY; i < endY; i++)
                 {
@@ -52,8 +53,9 @@ namespace Game.Rules
             }
             else
             {
-                split = _rnd.Next(endY - startY -1)+startY +1;
-                door = _rnd.Next(endX - startX -1 )+ startX + 1;
+                if (endY - startY - minRoomSize * 2 < 0) return;
+                split = _rnd.Next(endY - startY -minRoomSize*2)+startY +minRoomSize+  1;
+                door = _rnd.Next(endX - startX -2 )+ startX + 1;
                 Console.WriteLine("Split = {0}, Door = {1}", split, door);
 
                 for (int i = startX; i < endX; i++)
