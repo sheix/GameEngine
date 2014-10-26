@@ -12,10 +12,13 @@ namespace LevelGeneratorTester
 		private string FileName = "Levels.txt";
 		public static void Main (string[] args)
 		{
-			ISceneFactory sceneGenerator = new SceneFactory (new DefaultActorFactory());
-		    IScene scene = sceneGenerator.GetScene("Default", "None");
-		    IRenderable renderable= new ASCIIFileRenerer();
-            renderable.RenderScene(scene);
+
+			for (int i=0; i<100; i++) {
+				ISceneFactory sceneGenerator = new SceneFactory (new DefaultActorFactory());
+				IScene scene = sceneGenerator.GetScene ("Default", "None");
+				IRenderable renderable = new ASCIIFileRenerer ();
+				renderable.RenderScene (scene);
+			}
 		}
 	}
 
