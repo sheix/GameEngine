@@ -5,12 +5,14 @@ namespace Game.Acts
 {
     public class MoveAct : BaseAct
     {
-        public MoveAct(string name, IActor self, IActor target, IItem first, IItem second) : base(name, self, target, first, second)
-        {
-            
-        }
+		public MoveAct (string name, IActor actor)
+		{
+			Name = name;
+			Self = actor;
+		}
 
-        #region Overrides of BaseAct
+    
+		#region Overrides of BaseAct
 
         public override ActResult Do(IScene scene)
         {

@@ -54,14 +54,10 @@
     <Compile Include="Contracts\IActor.cs" />
     <Compile Include="Contracts\ICell.cs" />
     <Compile Include="Contracts\ICellSpecial.cs" />
-    <Compile Include="Contracts\IDirectionalAct.cs" />
     <Compile Include="Contracts\IGame.cs" />
     <Compile Include="Contracts\IGrid.cs" />
     <Compile Include="Contracts\IPlacableActor.cs">
       <DependentUpon>ICellSpecial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Contracts\IKeyedAct.cs">
-      <DependentUpon>IGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IStrategy.cs" />
     <Compile Include="Contracts\IItem.cs" />
@@ -70,7 +66,6 @@
     <Compile Include="Contracts\IScenarioLoader.cs" />
     <Compile Include="Contracts\IScene.cs" />
     <Compile Include="Contracts\ISceneFactory.cs" />
-    <Compile Include="Contracts\ITargetedAct.cs" />
     <Compile Include="Contracts\ISceneTemplate.cs" />
     <Compile Include="Contracts\IStage.cs" />
     <Compile Include="KeyPressedEventArgs.cs" />

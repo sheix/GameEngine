@@ -76,7 +76,6 @@ namespace Game
                         currentSceneInfo.Template.AddRule(rule);
                         break;
                 }
-
             }
         }
 
@@ -97,9 +96,7 @@ namespace Game
         public IScene Generate(ISceneTemplate template)
         {
             IScene scene = new Scene();
-
             ((IStage)scene).Map = _generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray());
-
             return scene;
         }
 
@@ -177,7 +174,6 @@ namespace Game
         }
 
         protected List<IRule> Rules = new List<IRule>();
-
     }
 }
 

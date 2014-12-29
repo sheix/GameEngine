@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Engine.Contracts
 {
-	public interface IScene : IPlayable 
+	public interface IScene : IPlayable, IStage 
 	{
 		List<IActor> GetActors();
 		void Tick();

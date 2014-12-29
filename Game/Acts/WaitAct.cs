@@ -5,9 +5,10 @@ namespace Game.Acts
 {
     public class WaitAct : BaseAct
     {
-        public WaitAct(IActor actor) : base("Wait",actor,null)
+        public WaitAct(IActor actor)
         {
-            
+			Name="Wait";
+			Self = actor;
         }
 
         public override ActResult Do(IScene scene)
