@@ -1,5 +1,5 @@
 ﻿using System;
-using Contracts;
+using Engine.Contracts;
 
 namespace EngineContracts.Interfaces
 {

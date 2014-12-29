@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Contracts;
+using Engine.Contracts;
 using EngineContracts.Interfaces;
 using Game;
 using Game.Cells;

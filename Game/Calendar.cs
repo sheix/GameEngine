@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Contracts;
+using Engine.Contracts;
 
 namespace Game
 {

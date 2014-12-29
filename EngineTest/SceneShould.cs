@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 using Moq;
 using Engine;
-using Contracts;
+using Engine.Contracts;
 
 namespace EngineTest
 {

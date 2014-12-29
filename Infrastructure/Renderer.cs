@@ -5,7 +5,7 @@ using Game;
 using Game.Cells;
 using SFML.Graphics;
 using SFML.Window;
-using Contracts;
+using Engine.Contracts;
 using Font = SFML.Graphics.Font;
 
 namespace Infrastructure

@@ -65,9 +65,5 @@
       <Project>{13D4B9DD-759E-491F-BDD6-23FF20B1003E}</Project>
       <Name>Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EngineContracts\EngineContracts.csproj">
-      <Project>{7C0D2447-9780-4DB0-8C88-673AB333AFA7}</Project>
-      <Name>EngineContracts</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

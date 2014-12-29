@@ -1,6 +1,6 @@
 using System;
 
-namespace Contracts
+namespace Engine.Contracts
 {
 	public interface IStage
     {

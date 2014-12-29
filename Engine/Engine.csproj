@@ -50,6 +50,32 @@
     <Compile Include="BaseAct.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="ManualStrategy.cs" />
+    <Compile Include="Contracts\IAct.cs" />
+    <Compile Include="Contracts\IActor.cs" />
+    <Compile Include="Contracts\ICell.cs" />
+    <Compile Include="Contracts\ICellSpecial.cs" />
+    <Compile Include="Contracts\IDirectionalAct.cs" />
+    <Compile Include="Contracts\IGame.cs" />
+    <Compile Include="Contracts\IGrid.cs" />
+    <Compile Include="Contracts\IPlacableActor.cs">
+      <DependentUpon>ICellSpecial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\IKeyedAct.cs">
+      <DependentUpon>IGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\IStrategy.cs" />
+    <Compile Include="Contracts\IItem.cs" />
+    <Compile Include="Contracts\IRenderable.cs" />
+    <Compile Include="Contracts\IRule.cs" />
+    <Compile Include="Contracts\IScenarioLoader.cs" />
+    <Compile Include="Contracts\IScene.cs" />
+    <Compile Include="Contracts\ISceneFactory.cs" />
+    <Compile Include="Contracts\ITargetedAct.cs" />
+    <Compile Include="Contracts\ISceneTemplate.cs" />
+    <Compile Include="Contracts\IStage.cs" />
+    <Compile Include="KeyPressedEventArgs.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="MessageEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -61,9 +87,6 @@
   -->
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\EngineContracts\EngineContracts.csproj">
-      <Project>{7C0D2447-9780-4DB0-8C88-673AB333AFA7}</Project>
-      <Name>EngineContracts</Name>
-    </ProjectReference>
+    <Folder Include="Contracts\" />
   </ItemGroup>
 </Project>

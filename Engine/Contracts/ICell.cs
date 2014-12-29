@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EngineContracts.Interfaces;
 
-namespace Contracts
+namespace Engine.Contracts
 {
     public interface ICell
     {
