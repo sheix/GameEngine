@@ -38,6 +38,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorFactory.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Rules\SizeRule.cs" />
     <Compile Include="Rules\StartPointRule.cs" />
     <Compile Include="SceneFactory.cs" />
+    <Compile Include="ManualStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj">

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EngineContracts
+namespace Engine.Contracts
 {
     public class MessageEventArgs : EventArgs
     {

@@ -9,7 +9,6 @@ namespace LevelGeneratorTester
 {
 	class MainClass
 	{
-		private string FileName = "Levels.txt";
 		public static void Main (string[] args)
 		{
 

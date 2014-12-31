@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Engine.Contracts;
 using Engine;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.IO;
+using System.Reflection;
 
 namespace Game
 {
 	public class Game : IGame
     {
         private IScene _scene;
-        private ManualStrategy _strategy;
         private ICalendar _calendar;
-        private IActorFactory _actorFactory;
-	    private IScenarioLoader _scenarioLoader;
-	    private SceneFactory _sceneFactory;
+
+        private ISceneFactory _sceneFactory;
 	    public event EventHandler KeyPressed;
         public event EventHandler SendMessage;
+
+		public Game(ICalendar calendar)
+		{
+			_calendar = calendar;
+		}
 
         public void InvokeSendMessage(object sender, EventArgs eventArgs)
         {
@@ -29,12 +36,8 @@ namespace Game
 
         public void Start()
         {
-            Console.WriteLine( "Game.Start");
+            Console.WriteLine("Game.Start");
             string currentSceneName = "None";
-            _calendar = new Calendar(this);
-            _strategy = new ManualStrategy(this);
-            _actorFactory = new ActorFactory(_strategy);
-            _sceneFactory = new SceneFactory(_actorFactory);
             Task.Factory.StartNew(() => _calendar.Play());
 
             while (true)

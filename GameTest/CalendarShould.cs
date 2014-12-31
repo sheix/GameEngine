@@ -8,18 +8,16 @@ namespace GameTest
     [TestFixture]
     public class CalendarShould
     {
-        private Mock<IGame> GameMock;
 
         [SetUp]
         public void Init()
         {
-            GameMock = new Mock<IGame>();
         }
 
         [Test]
         public void OnNextDayReturnDay()
         {
-            var calendar = new Calendar(GameMock.Object, 25);
+            var calendar = new Calendar(25);
             calendar.NextDay();
 
             Assert.AreEqual(calendar.DayFromStart, 26);
@@ -28,7 +26,7 @@ namespace GameTest
         [Test] 
         public void FlipYearOnEvery360Days()
         {
-            var calendar = new Calendar(GameMock.Object, 360);
+            var calendar = new Calendar(360);
             Assert.AreEqual(calendar.Year,Calendar.StartYear);
             calendar.NextDay();
             Assert.AreEqual(calendar.Year, Calendar.StartYear + 1);
@@ -40,7 +38,7 @@ namespace GameTest
         [TestCase(361,1)]
         public void ReturnCorrectNumberOfDayInYear(int day, int dayinyear)
         {
-            var calendar = new Calendar(GameMock.Object, day); 
+            var calendar = new Calendar( day); 
             
             Assert.AreEqual(calendar.DayInYear,dayinyear);
         }
@@ -48,7 +46,7 @@ namespace GameTest
         [Test]
         public void MoveAllMoonsPositions()
         {
-            var calendar = new Calendar(GameMock.Object);
+            var calendar = new Calendar();
             var moonPosition = (calendar.Moons[0] as Moon).Position;
             calendar.NextDay();
             Assert.AreNotEqual((calendar.Moons[0] as Moon).Position, moonPosition);
@@ -57,7 +55,7 @@ namespace GameTest
         [Test]
         public void GetSpecialDay()
         {
-            var calendar = new Calendar(GameMock.Object);
+            var calendar = new Calendar();
 
             bool specialDay = false;
             for (int i = 1; i < 19; i++)

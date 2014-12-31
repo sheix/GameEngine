@@ -5,14 +5,13 @@ using Engine.Contracts;
 namespace Game
 {
     /// <summary>
-    /// There are 4 moons
+    /// There are 3 moons
     /// There are 4 seasons, each one of 90 days
     /// There are 3 months in each season
     /// 30 days are length of each month
     /// </summary>
     public class Calendar : ICalendar
     {
-        private readonly IGame _game;
         private IScene _scene;
         public string SetMission { get; private set; }
 
@@ -44,10 +43,8 @@ namespace Game
 
 
 
-        public Calendar(IGame game, int day = 1)
+        public Calendar(int day = 1)
         {
-            _game = game;
-            _game.KeyPressed += game_KeyPressed;
             DayFromStart = day;
             Year = StartYear + (day - 1) / DaysInYear;
             Moons = new List<object>{
@@ -57,39 +54,10 @@ namespace Game
                                     };
         }
 
-        void game_KeyPressed(object sender, EventArgs e)
-        {
-            var key = (e as KeyPressedEventArgs).Key;
-            switch (key)
-            {
-                case "E": NextDay();
-                    break;
-                default:
-                    if (key.StartsWith("Num"))
-                    {
-                        int number;
-                        if (int.TryParse(key[3].ToString(), out number))
-                            if (GetAvailableMissions().Count > number)
-                            {
-                                SetMission = GetAvailableMissions()[number];
-                                break;
-                            }
-                        if (int.TryParse(key[6].ToString(), out number))
-                            if (GetAvailableMissions().Count > number)
-                            {
-                                SetMission = GetAvailableMissions()[number];
-                                break;
-                            }
-                    }
-                    break;
-            }
-                
-        }
-
+        
         public void AttachScene(IScene scene)
         {
             _scene = scene;
-            _game.KeyPressed -= game_KeyPressed;
             scene.OnTick += scene_OnTick;
         }
 
@@ -97,7 +65,6 @@ namespace Game
         {
             _scene = null;
             scene.OnTick -= scene_OnTick;
-            _game.KeyPressed += game_KeyPressed;
         }
 
         

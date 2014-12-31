@@ -49,7 +49,6 @@
     <Compile Include="Scene.cs" />
     <Compile Include="BaseAct.cs" />
     <Compile Include="Grid.cs" />
-    <Compile Include="ManualStrategy.cs" />
     <Compile Include="Contracts\IAct.cs" />
     <Compile Include="Contracts\IActor.cs" />
     <Compile Include="Contracts\ICell.cs" />

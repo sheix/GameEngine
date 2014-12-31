@@ -11,10 +11,9 @@ namespace Game
 		private static int _id = 0;
 		private Player _player;
 
-		public ActorFactory (ManualStrategy strategy)
+		public ActorFactory ()
 		{
-			_strategy = strategy;
-
+			_strategy = new ManualStrategy (null); 
 		}
 
 		private void AddMoveActions (IActor actor)

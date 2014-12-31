@@ -1,16 +1,18 @@
-#region Using Statements
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using Castle.Windsor;
 using Engine;
-using EngineContracts;
 using SFML.Graphics;
 using SFML.Window;
 using Engine.Contracts;
 using Font = SFML.Graphics.Font;
+using Castle.Windsor.Installer;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Game;
 
-#endregion
+
 
 namespace Infrastructure
 {
@@ -26,27 +28,31 @@ namespace Infrastructure
         [STAThread]
         static void Main()
         {
-			_game = new Game.Game();
+			_container = new WindsorContainer ();
+			_container.Install (FromAssembly.This ());
+			_game = _container.Resolve<IGame>();
 			_game.SendMessage += RenderMessage;
-            Task.Factory.StartNew(() => _game.Start());
-            _window = new RenderWindow(VideoMode.DesktopMode, "Test");
-            _window.Closed += OnClosed;
-            _window.KeyPressed += OnKeyPressed;
-			_renderer = new Renderer(_window);
-            while (_window.IsOpen())
-            {
-
-                _window.DispatchEvents();
-				_window.Clear ();
-
-                _renderer.RenderCalendar(_game.Calendar);
-                if (_game.Scene != null) _renderer.RenderScene(_game.Scene);
-                _renderer.RenderMessage(_message);
-
-                _window.Display();
-            }
-
+			_game.Start ();
+            //Task.Factory.StartNew(() => _game.Start());
+            //_window = new RenderWindow(VideoMode.DesktopMode, "Test");
+            //_window.Closed += OnClosed;
+            //_window.KeyPressed += OnKeyPressed;
+			//_renderer = new Renderer(_window);
+//            while (_window.IsOpen())
+//            {
+//
+//                _window.DispatchEvents();
+//				_window.Clear ();
+//
+//                _renderer.RenderCalendar(_game.Calendar);
+//                if (_game.Scene != null) _renderer.RenderScene(_game.Scene);
+//                _renderer.RenderMessage(_message);
+//
+//                _window.Display();
+//            }
+//
 			_container.Dispose ();
+			Console.ReadKey ();
         }
 
         private static void RenderMessage(object sender, EventArgs e)
@@ -77,11 +83,16 @@ namespace Infrastructure
         private static Renderer _renderer;
         private static RenderWindow _window;
         private static string _message = "";
-
-        static Program()
-		{
-			_container = new WindsorContainer();
-			//_container.Register();
 		}
-    }
+
+	public class Installer: IWindsorInstaller
+	{
+		public void Install(IWindsorContainer container, IConfigurationStore store)
+		{
+			container.Register (Component.For<IGame> ().ImplementedBy (typeof(Game.Game)).LifeStyle.Singleton);
+			container.Register (Component.For<IStrategy> ().ImplementedBy (typeof(Game.ManualStrategy)).LifeStyle.Singleton);
+			container.Register (Component.For<ICalendar> ().ImplementedBy(typeof(Game.Calendar)).LifeStyle.Singleton);
+			container.Register (Component.For<ISceneFactory> ().ImplementedBy (typeof(SceneFactory)).LifeStyle.Singleton);
+		}
+	}
 }

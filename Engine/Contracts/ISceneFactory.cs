@@ -1,7 +1,6 @@
 ﻿using System;
-using Engine.Contracts;
 
-namespace EngineContracts.Interfaces
+namespace Engine.Contracts
 {
     public interface ISceneFactory
     {

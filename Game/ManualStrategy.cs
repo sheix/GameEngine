@@ -4,7 +4,7 @@ using Engine.Contracts;
 using System.Collections.Generic;
 using Game;
 
-namespace Engine
+namespace Game
 {
 	public class ManualStrategy : IStrategy
 	{
