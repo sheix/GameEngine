@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Engine.Contracts;
 using Engine;
-using EngineContracts.Interfaces;
 using Game.Rules;
 
 namespace Game
@@ -92,16 +91,17 @@ namespace Game
             return scene.Scene;
         }
 
-        public IScene Generate(ISceneTemplate template)
+        private IScene Generate(ISceneTemplate template)
         {
-            IScene scene = new Scene();
-            ((IStage)scene).Map = _generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray());
+            var scene = new Scene();
+            scene.SetMap(_generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray()));
             return scene;
         }
 
-        public void PopulateScene(IScene scene, ISceneTemplate template, string previousStage)
+        private void PopulateScene(IScene scene, ISceneTemplate template, string previousStage)
         {
-            var startingPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is StartPoint), y => y.Specials.Where(m => m is StartPoint).FirstOrDefault().Description);
+			var gamescene = scene as GameScene;
+			var startingPoints = gamescene.GetStartingPoints ();
             Vector startingPoint;
             try
             {
@@ -112,15 +112,16 @@ namespace Game
                 Console.WriteLine("Didn't find starting point for {0}, using default", previousStage);
                 startingPoint = startingPoints["*"];
             }
-            var player = _actorFactory.GetPlayer();
-            scene.AddActor(player);
-            (scene as IStage).PlaceActorToGrid(player, startingPoint);
+            
+			var player = _actorFactory.GetPlayer();
+            gamescene.AddActor(player);
+            gamescene.PlaceActorToGrid(player, startingPoint);
 
-            var endPoints = (scene as IStage).Map.GetCells(x => x.Specials.Any(m => m is EndPoint), y => y.Specials.Where(m => m is EndPoint).FirstOrDefault().Description);
+            var endPoints = gamescene.GetEndingPoints();
             foreach (var endPoint in endPoints)
             {
                 var point = endPoint;
-                scene.AddNextScene(endPoint.Key, s => ((IStage) s).Map.GetActorCoordinates(player).Equals(point.Value));
+                gamescene.AddNextScene(endPoint.Key, s => (s as GameScene).GetPlayerCoordinates().Equals(point.Value));
             }
         }
     }

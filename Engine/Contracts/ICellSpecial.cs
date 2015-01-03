@@ -1,4 +1,4 @@
-﻿namespace EngineContracts.Interfaces
+﻿namespace Engine.Contracts
 {
     public interface ICellSpecial
     {

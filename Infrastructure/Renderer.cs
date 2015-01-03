@@ -80,13 +80,13 @@ namespace Infrastructure
 
         public void RenderScene(IScene scene)
         {
+			var gameScene = scene as GameScene; 
+
             uint X = window.Size.X;
             uint Y = window.Size.Y;
 
-            var map = (scene as IStage).Map;
-
-            var playerCoords = (scene as IStage).GetCenterOfInterest();
-            var maxResolution = (scene as IStage).GetMapDimensions();
+            var playerCoords = gameScene.GetCenterOfInterest();
+            var maxResolution = gameScene.GetMapDimensions();
             if (playerCoords == Vector.None)
                 return;
 
@@ -110,7 +110,7 @@ namespace Infrastructure
 
                     ICell cell;
                     if (InRange(x, y, maxResolution._x ,maxResolution._y))
-                        cell = map.At(x, y);
+                        cell = gameScene.At(x, y);
                     else continue;
 
                     Vector v = GetScreenPosition(x, y, xNumber, yNumber, X, Y, xOffset, yOffset);

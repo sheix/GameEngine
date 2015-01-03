@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Engine.Contracts;
-using EngineContracts;
 
 namespace Engine
 {
@@ -10,15 +9,11 @@ namespace Engine
     {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
-	    private IGrid _map;
-		private Dictionary<Func<IScene , bool>, string> nextScenes;
+	   	private Dictionary<Func<IScene , bool>, string> nextScenes;
 
 	    public event System.EventHandler OnTick;
 
-		public IGrid Map{get { return _map; }
-			set {_map = value;}
-		}
-
+		protected IGrid Map{ get ; set;}
 	    public event System.EventHandler MessageSent;
 
 	    public delegate void EventHandler();
@@ -47,20 +42,19 @@ namespace Engine
 
 	    public Vector GetCenterOfInterest()
 	    {
-	        //default - player
-	        return _map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
+	        return Map.GetActorCoordinates(_actors.Where(m => m.Name == "Player").FirstOrDefault());
 	    }
 
 	    public Vector GetMapDimensions()
 	    {
-	        var vector = new Vector(_map.Grid.Count, _map.Grid[0].Count);
+	        var vector = new Vector(Map.Grid.Count, Map.Grid[0].Count);
 	        return vector;
 	    }
 
 	    public void Move(IPlacableActor self, string direction)
 	    {
-	        var location =  _map.GetActorCoordinates(self);
-	        _map.At(location).Actor = null;
+	        var location =  Map.GetActorCoordinates(self);
+	        Map.At(location).Actor = null;
             
 	        switch (direction)
 	        {
@@ -78,12 +72,12 @@ namespace Engine
                     break;
                     
 	        }
-            _map.At(location).Actor = self;
+            Map.At(location).Actor = self;
 	    }
 
 	    public bool IsFreeInDirection(IPlacableActor actor, string direction)
 	    {
-            var location = _map.GetActorCoordinates(actor);
+            var location = Map.GetActorCoordinates(actor);
             switch (direction)
             {
                 case "Up":
@@ -99,8 +93,8 @@ namespace Engine
                     location._x++;
                     break;
             }
-            if (_map.At(location).Actor != null) return false;
-            if (!_map.At(location).IsPassable()) return false;
+            if (Map.At(location).Actor != null) return false;
+            if (!Map.At(location).IsPassable()) return false;
 	        return true;
 	    }
 
@@ -111,7 +105,7 @@ namespace Engine
 
 	    public IActor ActorInDirection(IPlacableActor actor, string direction)
 	    {
-            var location = _map.GetActorCoordinates(actor);
+            var location = Map.GetActorCoordinates(actor);
             switch (direction)
             {
                 case "Up":
@@ -127,15 +121,15 @@ namespace Engine
                     location._x++;
                     break;
             }
-	        return _map.At(location).Actor;
+	        return Map.At(location).Actor;
 	    }
 
 	    public virtual void RemoveActor (IActor actor)
 		{
 			if (actor is IPlacableActor)
 			{
-				var coords = _map.GetActorCoordinates(actor);
-				_map.At(coords).Actor = null;
+				var coords = Map.GetActorCoordinates(actor);
+				Map.At(coords).Actor = null;
 			}
 			_actors.Remove(actor);
 		}
@@ -193,6 +187,14 @@ namespace Engine
 	    {
             nextScenes.Add(b,home);
         }
+
+
+		public void SetMap (IGrid grid)
+		{
+			Map = grid;
+		}
+
+
     }
 }
 

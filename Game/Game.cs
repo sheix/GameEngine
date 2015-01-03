@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Engine.Contracts;
 using Engine;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
 
@@ -87,7 +85,7 @@ namespace Game
 
         public void _KeyPressed(string key)
         {
-            InvokeKeyPressed(new KeyPressedEventArgs { Key = key});
+            InvokeKeyPressed(new KeyPressedEventArgs { Key = key} );
         }
     }
 

@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Engine.Contracts;
-using EngineContracts.Interfaces;
 using Game;
 using Game.Cells;
 
@@ -48,17 +47,16 @@ namespace LevelGeneratorTester
 
         public void RenderScene(IScene scene)
         {
-            var map = (scene as IStage).Map;
-            for (int x = 0; x < map.Grid.Count; x++)
+			var gameScene = scene as GameScene;
+            for (int x = 0; x < gameScene.GetMapDimensions()._x; x++)
             {
-                for (int y = 0; y < map.Grid[0].Count; y++)
+				for (int y = 0; y < gameScene.GetMapDimensions()._y; y++)
                 {
-                    ICell cell = map.At(x, y);
+                    ICell cell = gameScene.At(x, y);
                     
                     if (cell.Actor != null)
                         if (cell.Actor.Name == "Player")
                         {
-
                             Console.Write("@");
                             continue;
                         }

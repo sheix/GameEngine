@@ -116,8 +116,6 @@ namespace Engine
 
     public class Cell : BaseCell
 	{
-		
-
 		public Cell (Vector coordinates) : base(coordinates)
 		{
 		    

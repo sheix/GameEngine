@@ -39,11 +39,16 @@ namespace Game
 
 	    public void LastPressedKey(string code)
 	    {
+			if (code.Equals ("p")) {
+				LastAction = "Take";
+				return;
+			} 
             if (code.Equals("Numpad5") || code.Equals("Num5")) 
             {
                 LastAction = "Wait";
                 return;
             }
+			// Works on Up Down Left Right - for moving
 	        LastAction = code;
 	    }
 	}

@@ -44,6 +44,8 @@
     <Compile Include="CalendarShould.cs" />
     <Compile Include="GameShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TakeActShould.cs" />
+    <Compile Include="SceneFactoryShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\Game.csproj">
