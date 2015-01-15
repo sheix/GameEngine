@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Game
 {
-	public class GameScene : Scene
+	public class GameScene : BaseScene
 	{
 		public Dictionary<string, Vector> GetStartingPoints ()
 		{
@@ -25,6 +25,13 @@ namespace Game
 		public ICell At (int x, int y)
 		{
 			return Map.At(x,y);
+		}
+
+		public bool HaveItemsBeneath(IActor actor)
+		{
+			var coordinates = Map.GetActorCoordinates (actor);
+			var items = Map.At (coordinates).Items;
+			return items == null ? false : items.Count > 0; 
 		}
 	}
 }

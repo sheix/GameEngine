@@ -10,13 +10,13 @@ namespace EngineTest
 	public class SceneShould
 	{
 		Mock<IActor> actor;
-		Scene scene;
+		BaseScene scene;
 
 		[SetUp]
 		public void Setup()
 		{
 			actor = new Mock<IActor>();
-			scene = new Scene();
+			scene = new BaseScene();
 			scene.AddActor(actor.Object);
 		}
 

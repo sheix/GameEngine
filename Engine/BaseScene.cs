@@ -5,7 +5,7 @@ using Engine.Contracts;
 
 namespace Engine
 {
-	public class Scene : IScene, IStage
+	public class BaseScene : IScene, IStage
     {
 		private readonly List<IActor> _actors;
 		private long _time = 0;
@@ -18,7 +18,7 @@ namespace Engine
 
 	    public delegate void EventHandler();
 
-		public Scene() 
+		public BaseScene() 
 		{
 			_actors = new List<IActor>();
 		    SetEmptyNextScene();
@@ -192,6 +192,18 @@ namespace Engine
 		public void SetMap (IGrid grid)
 		{
 			Map = grid;
+		}
+
+		public ICell At (int x, int y)
+		{
+			return Map.At(x,y);
+		}
+
+
+		public bool HaveItemsBeneath (IActor actor)
+		{
+			var coordinates = Map.GetActorCoordinates(actor);
+			return (Map.At (coordinates).Items.Count > 0);
 		}
 
 

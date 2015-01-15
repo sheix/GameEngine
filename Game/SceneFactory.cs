@@ -44,7 +44,7 @@ namespace Game
                         scenes.Add(currentSceneName, currentSceneInfo);
                     }
                     currentSceneName = line.Substring(1, line.Length - 2);
-                    currentSceneInfo = new SceneInfo { Scene = new Scene(), Template = new SceneTemplate() };
+                    currentSceneInfo = new SceneInfo { Scene = new BaseScene(), Template = new SceneTemplate() };
                     continue;
                 }
                 var pair = line.Split(':');
@@ -91,9 +91,9 @@ namespace Game
             return scene.Scene;
         }
 
-        private IScene Generate(ISceneTemplate template)
+		public IScene Generate(ISceneTemplate template)
         {
-            var scene = new Scene();
+            var scene = new BaseScene();
             scene.SetMap(_generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray()));
             return scene;
         }

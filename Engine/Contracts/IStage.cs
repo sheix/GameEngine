@@ -13,6 +13,8 @@ namespace Engine.Contracts
 	    void Attack(IPlacableActor placableActor, string name);
         IActor ActorInDirection(IPlacableActor actor, string direction);
 		void SetMap (IGrid grid);
+		ICell At (int x, int y);
+		bool HaveItemsBeneath (IActor actor);
     }
 }
 

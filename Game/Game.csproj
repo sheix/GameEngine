@@ -63,7 +63,7 @@
     <Compile Include="SceneFactory.cs" />
     <Compile Include="ManualStrategy.cs" />
     <Compile Include="Acts\TakeAct.cs" />
-    <Compile Include="GmaeScene.cs" />
+    <Compile Include="GameScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj">

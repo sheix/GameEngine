@@ -13,8 +13,8 @@ namespace Game.Acts
 		}
 		public override bool CanDo (IActor actor, IScene scene)
 		{
-			//var stage 
-			//if (scene)
+			if (scene.HaveItemsBeneath (actor))
+				return true;
 			return false;
 		}
 		#endregion

@@ -14,6 +14,9 @@ namespace Engine.Contracts
 		event EventHandler MessageSent;
 	    event EventHandler OnTick;
 	    void AddNextScene(string home, Func<IScene, bool> b);
+
+
+
 	}
 
     public interface IPlayable

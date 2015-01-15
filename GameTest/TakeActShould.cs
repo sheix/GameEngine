@@ -3,6 +3,8 @@ using System;
 using Game.Acts;
 using Engine.Contracts;
 using Moq;
+using Engine;
+using System.Collections.Generic;
 
 namespace GameTest
 {
@@ -17,6 +19,8 @@ namespace GameTest
 		{
 			scene = new Moq.Mock<IScene> ();
 			actor = new Mock<IActor> ();
+
+			scene.Setup (mn => mn.HaveItemsBeneath (It.Is<IActor> (s => s.Equals(actor.Object)))).Returns (true); 
 
 			IAct act = new TakeAct ();
 
