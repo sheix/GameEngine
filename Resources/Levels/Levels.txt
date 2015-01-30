@@ -8,7 +8,20 @@ Dungeon:MinRoomSize=3
 StartPoint:*-10,10
 Availability: always
 Repeatability: once
+[END]
+
+[SecondLevel]
+
+Size: 20x20
+Borders: BorderWalls
+EndPoint:SecondLevel-7,5 
+Dungeon:MinRoomSize=3
+StartPoint:Default-2,2
+StartPoint:*-18,18
+Availability: always
+Repeatability: once
 
 [END]
+
 
 Room:Type=Regular;DoorsMin=1;DoorsMax=2
