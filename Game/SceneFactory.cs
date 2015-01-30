@@ -77,8 +77,9 @@ namespace Game
             }
         }
 
-        public IScene GetScene(String ID, string previousSceneId)
+        public IScene GetScene(string ID, string previousSceneId)
         {
+			Console.WriteLine ("Next scene: {0}, Previous: {1}" , ID, previousSceneId);
             var scene = Scenes[ID];
             if (!scene.IsGenerated)
             {
@@ -93,7 +94,7 @@ namespace Game
 
 		public IScene Generate(ISceneTemplate template)
         {
-            var scene = new BaseScene();
+            var scene = new GameScene();
             scene.SetMap(_generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray()));
             return scene;
         }

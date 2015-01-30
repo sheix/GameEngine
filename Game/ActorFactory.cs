@@ -7,13 +7,13 @@ namespace Game
 {
 	public class ActorFactory : IActorFactory
 	{
-		private readonly ManualStrategy _strategy;
+		private readonly IStrategy _manualStrategy;
 		private static int _id = 0;
 		private Player _player;
 
-		public ActorFactory ()
+		public ActorFactory (IStrategy strategy)
 		{
-			_strategy = new ManualStrategy (null); 
+			_manualStrategy = strategy; 
 		}
 
 		private void AddMoveActions (IActor actor)
@@ -43,7 +43,7 @@ namespace Game
 		public IPlacableActor GetPlayer ()
 		{
 			if (_player == null) {
-				_player = new Player (_strategy);
+				_player = new Player (_manualStrategy);
 
 				AddMoveActions (_player);
 				AddAttackActions (_player);

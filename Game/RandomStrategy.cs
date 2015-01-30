@@ -10,6 +10,11 @@ namespace Game
         {
             var r = new Random();
             return possibleActions[r.Next(possibleActions.Count)];
-        }
-    }
+        } 
+
+		public void SubscribeToGame (IGame _game)
+		{
+			throw new NotImplementedException ();
+		}
+	}
 }

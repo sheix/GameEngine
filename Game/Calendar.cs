@@ -4,16 +4,9 @@ using Engine.Contracts;
 
 namespace Game
 {
-    /// <summary>
-    /// There are 3 moons
-    /// There are 4 seasons, each one of 90 days
-    /// There are 3 months in each season
-    /// 30 days are length of each month
-    /// </summary>
     public class Calendar : ICalendar
     {
         private IScene _scene;
-        public string SetMission { get; private set; }
 
         public object Today { get { return new Date(DayInYear, Year, GetMoonStates(Moons)); } }
 
@@ -104,26 +97,19 @@ namespace Game
             }
         }
 
-        public List<string> GetAvailableMissions()
-        {
-            
-            if (_scene == null)
-                return new List<string> {"Default", "Home"};
-            return new List<string>();
-        }
-
+        
         public string Play()
         {
             Console.WriteLine("Calendar.Play");
-            while (true)
-            {
-                foreach (var nextMission in GetAvailableMissions())
-                {
-                    if (nextMission.Equals(SetMission))
-                        return nextMission;
-                }
-                //Tick();
-            }
+//            while (true)
+//            {
+//                foreach (var nextMission in GetAvailableMissions())
+//                {
+//                    if (nextMission.Equals(SetMission))
+//                        return nextMission;
+//                }
+//            }
+			return "Default";
         }
     }
 }

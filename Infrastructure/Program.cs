@@ -21,6 +21,7 @@ namespace Infrastructure
     /// </summary>
     public static class Program
     {
+
         private static IGame _game;
         /// <summary>
         /// The main entry point for the application.
@@ -32,25 +33,24 @@ namespace Infrastructure
 			_container.Install (FromAssembly.This ());
 			_game = _container.Resolve<IGame>();
 			_game.SendMessage += RenderMessage;
-			_game.Start ();
-            //Task.Factory.StartNew(() => _game.Start());
-            //_window = new RenderWindow(VideoMode.DesktopMode, "Test");
-            //_window.Closed += OnClosed;
-            //_window.KeyPressed += OnKeyPressed;
-			//_renderer = new Renderer(_window);
-//            while (_window.IsOpen())
-//            {
-//
-//                _window.DispatchEvents();
-//				_window.Clear ();
-//
-//                _renderer.RenderCalendar(_game.Calendar);
-//                if (_game.Scene != null) _renderer.RenderScene(_game.Scene);
-//                _renderer.RenderMessage(_message);
-//
-//                _window.Display();
-//            }
-//
+			IStrategy _strategy = _container.Resolve<IStrategy> ();
+			_strategy.SubscribeToGame (_game);
+			Task.Factory.StartNew(() => _game.Start());
+            _window = new RenderWindow(VideoMode.DesktopMode, "Test");
+            _window.Closed += OnClosed;
+            _window.KeyPressed += OnKeyPressed;
+			_renderer = new Renderer(_window);
+            while (_window.IsOpen())
+            {
+                _window.DispatchEvents();
+				_window.Clear ();
+                _renderer.RenderCalendar(_game.Calendar);
+                if (_game.Scene != null) _renderer.RenderScene(_game.Scene);
+                _renderer.RenderMessage(_message);
+
+                _window.Display();
+            }
+
 			_container.Dispose ();
 			Console.ReadKey ();
         }
@@ -93,6 +93,7 @@ namespace Infrastructure
 			container.Register (Component.For<IStrategy> ().ImplementedBy (typeof(Game.ManualStrategy)).LifeStyle.Singleton);
 			container.Register (Component.For<ICalendar> ().ImplementedBy(typeof(Game.Calendar)).LifeStyle.Singleton);
 			container.Register (Component.For<ISceneFactory> ().ImplementedBy (typeof(SceneFactory)).LifeStyle.Singleton);
+			container.Register (Component.For<IActorFactory> ().ImplementedBy (typeof(ActorFactory)).LifeStyle.Singleton);
 		}
 	}
 }

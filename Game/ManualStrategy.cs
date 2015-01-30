@@ -10,17 +10,20 @@ namespace Game
 	{
 	    private string LastAction;
 
-		public ManualStrategy (IGame game)
+		public ManualStrategy ()
 		{
-            game.KeyPressed += game_KeyPressed;
+            
+		}
+
+		public void SubscribeToGame(IGame game)
+		{
+			game.KeyPressed += game_KeyPressed;
 		}
 
         void game_KeyPressed(object sender, System.EventArgs e)
         {
             LastPressedKey((e as KeyPressedEventArgs).Key);
         }
-
-		#region IStrategy implementation
 
 		public IAct SelectAction (List<IAct> possibleActions, IScene scene)
 		{
@@ -34,8 +37,6 @@ namespace Game
 		    LastAction = null;
 		    return result;
 		}
-
-		#endregion
 
 	    public void LastPressedKey(string code)
 	    {

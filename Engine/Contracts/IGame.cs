@@ -20,9 +20,7 @@ namespace Engine.Contracts
         int Year { get; }
         int DayInYear { get; }
         List<object > Moons { get; }
-        string SetMission { get; }
         void NextDay();
-        List<String> GetAvailableMissions();
         void AttachScene(IScene scene);
         void DetachScene(IScene scene);
     }

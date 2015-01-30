@@ -12,6 +12,8 @@ namespace Engine.Contracts
 	public interface IStrategy
 	{
 		IAct SelectAction(List<IAct> possibleActions, IScene scene);
+
+		void SubscribeToGame (IGame _game);
 	}
 }
 

@@ -37,20 +37,20 @@ namespace Infrastructure
 
         private void RenderMissions(RenderWindow window, ICalendar calendar)
         {
-            char order = '0';
-            var missions = calendar.GetAvailableMissions();
-            Vector2f position = new Vector2f(0, window.Size.Y - font.GetGlyph(100, CharacterSize, false).Bounds.Height * missions.Count - window.Size.Y/2);
-            
-            foreach (var mission in missions)
-            {
-                Text text = new Text(order + " :"+ mission, font,CharacterSize)
-                               {
-                                   Position = position
-                               };
-                text.Draw(window, RenderStates.Default);
-                position.Y += text.GetLocalBounds().Height;
-                order++;
-            }
+//            char order = '0';
+//            var missions = calendar.GetAvailableMissions();
+//            Vector2f position = new Vector2f(0, window.Size.Y - font.GetGlyph(100, CharacterSize, false).Bounds.Height * missions.Count - window.Size.Y/2);
+//            
+//            foreach (var mission in missions)
+//            {
+//                Text text = new Text(order + " :"+ mission, font,CharacterSize)
+//                               {
+//                                   Position = position
+//                               };
+//                text.Draw(window, RenderStates.Default);
+//                position.Y += text.GetLocalBounds().Height;
+//                order++;
+//            }
         }
 
         private void RenderMoons(RenderWindow window, ICalendar calendar)
