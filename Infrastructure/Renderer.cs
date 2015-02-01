@@ -7,6 +7,7 @@ using SFML.Graphics;
 using SFML.Window;
 using Engine.Contracts;
 using Font = SFML.Graphics.Font;
+using System;
 
 namespace Infrastructure
 {
@@ -14,11 +15,13 @@ namespace Infrastructure
     {
         private readonly Font font;
         private Dictionary<string, Color> _moonColors = new Dictionary<string, Color> {{"Mun",Color.Cyan}, {"Lun",Color.Yellow}, {"Sput", Color.Green}};
-        private const uint CharacterSize = 24;
+        private const uint CharacterSize = 20;
 		private RenderWindow window;
+		private Random _random;
 
 		public Renderer(RenderWindow _window)
         {
+			_random = new Random ();
 			window = _window;
             font = new Font(FileSystemHelper.PathToResources + "Fonts" + FileSystemHelper.FileSystemSeparator + "kongtext.ttf");
         }
@@ -93,9 +96,9 @@ namespace Infrastructure
             int leftX, rightX, upY, downY;
 
             leftX = playerCoords._x - 5;
-            rightX = playerCoords._x + 5;
+            rightX = playerCoords._x + 6;
             upY = playerCoords._y - 5;
-            downY = playerCoords._y + 5;
+            downY = playerCoords._y + 6;
 
             int xNumber = rightX - leftX + 1;
             int yNumber = downY - upY + 1;
@@ -107,7 +110,6 @@ namespace Infrastructure
             {
                 for (int y = upY; y < downY; y++)
                 {
-
                     ICell cell;
                     if (InRange(x, y, maxResolution._x ,maxResolution._y))
                         cell = gameScene.At(x, y);
@@ -117,13 +119,14 @@ namespace Infrastructure
                     if (cell.Actor != null)
                         if (cell.Actor.Name == "Player")
                         {
-                            var text = new Text("@", font, CharacterSize) { Position = new Vector2f(v._x, v._y) };
+                            var text = new Text("@", font, CharacterSize) { Position = new Vector2f(v._x, v._y) , Color = new Color(255,153,0)};
                             text.Draw(window, RenderStates.Default);
                             continue;
                         }
                     if (cell is Wall)
                     {
-                        var text = new Text("#", font,CharacterSize) { Position = new Vector2f(v._x, v._y) };
+						byte grayLevel = (byte)(_random.Next (100) + 155);
+                        var text = new Text("#", font,CharacterSize) { Position = new Vector2f(v._x, v._y), Color = new Color(grayLevel, grayLevel, grayLevel)};
                         text.Draw(window, RenderStates.Default);
                         continue;
                     }
