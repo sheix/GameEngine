@@ -25,7 +25,7 @@ namespace Game.Rules
 			int deltaX, deltaY;
 			deltaX = endX - startX;
 			deltaY = endY - startY;
-			Console.WriteLine ("Splitting room ({0},{1})-({2},{3})", startX, startY,endX,endY);
+			//Console.WriteLine ("Splitting room ({0},{1})-({2},{3})", startX, startY,endX,endY);
 			int minRoomSize = IsDefined ("MinRoomSize") ? int.Parse (GetValue ("MinRoomSize")) : 3;
 
 			if ((deltaX < minRoomSize *2+1) || (deltaY < minRoomSize*2+1)) {
@@ -44,10 +44,10 @@ namespace Game.Rules
 				for (int i = startY + 1; i < endY; i++)
                 {
 					if (i != door) {
-						Console.WriteLine ("{0},{1} - Wall", split,i);
+						//Console.WriteLine ("{0},{1} - Wall", split,i);
 						_grid.Set (new Wall (new Vector (split, i)));
 					} else {
-						Console.WriteLine ("{0},{1} - Door",split,i);
+						//Console.WriteLine ("{0},{1} - Door",split,i);
 						_grid.Set (new Cell (new Vector (split, i)));
 					}
                 }
@@ -62,10 +62,10 @@ namespace Game.Rules
                 for (int i = startX + 1; i < endX; i++)
                 {
 					if (i != door) {
-						Console.WriteLine ("{0},{1} - Wall", i, split);
+						//Console.WriteLine ("{0},{1} - Wall", i, split);
 						_grid.Set (new Wall (new Vector (i, split)));
 					} else {
-						Console.WriteLine ("{0},{1} - Door", i, split);
+						//Console.WriteLine ("{0},{1} - Door", i, split);
 						_grid.Set (new Cell (new Vector (i, split)));
 					}
                 }

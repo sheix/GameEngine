@@ -6,6 +6,7 @@ namespace Engine.Contracts
 {
 	public interface IScene : IPlayable, IStage 
 	{
+		string Name { get;}
 		List<IActor> GetActors();
 		void Tick();
 		List<IAct> GetPossibleActions(IActor actor);
@@ -14,9 +15,6 @@ namespace Engine.Contracts
 		event EventHandler MessageSent;
 	    event EventHandler OnTick;
 	    void AddNextScene(string home, Func<IScene, bool> b);
-
-
-
 	}
 
     public interface IPlayable

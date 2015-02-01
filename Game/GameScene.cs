@@ -8,6 +8,9 @@ namespace Game
 {
 	public class GameScene : BaseScene
 	{
+		public GameScene(String ID): base(ID)
+		{}
+
 		public Dictionary<string, Vector> GetStartingPoints ()
 		{
 			return Map.GetCells(x => x.Specials.Any(m => m is StartPoint), y => y.Specials.Where(m => m is StartPoint).FirstOrDefault().Description);

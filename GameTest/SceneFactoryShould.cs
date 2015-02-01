@@ -15,7 +15,7 @@ namespace GameTest
 		{
 			SceneFactory factory = new SceneFactory (ActorFactory.Object);
 
-			var scene = factory.Generate (new SceneTemplate());
+			var scene = factory.Generate (new SceneTemplate(),"Default");
 
 			Assert.NotNull (scene);
 		}

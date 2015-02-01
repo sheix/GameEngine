@@ -44,7 +44,7 @@ namespace Game
                         scenes.Add(currentSceneName, currentSceneInfo);
                     }
                     currentSceneName = line.Substring(1, line.Length - 2);
-                    currentSceneInfo = new SceneInfo { Scene = new BaseScene(), Template = new SceneTemplate() };
+					currentSceneInfo = new SceneInfo { Scene = new BaseScene(currentSceneName), Template = new SceneTemplate() };
                     continue;
                 }
                 var pair = line.Split(':');
@@ -83,7 +83,7 @@ namespace Game
             var scene = Scenes[ID];
             if (!scene.IsGenerated)
             {
-                scene.Scene = Generate(scene.Template);
+                scene.Scene = Generate(scene.Template, ID);
                 scene.IsGenerated = true;
             }
 
@@ -92,15 +92,17 @@ namespace Game
             return scene.Scene;
         }
 
-		public IScene Generate(ISceneTemplate template)
+		public IScene Generate(ISceneTemplate template, String ID)
         {
-            var scene = new GameScene();
+			Console.WriteLine ("Generating scene:" + ID);
+            var scene = new GameScene(ID);
             scene.SetMap(_generator.Generate(template.GetRules().Where(r => r is MapRule).Select(s => s as MapRule).ToArray()));
             return scene;
         }
 
         private void PopulateScene(IScene scene, ISceneTemplate template, string previousStage)
         {
+			Console.WriteLine ("Populating scene:" + scene.Name);
 			var gamescene = scene as GameScene;
 			var startingPoints = gamescene.GetStartingPoints ();
             Vector startingPoint;
@@ -115,8 +117,11 @@ namespace Game
             }
             
 			var player = _actorFactory.GetPlayer();
+			Console.WriteLine ("Got Player from actor factory");
             gamescene.AddActor(player);
+			Console.WriteLine ("Added Player to scene");
             gamescene.PlaceActorToGrid(player, startingPoint);
+			Console.WriteLine ("Placed Player to grid");
 
             var endPoints = gamescene.GetEndingPoints();
             foreach (var endPoint in endPoints)

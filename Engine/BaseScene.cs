@@ -7,6 +7,16 @@ namespace Engine
 {
 	public class BaseScene : IScene, IStage
     {
+
+		public string Name { get; private set;}
+
+		public BaseScene(String name)
+		{
+			Name = name;
+			_actors = new List<IActor>();
+			SetEmptyNextScene();
+		}
+
 		private readonly List<IActor> _actors;
 		private long _time = 0;
 	   	private Dictionary<Func<IScene , bool>, string> nextScenes;
@@ -18,11 +28,6 @@ namespace Engine
 
 	    public delegate void EventHandler();
 
-		public BaseScene() 
-		{
-			_actors = new List<IActor>();
-		    SetEmptyNextScene();
-		}
 
 		public virtual void AddActor(IActor actor)
 		{

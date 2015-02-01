@@ -40,15 +40,15 @@ namespace Game.Rules
                         currentRoom.Reduce();
                 }
                 
-                Console.WriteLine("Room no {0}", i + 1);
-                Console.WriteLine("({0},{1})[{2},{3}]",x,y,RoomSizeX,RoomSizeY);
+                //Console.WriteLine("Room no {0}", i + 1);
+                //Console.WriteLine("({0},{1})[{2},{3}]",x,y,RoomSizeX,RoomSizeY);
                 for (int k = x; k < x + RoomSizeX;k++)
                     for (int j = y; j < y + RoomSizeY; j++)
                     {
 
                         if ((k == x || k == x + RoomSizeX - 1) || (j == y || j == y + RoomSizeY - 1))
                         {
-                            Console.WriteLine("Wall at: ({0},{1})",k,j);
+                  //          Console.WriteLine("Wall at: ({0},{1})",k,j);
                             grid.Set(new Wall(new Vector(k, j)));
                         }
                         

@@ -19,6 +19,8 @@ namespace Infrastructure
 		private RenderWindow window;
 		private Random _random;
 
+		private Dictionary<String, byte[,]> sceneColors = new Dictionary<string, byte[,]>();
+
 		public Renderer(RenderWindow _window)
         {
 			_random = new Random ();
@@ -81,24 +83,48 @@ namespace Infrastructure
             return 'E';
         }
 
+		byte[,] GetColors (GameScene gameScene)
+		{
+			var colors = generateColors(gameScene); 
+			sceneColors.Add(gameScene.Name, colors); 
+			return colors; 
+		}
+
+		byte[,] generateColors (GameScene gameScene)
+		{
+
+			var dimensions = gameScene.GetMapDimensions ();
+			var result = new byte[dimensions._x,dimensions._y];
+			for(int x = 0; x< dimensions._x;x++)
+				for(int y = 0; y< dimensions._y;y++)
+					result[x,y] = (byte)(_random.Next (100) + 155);
+		return result;
+		}
+
         public void RenderScene(IScene scene)
         {
+
 			var gameScene = scene as GameScene; 
+			Console.WriteLine ("Render Scene" + scene.Name);
+			var sceneColoring = sceneColors.ContainsKey (scene.Name) ? sceneColors [scene.Name] : GetColors (gameScene);
+
 
             uint X = window.Size.X;
             uint Y = window.Size.Y;
 
-            var playerCoords = gameScene.GetCenterOfInterest();
-            var maxResolution = gameScene.GetMapDimensions();
-            if (playerCoords == Vector.None)
-                return;
+            var centerOfInterest = gameScene.GetCenterOfInterest();
+			if (centerOfInterest == Vector.None)
+				return;
+
+			var maxMapSize = gameScene.GetMapDimensions();
+			var normalCenterOfInterest = Normalize (centerOfInterest,maxMapSize);
 
             int leftX, rightX, upY, downY;
 
-            leftX = playerCoords._x - 5;
-            rightX = playerCoords._x + 6;
-            upY = playerCoords._y - 5;
-            downY = playerCoords._y + 6;
+			leftX = normalCenterOfInterest._x - 5;
+			rightX = normalCenterOfInterest._x + 6;
+			upY = normalCenterOfInterest._y - 5;
+			downY = normalCenterOfInterest._y + 6;
 
             int xNumber = rightX - leftX + 1;
             int yNumber = downY - upY + 1;
@@ -111,7 +137,7 @@ namespace Infrastructure
                 for (int y = upY; y < downY; y++)
                 {
                     ICell cell;
-                    if (InRange(x, y, maxResolution._x ,maxResolution._y))
+                    if (InRange(x, y, maxMapSize._x ,maxMapSize._y))
                         cell = gameScene.At(x, y);
                     else continue;
 
@@ -125,7 +151,7 @@ namespace Infrastructure
                         }
                     if (cell is Wall)
                     {
-						byte grayLevel = (byte)(_random.Next (100) + 155);
+					byte grayLevel = sceneColoring [x,y];
                         var text = new Text("#", font,CharacterSize) { Position = new Vector2f(v._x, v._y), Color = new Color(grayLevel, grayLevel, grayLevel)};
                         text.Draw(window, RenderStates.Default);
                         continue;
@@ -151,6 +177,22 @@ namespace Infrastructure
                 }
             }
         }
+
+		Vector Normalize (Vector centerOfInterest, Vector resoluton)
+		{
+			int x=centerOfInterest._x, y=centerOfInterest._y;
+			if (centerOfInterest._x < 5)
+				x = 5;
+			if (centerOfInterest._x > resoluton._x - 6)
+				x = resoluton._x - 6;
+
+			if (centerOfInterest._y < 5)
+				y = 5;
+			if (centerOfInterest._y > resoluton._y - 6)
+				y = resoluton._y - 6;
+
+			return new Vector (x, y);
+		}
 
         private bool InRange(int x, int y, int X, int Y)
         {
@@ -178,7 +220,8 @@ namespace Infrastructure
 
             double actualX = startX + xn * (x - xOffset);
             double actualY = startY + yn * (y - yOffset);
-            return new Vector((int)actualX, (int)actualY);
+            
+			return new Vector((int)actualX, (int)actualY);
         }
     }
 }
