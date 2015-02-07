@@ -117,8 +117,8 @@ namespace Game
             }
             
 			var player = _actorFactory.GetPlayer();
-			Console.WriteLine ("Got Player from actor factory");
-            gamescene.AddActor(player);
+			gamescene.RemoveActor (player);
+			gamescene.AddActor(player);
 			Console.WriteLine ("Added Player to scene");
             gamescene.PlaceActorToGrid(player, startingPoint);
 			Console.WriteLine ("Placed Player to grid");
