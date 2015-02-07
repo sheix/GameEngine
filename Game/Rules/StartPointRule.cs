@@ -5,18 +5,17 @@ namespace Game.Rules
 {
     public class StartPointRule : MapRule
     {
-        private ICellSpecial startingPointItem;
-        private Vector startingPointVector;
-        public StartPointRule(string s)
-        {
-            var startPoint = s.Split('-');
-            startingPointItem = new StartPoint(startPoint[0]);
-            startingPointVector = Vector.Parse(startPoint[1]);
-        }
-
+        
         public override void Process(Grid grid)
         {
-            grid.At(startingPointVector).AddSpecial(startingPointItem);
+			var parameters = GetAllParameterNames ().ToArray ();
+			foreach (var item in parameters) {
+				var startingPointItem = new StartPoint(item);
+				var startingPointVector = Vector.Parse(GetValue(item));
+				grid.At(startingPointVector).AddSpecial(startingPointItem);	
+			}
+
+
         }
     }
 }

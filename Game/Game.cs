@@ -39,7 +39,7 @@ namespace Game
 		{
 			Console.WriteLine ("Game.Start");
 			string currentSceneName = "None";
-			string newSceneName = "Default";
+			string newSceneName = "DEFAULT";
 			//Task.Factory.StartNew (() => _calendar.Play ());
 
 			while (true) {

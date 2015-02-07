@@ -1,27 +1,31 @@
 [Default]
 
-Size: 20x20
-Borders: BorderWalls
-EndPoint:Calendar-5,5 
-EndPoint:SecondLevel-7,5 
+Size:Size=20x20
+Borders:rule=BorderWalls
+EndPoint:SecondLevel=17,17
 Dungeon:MinRoomSize=3
-StartPoint:*-10,10
-Availability: always
-Repeatability: once
-[END]
+StartPoint:*=2,2
 
 [SecondLevel]
 
-Size: 20x20
-Borders: BorderWalls
-EndPoint:SecondLevel-7,5 
-Dungeon:MinRoomSize=3
-StartPoint:Default-2,2
-StartPoint:*-18,18
-Availability: always
-Repeatability: once
+Size:Size=20x20
+Borders:rule=BorderWalls
+EndPoint:ThirdLevel=12,12 
+Dungeon:MinRoomSize=4
+StartPoint:Default=2,2;*=18,18
+
+[ThirdLevel]
+
+Size:Size=20x20
+Borders:rule=BorderWalls
+EndPoint:END=7,5 
+Dungeon:MinRoomSize=5
+StartPoint:*=18,18
 
 [END]
-
+Size:Size=1x10
+Borders:rule=None
+Message:level_start=You have won!
+StartPoint:*=1,1
 
 Room:Type=Regular;DoorsMin=1;DoorsMax=2

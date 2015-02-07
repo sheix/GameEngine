@@ -16,16 +16,11 @@ using Game;
 
 namespace Infrastructure
 {
-    /// <summary>
-    /// The main class - create game object, use game start/load/save etc.
-    /// </summary>
     public static class Program
     {
 
         private static IGame _game;
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+       
         [STAThread]
         static void Main()
         {

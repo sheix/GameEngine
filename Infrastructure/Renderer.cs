@@ -105,7 +105,6 @@ namespace Infrastructure
         {
 			var gameScene = scene as GameScene; 
 
-			Console.WriteLine ("Render Scene" + scene.Name);
 			var sceneColoring = sceneColors.ContainsKey (scene.Name) ? sceneColors [scene.Name] : GetColors (gameScene);
 
             uint X = window.Size.X;

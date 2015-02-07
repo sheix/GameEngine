@@ -7,7 +7,7 @@ namespace Engine
 {
     public abstract class MapRule : IRule
     {
-        private Dictionary<string, string> _parameters;
+        protected Dictionary<String, String> _parameters;
         protected Random Random;
 
         protected MapRule()
@@ -23,9 +23,11 @@ namespace Engine
             foreach (var pair in param.Split(';'))
             {
                 var pairvalues = pair.Split('=');
+				if (pairvalues == null)
+					continue;
                 _parameters.Add(pairvalues[0].ToUpper(), pairvalues[1].ToUpper());
             }
-        }
+}
 
         public bool IsDefined(string key)
         {
@@ -38,6 +40,18 @@ namespace Engine
                 return _parameters[key.ToUpper()];
             throw new ArgumentException("Can't find value for following key: " + key, key);
         }
+
+		public List<String> GetAllParameterNames()
+		{
+			List<String> keys = new List<String> ();
+
+			foreach (var k in _parameters.Keys.ToArray()) {
+
+				keys.Add (k);
+			}
+
+			return keys;
+		}
 
     }
 }
