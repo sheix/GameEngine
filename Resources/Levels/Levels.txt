@@ -23,9 +23,10 @@ Dungeon:MinRoomSize=5
 StartPoint:*=18,18
 
 [END]
+
 Size:Size=1x10
 Borders:rule=None
 Message:level_start=You have won!
-StartPoint:*=1,1
+StartPoint:*=0,0
 
-Room:Type=Regular;DoorsMin=1;DoorsMax=2
+

@@ -8,6 +8,8 @@ namespace Game.Rules
     {
         public override void Process(Grid grid)
         {
+			if (GetValue ("rule") == "None")
+				return;
             Vector gridSize = grid.GetSize();
             int x, y;
 

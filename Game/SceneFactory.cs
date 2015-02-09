@@ -71,6 +71,7 @@ namespace Game
 				rule.LoadParameters (pair [1]);
 				currentSceneInfo.Template.AddRule (rule);
 			}
+			scenes.Add (currentSceneName.ToUpper(), currentSceneInfo);
 		}
 
 		public IScene GetScene (string ID, string previousSceneId)
